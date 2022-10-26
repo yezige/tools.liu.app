@@ -1,0 +1,10 @@
+{{template "layout" $}}
+
+{{define "body"}}
+<article id="page">
+  <h1 class="title">{{ .BodyName }}</h1>
+  <div class="content">
+    <p>{{ .ErrorMsg }}</p>
+  </div>
+</article>
+{{end}}

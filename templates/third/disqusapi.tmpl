@@ -1,0 +1,19 @@
+{{define "third/disqusapi"}}
+<link rel="stylesheet" href="{{ .Site.Disqus.Apihost }}/dist/iDisqus.min.css" />
+<script src="{{ .Site.Disqus.Apihost }}/dist/iDisqus.min.js"></script>
+<script>
+  if (CONFIG.site.hostname === location.hostname) {
+    var disq = new iDisqus('comments', {
+      forum: '{{ .Site.Disqus.Shortname }}',
+      site: '{{ .Site.Disqus.Site }}',
+      api: '{{ .Site.Disqus.API }}',
+      mode: '{{ .Site.Disqus.Mode }}',
+      badge: '{{ .Site.Disqus.Badge }}',
+      timeout: '{{ .Site.Disqus.Timeout }}',
+      init: true,
+      url: '{{ .Permalink }}'
+    })
+    disq.count()
+  }
+</script>
+{{ end }}

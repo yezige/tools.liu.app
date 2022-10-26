@@ -1,0 +1,39 @@
+{{template "layout" $}}
+
+{{define "body"}}
+<link rel="stylesheet" href="/static/css/youtube/index.css" />
+<article id="page">
+  <h1 class="title">{{ .BodyName }}</h1>
+  <div class="content">
+    <div>
+      <div class="center_box">
+        <div class="search_box hover_shadow hover_bghigh">
+          <input class="search_input" id="search" type="search" value="{{ .Q }}"/>
+          <span class="search_submit"></span>
+        </div>
+      </div>
+      <div class="searchlist_box">
+        <h2 class="title">{{ I "searh-result" }}</h2>
+        <div class="videos">
+          {{ range.SearchList }}
+          <div class="video">
+            <a class="video_link" target="_blank" href="https://www.youtube.com/watch?v={{ .ID }}">
+              <img class="video_thumbnail" src="{{ .Snippet.Thumbnails.High.Url }}" />
+            </a>
+            <div class="video_info">
+              <div class="video_title">{{ .Snippet.Title }}</div>
+              <p class="video_description">{{ .Snippet.Description }}</p>
+              <a class="download_box absolute" href="/youtube/download?id={{ .ID.VideoID }}">
+                <span class="download_btn" ></span>
+              </a>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/static/js/youtube/search.js" type="module"></script>
+
+</article>
+{{ end }}

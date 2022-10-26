@@ -1,0 +1,16 @@
+{{template "layout" $}}
+
+{{define "body"}}
+  <article id="page">
+    <h1 class="title">{{ .BodyName }}</h1>
+    <div class="content">
+      <p>{{ I "about-title" }}</p>
+      <ul>
+        <li>Mail: <a href="mailto:a@liu.app">a@liu.app</a></li>
+        <li>Telegram: <a target="_blank" rel="noopener" href="https://t.me/yezige">@yezige</a></li>
+      </ul>
+      <p>{{ I "about-welcome" }}</p>
+      <p>{{ I "about-cheers" }}</p>
+    </div>
+  </article>
+{{end}}

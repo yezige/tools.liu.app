@@ -1,0 +1,64 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    {{template "includes/meta" $}}
+    {{template "includes/header" $}}
+  </head>
+  <body>
+    <div class="background"></div>
+    <section class="showcase">
+      <header>
+        <div class="header">
+          <div class="toggle"></div>
+          <h2 class="logo">{{ .Site.Name }}</h2>
+          <div class="space"></div>
+          <a class="explore btn" href="{{ I "sponsor-url" }}" target="_blank">{{ I "sponsor" }}</a>
+        </div>
+        <nav class="menu">
+          {{range .Site.Menu}}
+          <a class="transform" href="{{ .url }}">{{ .name | I }}</a>
+          {{end}}
+        </nav>
+      </header>
+      <main class="main">
+        <div id="content">
+          {{template "body" $}}
+          {{template "includes/comments"}}
+        </div>
+      </main>
+      <footer>
+        <div class="powered">
+          <p class="author">Author <a class="transform" href="//twitter.com/aikuuer">@{{ .Site.Author }}</a></p>
+          <p class="designed">Web & Icons designed by Figma.</p>
+          <p>Powered By <a class="transform" href="//github.com/gin-gonic/gin">Gin</a><span class="vertical_line">|</span><a class="transform" href="//liu.app">Theme D</a><span class="vertical_line">|</span><a class="transform" href="//paypal.me/yezige/">Paypal</a></p>
+          <ul class="social">
+            <li>
+              <a rel="nofollow" class="transform" href="//twitter.com/aikuuer"><img src="/static/images/Twitter.svg" alt="Twitter" srcset="" /></a>
+            </li>
+            <li>
+              <a rel="nofollow" class="transform" href="//instagram.com/liuxiaohuozi"><img src="/static/images/Instagram.svg" alt="Instagram" srcset="" /></a>
+            </li>
+            <li>
+              <a rel="nofollow" class="transform" href="//t.me/yezige"><img src="/static/images/Telegram.svg" alt="Telegram" srcset="" /></a>
+            </li>
+          </ul>
+        </div>
+        <nav class="other_menu">
+          <ul>
+            <li><a class="transform" href="//www.liu.app">BLOG</a></li>
+            <li><a class="transform" href="//cloud1-5giq10fn52e7fc0e-1307628865.tcloudbaseapp.com/jump-mp.html">V2EX Plus</a></li>
+            <li><a class="transform" href="//marketplace.visualstudio.com/items?itemName=yezige.vscode-theme-green-eyecare">Green Eyecare Theme</a></li>
+            <li><a class="transform" href="//github.com/yezige/yuque-search">语雀搜索</a></li>
+            <li><a class="transform" href="//icons.liu.app">ICONS</a></li>
+          </ul>
+        </nav>
+        <div class="license">
+          <p>© 2022 Liu.app <span class="with-love"><i class="fa fa-heart"></i></span> Yezi <span class="vertical_line">|</span> The copyright of the video belongs to the author.</p>
+        </div>
+      </footer>
+    </section>
+    {{template "includes/footer" $}}
+  </body>
+</html>
+{{end}}

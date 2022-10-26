@@ -1,0 +1,60 @@
+core:
+  enabled: true # enable httpd server
+  address: "" # ip address to bind (default: any)
+  port: "8088" # ignore this port number if auto_tls is enabled (listen 443).
+  worker_num: 0 # default worker number is runtime.NumCPU()
+  mode: "release" # release mode or debug mode
+  shutdown_timeout: 30 # default is 30 second
+  pid:
+    enabled: true
+    path: "app.pid"
+    override: true
+
+api:
+  stat_go_uri: /api/stat/go
+  google_api_key: ""
+
+log:
+  format: "string" # string or json
+  access_log: "/var/log/tools.liu.app/access_log" # stdout: output to console, or define log path like "log/access_log"
+  access_level: "debug"
+  error_log: "/var/log/tools.liu.app/error_log" # stderr: output to console, or define log path like "log/error_log"
+  error_level: "debug"
+  hide_token: true
+
+redis:
+  addr: "redis:6379"
+  password: ""
+  db: 0
+
+site:
+  name: "YouTube 视频下载"
+  logo: "Tools"
+  author: "Yezi"
+  hostname: "tools.liu.app"
+  menu:
+    - name: "menu-youtube"
+      url: "/youtube"
+    - name: "menu-about"
+      url: "/about"
+    - name: "menu-tags"
+      url: "/tags"
+  twitter:
+    image: "https://tools.liu.app/static/images/twitter_image.webp"
+  google_analytics: "G-xxx"
+  google_site_verification:
+  baidu_site_verification: "code-xxx"
+  baidu_analytics: "xxx"
+  google_adsense: "ca-pub-xxx"
+  disqus:
+    shortname: "liu-tools"
+    lazyload: true
+    site: https://tools.liu.app
+    api: 
+    mode: 1
+    badge: 叶子
+    timeout: 3000
+    apihost:  # disqusapi.swig文件使用
+    count: true # 不使用disqus自带的count方式，防止引disqus的js时404
+    emoji_path: https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/
+  fancybox: true

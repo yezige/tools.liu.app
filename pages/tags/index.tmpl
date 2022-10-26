@@ -1,0 +1,17 @@
+{{template "layout" $}}
+
+{{define "body"}}
+<link rel="stylesheet" href="/static/css/tags/index.css" />
+<article id="page">
+  <h1 class="title">{{ .BodyName }}</h1>
+  <div class="content">
+    <div class="tag_box">
+      <div class="tags">
+        {{ range.Tags }}
+        <a class="tag hover_shadow hover_bghigh" href="/tags?name={{ . }}">{{ . }}</a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</article>
+{{ end }}

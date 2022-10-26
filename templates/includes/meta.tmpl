@@ -1,0 +1,52 @@
+{{define "includes/meta"}}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16_16.png">
+
+  <title>{{ .Title }}</title>
+  <meta name="description" content="{{ .Description }}"/>
+  <meta name="keywords" content="{{ .Keywords }}"/>
+  <meta property="article:author" content="{{ .Site.Author }}"/>
+  {{range .Tags}}
+    <meta property="article:tag" content="{{ . }}"/>
+  {{end}}
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="{{ .Title }}"/>
+  <meta property="og:url" content="{{ .Permalink }}"/>
+  <meta property="og:site_name" content="{{ .Title }}"/>
+  <meta property="og:description" content="{{ .Description }}"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:image" content="{{ .Site.Twitter.Image }}"/>
+  <meta name="twitter:image" content="{{ .Site.Twitter.Image }}">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:site" content="{{ .Site.Name }}">
+  <meta name="twitter:creator" content="{{ .Site.Author }}">
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:domain" value="tools.liu.app">
+  <meta name="twitter:description" content="{{ .Description }}">
+  <meta name="twitter:image:height" value="376">
+  <meta name="twitter:image:width" value="670">
+  {{ if .Site.GoogleSiteVerification }}
+  <meta name="google-site-verification" content="{{ .Site.GoogleSiteVerification }}">
+  {{ end }}
+  {{ if .Site.BaiduSiteVerification }}
+  <meta name="baidu-site-verification" content="{{ .Site.BaiduSiteVerification }}">
+  {{ end }}
+
+  <link rel="preconnect" href="https://static.doubleclick.net">
+  <link rel="dns-prefetch" href="https://static.doubleclick.net">
+
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net">
+  <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net">
+
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+  {{- /*标记预加载项，还需要在真正加载的地方调用一遍*/ -}}
+  <link href="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" rel="preload" as="script">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" rel="preload" as="script">
+
+{{end}}

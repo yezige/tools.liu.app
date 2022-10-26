@@ -1,0 +1,10 @@
+{{define "includes/header"}}
+  <script id="hexo-configurations">
+    var CONFIG = JSON.parse('{{ . | jsonEncode }}');
+  </script>
+  {{template "third/analytics-google" $}}
+  {{template "third/analytics-baidu" $}}
+  {{template "third/adsense-google" $}}
+  <!-- <link rel="preload" as="style" href="/static/css/d.css" onload="this.onload=null;this.rel='stylesheet'"> -->
+  <link rel="stylesheet" href="/static/css/d.css">
+{{end}}
