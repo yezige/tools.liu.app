@@ -5,7 +5,9 @@
 <article id="page">
   <h1 class="title">{{ .BodyName | html }}</h1>
   <div class="title_desc_box">
-    <span class="desc_item">{{ I "title-desc-use" }}: <span>{{ .DownloadTotal | numFormat }}</span></span>
+    <span class="desc_item"
+      >{{ I "title-desc-use" }}: <span>{{ .DownloadTotal | numFormat }}</span></span
+    >
     <span class="desc_item">{{ I "title-desc-comment" }}: <span class="disqus-count" data-disqus-url="{{ .Permalink }}" data-disqus-identifier="{{ .Permalink }}">0</span></span>
   </div>
   <div class="content">
@@ -16,7 +18,7 @@
           <span class="search_submit"></span>
         </div>
       </div>
-      {{ range .PopularList }}
+      {{ range $key, $val := .PopularList }}
       <div class="popular_box">
         <h2 class="title">{{ .Title }}</h2>
         <div class="popular_videos_box">
@@ -25,7 +27,7 @@
           </div>
           <div class="videos_box">
             <div class="videos">
-              {{ range .Items }}
+              {{ range $itemkey, $itemval := .Items }}
               <div class="video">
                 <a class="video_link" href="/youtube/download?id={{ .ID }}">
                   <img class="video_thumbnail lazyload" data-src="{{ .Snippet.Thumbnails.High.Url }}" src="/static/images/whiteboard.svg" alt="{{ .Snippet.Title }}" />
@@ -36,10 +38,13 @@
                   </a>
                   <p class="video_description">{{ .Snippet.Description }}</p>
                   <a class="download_box absolute" href="/youtube/download?id={{ .ID }}">
-                    <span class="download_btn" ></span>
+                    <span class="download_btn"></span>
                   </a>
                 </div>
               </div>
+              {{ if eq $itemkey 3 }}
+                <div class="video">{{template "third/adsbygoogle" index $.AdsConfig 0 }}</div>
+              {{ end }}
               {{ end }}
             </div>
           </div>
@@ -47,6 +52,11 @@
             <span class="move_right_btn"></span>
           </div>
         </div>
+        {{ if eq $key 0 }}
+        <div class="popular_videos_box">
+          {{template "third/adsbygoogle" index $.AdsConfig 1 }}
+        </div>
+        {{ end }}
       </div>
       {{ end }}
     </div>

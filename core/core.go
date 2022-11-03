@@ -16,11 +16,12 @@ type PageConfig struct {
 	PopularList   []SelectionPopular  `json:"popular_list"`
 	ErrorMsg      string              `json:"error_msg"`
 	DownloadTotal int64               `json:"download_total"`
+	AdsConfig     []AdsConfig         `json:"adsconfig"`
 }
 
 type SelectionPopular struct {
 	Title string           `json:"popular_title"`
-	Items  []*youtube.Video `json:"popular_item"`
+	Items []*youtube.Video `json:"popular_item"`
 }
 
 type PageSearchConfig struct {
@@ -47,4 +48,12 @@ type PageDownloadConfig struct {
 	DownloadList *[]youtube.SelectionFormat `json:"download_list"`
 	ErrorMsg     string                     `json:"error_msg"`
 	Info         youtube.Video              `json:"info"`
+}
+type AdsConfig struct {
+	Format          string
+	LayoutKey       string
+	Slot            string
+	Margin          string
+	WidthResponsive string
+	Client          string
 }

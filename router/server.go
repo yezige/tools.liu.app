@@ -114,6 +114,9 @@ func loadTemplates(templatesDir string, pagesDir string) multitemplate.Renderer 
 				"I": func(key string, args ...string) string {
 					return handler.I(key, args...)
 				},
+				"default": func(key string, args ...string) string {
+					return handler.Default(key, args...)
+				},
 			},
 			files...,
 		)

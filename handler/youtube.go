@@ -85,6 +85,18 @@ func YoutubeHandler(c *gin.Context) {
 		})
 	}
 
+	// 定义 AdsConfig
+	// 首页 第五个video
+	data.AdsConfig = append(data.AdsConfig, core.AdsConfig{
+		Format:    "fluid",
+		LayoutKey: "-7c+dd+2b+o-1d",
+		Slot:      "1153918191",
+	})
+	// 首页 第二个H2
+	data.AdsConfig = append(data.AdsConfig, core.AdsConfig{
+		Slot:      "9245845411",
+	})
+
 	c.HTML(http.StatusOK, "pages/youtube/index.tmpl", data)
 }
 
@@ -258,8 +270,20 @@ func BpsFormat(bps int) string {
 	}
 	return strconv.Itoa(bps) + unit
 }
+
 // 换算为10,000,000的格式
 func NumFormat(num int64) string {
 	p := message.NewPrinter(language.English)
 	return p.Sprintf("%d", num)
+}
+
+// 模板默认值
+func Default(key string, args ...string) string {
+	if key != "" {
+		return key
+	}
+	if len(args) == 1 {
+		return args[0]
+	}
+	return ""
 }
