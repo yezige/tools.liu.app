@@ -1,10 +1,10 @@
 {{define "third/adsbygoogle"}}
-<div style="display:block; margin: '{{ .Margin | default "0" }}';">
+<div style="display:block; margin: '{{ .Margin | default "0" }}'">
 <ins class="adsbygoogle"
     style="display:block"
     data-ad-format="{{ .Format | default "auto" }}"
     data-ad-layout-key="{{ .LayoutKey }}"
-    data-ad-client="{{ .Client | default "ca-pub-9209957480256741" }}"
+    data-ad-client="{{ .Client }}"
     data-ad-slot="{{ .Slot }}"
     data-full-width-responsive="{{ .WidthResponsive | default "true" }}"></ins>
 <script>

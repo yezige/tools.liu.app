@@ -50,10 +50,10 @@ type PageDownloadConfig struct {
 	Info         youtube.Video              `json:"info"`
 }
 type AdsConfig struct {
-	Format          string
-	LayoutKey       string
+	Format          string `default:"auto"`
+	LayoutKey       string `default:""`
 	Slot            string
-	Margin          string
-	WidthResponsive string
+	Margin          string `default:"0"`
+	WidthResponsive string `default:"true"`
 	Client          string
 }
