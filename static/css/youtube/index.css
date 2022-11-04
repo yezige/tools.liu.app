@@ -49,6 +49,7 @@
   align-items: center;
   justify-content: center;
   width: 248px;
+  min-width: 248px;
   height: 100%;
 }
 .video + .video {

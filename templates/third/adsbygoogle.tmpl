@@ -1,12 +1,12 @@
 {{define "third/adsbygoogle"}}
-<div style="display:block; margin: '{{ .Margin | default "0" }}'">
+<div style="display:block; margin: {{ default .Margin "0" }}">
 <ins class="adsbygoogle"
     style="display:block"
-    data-ad-format="{{ .Format | default "auto" }}"
+    data-ad-format="{{ default .Format "auto" }}"
     data-ad-layout-key="{{ .LayoutKey }}"
     data-ad-client="{{ .Client }}"
     data-ad-slot="{{ .Slot }}"
-    data-full-width-responsive="{{ .WidthResponsive | default "true" }}"></ins>
+    data-full-width-responsive="{{ default .WidthResponsive "true" }}"></ins>
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
