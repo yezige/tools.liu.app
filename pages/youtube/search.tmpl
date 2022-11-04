@@ -17,15 +17,15 @@
         <div class="videos">
           {{ range .SearchList }}
           <div class="video">
-            <a class="video_link" href="/youtube/download?id={{ .ID }}">
+            <a class="video_link" href="/youtube/download?id={{ .ID.VideoID }}">
               <img class="video_thumbnail lazyload" data-src="{{ .Snippet.Thumbnails.High.Url }}" src="/static/images/whiteboard.svg" alt="{{ .Snippet.Title }}" />
             </a>
             <div class="video_info">
-              <a href="https://www.youtube.com/watch?v={{ .ID }}" target="_blank">
+              <a href="https://www.youtube.com/watch?v={{ .ID.VideoID }}" target="_blank">
                 <div class="video_title" title="{{ .Snippet.Title }}">{{ .Snippet.Title }}</div>
               </a>
               <p class="video_description">{{ .Snippet.Description }}</p>
-              <a class="download_box absolute" href="/youtube/download?id={{ .ID }}">
+              <a class="download_box absolute" href="/youtube/download?id={{ .ID.VideoID }}">
                 <span class="download_btn"></span>
               </a>
             </div>
