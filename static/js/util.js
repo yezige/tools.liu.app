@@ -1,5 +1,5 @@
 const setFancybox = function () {
-  if (!CONFIG.site.fancybox) {
+  if (!CONFIG.page.site.fancybox) {
     return false
   }
   document.querySelectorAll('.content :not(a) > img, .content > img').forEach((element) => {
@@ -67,7 +67,7 @@ const setToggle = function () {
 }
 
 const loadComments = function (element, callback) {
-  if (!CONFIG.site.disqus.lazyload || !element) {
+  if (!CONFIG.page.site.disqus.lazyload || !element) {
     callback()
     return
   }

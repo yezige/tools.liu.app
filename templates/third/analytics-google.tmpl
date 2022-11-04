@@ -1,13 +1,13 @@
 {{define "third/analytics-google"}}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Page.Site.GoogleAnalytics }}"></script>
 <script>
-  if (CONFIG.site.hostname === location.hostname) {
+  if (CONFIG.page.site.hostname === location.hostname) {
     window.dataLayer = window.dataLayer || []
     function gtag() {
       dataLayer.push(arguments)
     }
     gtag('js', new Date())
-    gtag('config', '{{ .Site.GoogleAnalytics }}')
+    gtag('config', '{{ .Page.Site.GoogleAnalytics }}')
   }
 </script>
 {{end}}

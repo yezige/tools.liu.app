@@ -1,10 +1,10 @@
 {{define "third/analytics-baidu"}}
 <script>
-  if (CONFIG.site.hostname === location.hostname) {
+  if (CONFIG.page.site.hostname === location.hostname) {
     var _hmt = _hmt || [];
     (function () {
       var hm = document.createElement('script')
-      hm.src = 'https://hm.baidu.com/hm.js?{{ .Site.BaiduAnalytics }}'
+      hm.src = 'https://hm.baidu.com/hm.js?{{ .Page.Site.BaiduAnalytics }}'
       var s = document.getElementsByTagName('script')[0]
       s.parentNode.insertBefore(hm, s)
     })()

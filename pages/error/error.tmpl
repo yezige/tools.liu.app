@@ -2,9 +2,9 @@
 
 {{define "body"}}
 <article id="page">
-  <h1 class="title">{{ .BodyName }}</h1>
+  <h1 class="title">{{ .Page.BodyName }}</h1>
   <div class="content">
-    <p>{{ .ErrorMsg }}</p>
+    <p>{{ .Page.ErrorMsg }}</p>
   </div>
 </article>
 {{end}}

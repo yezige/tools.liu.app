@@ -1,17 +1,17 @@
 {{define "third/disqusapi"}}
-<link rel="stylesheet" href="{{ .Site.Disqus.Apihost }}/dist/iDisqus.min.css" />
-<script src="{{ .Site.Disqus.Apihost }}/dist/iDisqus.min.js"></script>
+<link rel="stylesheet" href="{{ .Page.Site.Disqus.Apihost }}/dist/iDisqus.min.css" />
+<script src="{{ .Page.Site.Disqus.Apihost }}/dist/iDisqus.min.js"></script>
 <script>
-  if (CONFIG.site.hostname === location.hostname) {
+  if (CONFIG.page.site.hostname === location.hostname) {
     var disq = new iDisqus('comments', {
-      forum: '{{ .Site.Disqus.Shortname }}',
-      site: '{{ .Site.Disqus.Site }}',
-      api: '{{ .Site.Disqus.API }}',
-      mode: '{{ .Site.Disqus.Mode }}',
-      badge: '{{ .Site.Disqus.Badge }}',
-      timeout: '{{ .Site.Disqus.Timeout }}',
+      forum: '{{ .Page.Site.Disqus.Shortname }}',
+      site: '{{ .Page.Site.Disqus.Site }}',
+      api: '{{ .Page.Site.Disqus.API }}',
+      mode: '{{ .Page.Site.Disqus.Mode }}',
+      badge: '{{ .Page.Site.Disqus.Badge }}',
+      timeout: '{{ .Page.Site.Disqus.Timeout }}',
       init: true,
-      url: '{{ .Permalink }}'
+      url: '{{ .Page.Permalink }}'
     })
     disq.count()
   }

@@ -10,22 +10,25 @@ import (
 )
 
 func TagsHandler(c *gin.Context) {
-	conf := core.PageConfig{
-		Site:        &config.SectionSite{},
-		Title:       I("title") + " | Tags",
-		Description: I("desc"),
-		Keywords:    I("keywords"),
-		Tags:        strings.Split(I("tags"), "|"),
-		Permalink:   "/tags",
-		BodyName:    I("body-name-tags"),
+	conf := core.PageTagConfig{
+		Page: core.PageConfig{
+			Site:        &config.SectionSite{},
+			Title:       I("title") + " | Tags",
+			Description: I("desc"),
+			Keywords:    I("keywords"),
+			Tags:        strings.Split(I("tags"), "|"),
+			Permalink:   "/tags",
+			BodyName:    I("body-name-tags"),
+		},
+		Name: c.Query("name"),
 	}
 	cfg, err := config.GetConfig()
 	if err != nil {
-		conf.ErrorMsg = err.Error()
+		conf.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", conf)
 		return
 	}
-	conf.Site = &cfg.Site
+	conf.Page.Site = &cfg.Site
 
 	c.HTML(http.StatusOK, "pages/tags/index.tmpl", conf)
 }

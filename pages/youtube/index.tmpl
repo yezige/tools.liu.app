@@ -3,12 +3,12 @@
 {{define "body"}}
 <link rel="stylesheet" href="/static/css/youtube/index.css" />
 <article id="page">
-  <h1 class="title">{{ .BodyName | html }}</h1>
+  <h1 class="title">{{ .Page.BodyName | html }}</h1>
   <div class="title_desc_box">
     <span class="desc_item"
       >{{ I "title-desc-use" }}: <span>{{ .DownloadTotal | numFormat }}</span></span
     >
-    <span class="desc_item">{{ I "title-desc-comment" }}: <span class="disqus-count" data-disqus-url="{{ .Permalink }}" data-disqus-identifier="{{ .Permalink }}">0</span></span>
+    <span class="desc_item">{{ I "title-desc-comment" }}: <span class="disqus-count" data-disqus-url="{{ .Page.Permalink }}" data-disqus-identifier="{{ .Page.Permalink }}">0</span></span>
   </div>
   <div class="content">
     <div>
@@ -43,7 +43,7 @@
                 </div>
               </div>
               {{ if eq $itemkey 3 }}
-                <div class="video">{{template "third/adsbygoogle" index $.AdsConfig 0 }}</div>
+                <div class="video">{{template "third/adsbygoogle" index $.Page.AdsConfig 0 }}</div>
               {{ end }}
               {{ end }}
             </div>
@@ -54,7 +54,7 @@
         </div>
         {{ if eq $key 0 }}
         <div class="popular_videos_box">
-          <!-- {{template "third/adsbygoogle" index $.AdsConfig 1 }} -->
+          <!-- {{template "third/adsbygoogle" index $.Page.AdsConfig 1 }} -->
         </div>
         {{ end }}
       </div>

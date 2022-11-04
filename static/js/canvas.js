@@ -15,7 +15,7 @@ const dark = window.matchMedia('(prefers-color-scheme: dark)').matches,
     '#ffb300', // 黄
     '#6d4c41', // 咖
   ], // 颜色列表
-  text = CONFIG.site.logo || 'Icons',
+  text = CONFIG.page.site.logo || 'Icons',
   width = 120, // canvas 宽度
   height = 43, // canvas 高度
   mouse_diameter = Math.round(height / 3), // 鼠标直径大小

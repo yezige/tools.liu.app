@@ -19,29 +19,31 @@ func YoutubeHandler(c *gin.Context) {
 	redis.New().IncrBy("youtube:download:total", 1)
 
 	// 默认页面配置
-	data := core.PageConfig{
-		Site:          &config.SectionSite{},
-		Title:         I("title") + " | Home",
-		Description:   I("desc"),
-		Keywords:      I("keywords"),
-		Tags:          strings.Split(I("tags"), "|"),
-		Permalink:     "/youtube",
-		BodyName:      I("body-name-youtube"),
+	data := core.PageIndexConfig{
+		Page: core.PageConfig{
+			Site:        &config.SectionSite{},
+			Title:       I("title") + " | Home",
+			Description: I("desc"),
+			Keywords:    I("keywords"),
+			Tags:        strings.Split(I("tags"), "|"),
+			Permalink:   "/youtube",
+			BodyName:    I("body-name-youtube"),
+		},
 		DownloadTotal: redis.New().GetInt64("youtube:download:total"),
 	}
 
 	cfg, err := config.GetConfig()
 	if err != nil {
-		data.ErrorMsg = err.Error()
+		data.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}
-	data.Site = &cfg.Site
+	data.Page.Site = &cfg.Site
 
 	// 获取当前美国流行视频列表
 	popularUS, err := youtube.Popular("US", "0")
 	if err != nil {
-		data.ErrorMsg = err.Error()
+		data.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}
@@ -75,7 +77,7 @@ func YoutubeHandler(c *gin.Context) {
 		// 获取当前中国流行视频列表
 		popular, err := youtube.Popular("US", k)
 		if err != nil {
-			data.ErrorMsg = err.Error()
+			data.Page.ErrorMsg = err.Error()
 			c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 			return
 		}
@@ -87,14 +89,14 @@ func YoutubeHandler(c *gin.Context) {
 
 	// 定义 AdsConfig
 	// 首页 第五个video
-	data.AdsConfig = append(data.AdsConfig, core.AdsConfig{
+	data.Page.AdsConfig = append(data.Page.AdsConfig, core.AdsConfig{
 		Format:    "fluid",
 		LayoutKey: "-7c+dd+2b+o-1d",
 		Slot:      "1153918191",
 		Client:    cfg.Site.GoogleAdsense,
 	})
 	// 首页 第二个H2
-	data.AdsConfig = append(data.AdsConfig, core.AdsConfig{
+	data.Page.AdsConfig = append(data.Page.AdsConfig, core.AdsConfig{
 		Slot:   "9245845411",
 		Client: cfg.Site.GoogleAdsense,
 	})
@@ -108,27 +110,29 @@ func YoutubeDownloadHandler(c *gin.Context) {
 
 	// 默认页面配置
 	data := core.PageDownloadConfig{
-		Site:        &config.SectionSite{},
-		Title:       I("title") + " | Download",
-		Description: I("desc"),
-		Keywords:    I("keywords"),
-		Tags:        strings.Split(I("tags"), "|"),
-		Permalink:   "/youtube/download",
-		BodyName:    I("body-name-youtube"),
+		Page: core.PageConfig{
+			Site:        &config.SectionSite{},
+			Title:       I("title") + " | Download",
+			Description: I("desc"),
+			Keywords:    I("keywords"),
+			Tags:        strings.Split(I("tags"), "|"),
+			Permalink:   "/youtube/download",
+			BodyName:    I("body-name-youtube"),
+		},
 	}
 
 	cfg, err := config.GetConfig()
 	if err != nil {
-		data.ErrorMsg = err.Error()
+		data.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}
-	data.Site = &cfg.Site
+	data.Page.Site = &cfg.Site
 
 	// 视频id不能为空
 	videoID := c.Query("id")
 	if videoID == "" {
-		data.ErrorMsg = "Video id is empty"
+		data.Page.ErrorMsg = "Video id is empty"
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}
@@ -136,21 +140,21 @@ func YoutubeDownloadHandler(c *gin.Context) {
 	// 通过视频id获取视频信息
 	info, err := youtube.GetInfo(videoID)
 	if err != nil {
-		data.ErrorMsg = err.Error()
+		data.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}
 	data.Info = *info.Items[0]
 
 	// 根据视频信息更新Title
-	data.Title += " | " + data.Info.Snippet.Title
-	data.Description += " | " + data.Info.Snippet.Description
-	data.Keywords += " | " + data.Info.Snippet.Description
+	data.Page.Title += " | " + data.Info.Snippet.Title
+	data.Page.Description += " | " + data.Info.Snippet.Description
+	data.Page.Keywords += " | " + data.Info.Snippet.Description
 
 	// 通过视频id获取视频下载信息
 	formats, err := youtube.Download(videoID)
 	if err != nil {
-		data.ErrorMsg = err.Error()
+		data.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}
@@ -163,22 +167,24 @@ func YoutubeDownloadHandler(c *gin.Context) {
 func YoutubeSearchHandler(c *gin.Context) {
 	// 默认页面配置
 	data := core.PageSearchConfig{
-		Site:        &config.SectionSite{},
-		Title:       I("title") + " | Search",
-		Description: I("desc"),
-		Keywords:    I("keywords"),
-		Tags:        strings.Split(I("tags"), "|"),
-		Permalink:   "/youtube/search",
-		BodyName:    I("body-name-youtube"),
+		Page: core.PageConfig{
+			Site:        &config.SectionSite{},
+			Title:       I("title") + " | Search",
+			Description: I("desc"),
+			Keywords:    I("keywords"),
+			Tags:        strings.Split(I("tags"), "|"),
+			Permalink:   "/youtube/search",
+			BodyName:    I("body-name-youtube"),
+		},
 	}
 
 	cfg, err := config.GetConfig()
 	if err != nil {
-		data.ErrorMsg = err.Error()
+		data.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}
-	data.Site = &cfg.Site
+	data.Page.Site = &cfg.Site
 
 	// 视频搜索关键字不能为空
 	q := c.Query("q")
@@ -194,12 +200,12 @@ func YoutubeSearchHandler(c *gin.Context) {
 	}
 
 	data.Q = q
-	data.Title += " | " + q
+	data.Page.Title += " | " + q
 
 	// 搜索视频
 	search, err := youtube.Search(q)
 	if err != nil {
-		data.ErrorMsg = err.Error()
+		data.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}

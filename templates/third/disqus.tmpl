@@ -1,11 +1,11 @@
 {{define "third/disqus"}}
 <script type="module" async>
   import { loadComments } from '/static/js/util.js'
-  if (CONFIG.site.hostname === location.hostname) {
-    var disqus_config = function () {
-      this.page.url = '{{ .Permalink }}'
-      this.page.identifier = '{{ .Permalink }}'
-      this.page.title = '{{ .Title }}'
+  if (CONFIG.page.site.hostname === location.hostname) {
+    var disqus_config = function() {
+      this.page.url = '{{ .Page.Permalink }}'
+      this.page.identifier = '{{ .Page.Permalink }}'
+      this.page.title = '{{ .Page.Title }}'
       this.language = 'disqus'
     }
     loadComments(document.querySelector('#disqus_thread'), () => {
@@ -17,11 +17,11 @@
       } else {
         var d = document,
           s = d.createElement('script')
-        s.src = 'https://{{ .Site.Disqus.Shortname }}.disqus.com/embed.js'
+        s.src = 'https://{{ .Page.Site.Disqus.Shortname }}.disqus.com/embed.js'
         s.setAttribute('data-timestamp', '' + +new Date())
         ;(d.head || d.body).appendChild(s)
       }
     })
   }
 </script>
-{{end}}
+{{ end }}

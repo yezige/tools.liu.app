@@ -3,7 +3,7 @@
 {{define "body"}}
 <link rel="stylesheet" href="/static/css/youtube/index.css" />
 <article id="page">
-  <h1 class="title">{{ .BodyName }}</h1>
+  <h1 class="title">{{ .Page.BodyName }}</h1>
   <div class="content">
     <div>
       <div class="center_box">
@@ -15,7 +15,7 @@
       <div class="searchlist_box">
         <h2 class="title">{{ I "searh-result" }}</h2>
         <div class="videos">
-          {{ range.SearchList }}
+          {{ range .SearchList }}
           <div class="video">
             <a class="video_link" href="/youtube/download?id={{ .ID }}">
               <img class="video_thumbnail lazyload" data-src="{{ .Snippet.Thumbnails.High.Url }}" src="/static/images/whiteboard.svg" alt="{{ .Snippet.Title }}" />

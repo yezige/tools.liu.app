@@ -5,35 +5,35 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16_16.png">
 
-  <title>{{ .Title }}</title>
-  <meta name="description" content="{{ .Description }}"/>
-  <meta name="keywords" content="{{ .Keywords }}"/>
-  <meta property="article:author" content="{{ .Site.Author }}"/>
-  {{range .Tags}}
+  <title>{{ .Page.Title }}</title>
+  <meta name="description" content="{{ .Page.Description }}"/>
+  <meta name="keywords" content="{{ .Page.Keywords }}"/>
+  <meta property="article:author" content="{{ .Page.Site.Author }}"/>
+  {{range .Page.Tags}}
     <meta property="article:tag" content="{{ . }}"/>
   {{end}}
 
   <meta property="og:type" content="website"/>
-  <meta property="og:title" content="{{ .Title }}"/>
-  <meta property="og:url" content="{{ .Permalink }}"/>
-  <meta property="og:site_name" content="{{ .Title }}"/>
-  <meta property="og:description" content="{{ .Description }}"/>
+  <meta property="og:title" content="{{ .Page.Title }}"/>
+  <meta property="og:url" content="{{ .Page.Permalink }}"/>
+  <meta property="og:site_name" content="{{ .Page.Title }}"/>
+  <meta property="og:description" content="{{ .Page.Description }}"/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:image" content="{{ .Site.Twitter.Image }}"/>
-  <meta name="twitter:image" content="{{ .Site.Twitter.Image }}">
-  <meta name="twitter:title" content="{{ .Title }}">
-  <meta name="twitter:site" content="{{ .Site.Name }}">
-  <meta name="twitter:creator" content="{{ .Site.Author }}">
+  <meta property="og:image" content="{{ .Page.Site.Twitter.Image }}"/>
+  <meta name="twitter:image" content="{{ .Page.Site.Twitter.Image }}">
+  <meta name="twitter:title" content="{{ .Page.Title }}">
+  <meta name="twitter:site" content="{{ .Page.Site.Name }}">
+  <meta name="twitter:creator" content="{{ .Page.Site.Author }}">
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:domain" value="tools.liu.app">
-  <meta name="twitter:description" content="{{ .Description }}">
+  <meta name="twitter:description" content="{{ .Page.Description }}">
   <meta name="twitter:image:height" value="376">
   <meta name="twitter:image:width" value="670">
-  {{ if .Site.GoogleSiteVerification }}
-  <meta name="google-site-verification" content="{{ .Site.GoogleSiteVerification }}">
+  {{ if .Page.Site.GoogleSiteVerification }}
+  <meta name="google-site-verification" content="{{ .Page.Site.GoogleSiteVerification }}">
   {{ end }}
-  {{ if .Site.BaiduSiteVerification }}
-  <meta name="baidu-site-verification" content="{{ .Site.BaiduSiteVerification }}">
+  {{ if .Page.Site.BaiduSiteVerification }}
+  <meta name="baidu-site-verification" content="{{ .Page.Site.BaiduSiteVerification }}">
   {{ end }}
 
   <link rel="preconnect" href="https://static.doubleclick.net">

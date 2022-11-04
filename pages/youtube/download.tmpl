@@ -3,7 +3,7 @@
 {{define "body"}}
 <link rel="stylesheet" href="/static/css/youtube/index.css" />
 <article id="page">
-  <h1 class="title">{{ .BodyName }}</h1>
+  <h1 class="title">{{ .Page.BodyName }}</h1>
   <div class="content">
     <div class="video_box">
       <div class="video_info_box">
@@ -28,7 +28,7 @@
         <span class="item">{{ I "down-size" }}</span>
         <span class="item">{{ I "down-download" }}</span>
       </div>
-      {{ range.DownloadList }}
+      {{ range .DownloadList }}
       <div class="download_item">
         <span class="item">{{ if .F.QualityLabel }}{{ .F.QualityLabel }}{{else}}{{ .F.Quality }}{{ end }}</span>
         <span class="item">{{ if .F.FPS}}{{ .F.FPS }}{{ end }}</span>

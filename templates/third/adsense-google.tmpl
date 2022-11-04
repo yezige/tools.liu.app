@@ -1,5 +1,5 @@
 {{define "third/adsense-google"}}
-{{ if .Site.GoogleAdsense }}
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.GoogleAdsense }}" crossorigin="anonymous"></script>
+{{ if .Page.Site.GoogleAdsense }}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Page.Site.GoogleAdsense }}" crossorigin="anonymous"></script>
 {{ end }}
 {{ end }}

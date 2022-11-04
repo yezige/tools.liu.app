@@ -11,12 +11,12 @@
       <header>
         <div class="header">
           <div class="toggle"></div>
-          <h2 class="logo">{{ .Site.Name }}</h2>
+          <h2 class="logo">{{ .Page.Site.Name }}</h2>
           <div class="space"></div>
           <a class="explore btn" href="{{ I "sponsor-url" }}" target="_blank">{{ I "sponsor" }}</a>
         </div>
         <nav class="menu">
-          {{range .Site.Menu}}
+          {{range .Page.Site.Menu}}
           <a class="transform" href="{{ .url }}">{{ .name | I }}</a>
           {{end}}
         </nav>
@@ -29,7 +29,7 @@
       </main>
       <footer>
         <div class="powered">
-          <p class="author">Author <a class="transform" href="//twitter.com/aikuuer">@{{ .Site.Author }}</a></p>
+          <p class="author">Author <a class="transform" href="//twitter.com/aikuuer">@{{ .Page.Site.Author }}</a></p>
           <p class="designed">Web & Icons designed by Figma.</p>
           <p>Powered By <a class="transform" href="//github.com/gin-gonic/gin">Gin</a><span class="vertical_line">|</span><a class="transform" href="//liu.app">Theme D</a><span class="vertical_line">|</span><a class="transform" href="//paypal.me/yezige/">Paypal</a></p>
           <ul class="social">
@@ -46,11 +46,11 @@
         </div>
         <nav class="other_menu">
           <ul>
-            <li><a class="transform" href="//www.liu.app">BLOG</a></li>
-            <li><a class="transform" href="//cloud1-5giq10fn52e7fc0e-1307628865.tcloudbaseapp.com/jump-mp.html">V2EX Plus</a></li>
-            <li><a class="transform" href="//marketplace.visualstudio.com/items?itemName=yezige.vscode-theme-green-eyecare">Green Eyecare Theme</a></li>
-            <li><a class="transform" href="//github.com/yezige/yuque-search">语雀搜索</a></li>
-            <li><a class="transform" href="//icons.liu.app">ICONS</a></li>
+            <li><a class="transform" href="//www.liu.app" target="_black" title="Blog">BLOG</a></li>
+            <li><a class="transform" href="//cloud1-5giq10fn52e7fc0e-1307628865.tcloudbaseapp.com/jump-mp.html" target="_black" title="V2EX 小程序">V2EX Plus</a></li>
+            <li><a class="transform" href="//marketplace.visualstudio.com/items?itemName=yezige.vscode-theme-green-eyecare" target="_black" title="VSCode 主题插件">Green Eyecare Theme</a></li>
+            <li><a class="transform" href="//github.com/yezige/yuque-search" target="_black" title="Chrome 插件">语雀搜索</a></li>
+            <li><a class="transform" href="//icons.liu.app" target="_black" title="图标库">ICONS</a></li>
           </ul>
         </nav>
         <div class="license">
