@@ -20,7 +20,8 @@ type AdsConfig struct {
 	Format          string `default:"auto"`
 	LayoutKey       string `default:""`
 	Slot            string
-	Margin          string `default:"0"`
+	Class           string `default:""`
+	Style           string `default:""`
 	WidthResponsive string `default:"true"`
 	Client          string
 }

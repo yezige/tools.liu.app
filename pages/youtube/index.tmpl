@@ -43,7 +43,7 @@
                 </div>
               </div>
               {{ if eq $itemkey 3 }}
-                <div class="video">{{template "third/adsbygoogle" index $.Page.AdsConfig 0 }}</div>
+                {{template "third/adsbygoogle" index $.Page.AdsConfig 0 }}
               {{ end }}
               {{ end }}
             </div>
@@ -53,9 +53,7 @@
           </div>
         </div>
         {{ if eq $key 0 }}
-        <div class="popular_videos_box">
           {{template "third/adsbygoogle" index $.Page.AdsConfig 1 }}
-        </div>
         {{ end }}
       </div>
       {{ end }}

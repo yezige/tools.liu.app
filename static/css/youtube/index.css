@@ -48,9 +48,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 248px;
-  min-width: 248px;
+  width: 251px;
   height: 100%;
+}
+.video.ads{
+  min-width: 251px;
+  height: 322px;
 }
 .video + .video {
   margin-left: 20px;

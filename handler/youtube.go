@@ -94,11 +94,13 @@ func YoutubeHandler(c *gin.Context) {
 		LayoutKey: "-7c+dd+2b+o-1d",
 		Slot:      "1153918191",
 		Client:    cfg.Site.GoogleAdsense,
+		Class:     "video ads",
 	})
 	// 首页 第二个H2
 	data.Page.AdsConfig = append(data.Page.AdsConfig, core.AdsConfig{
 		Slot:   "9245845411",
 		Client: cfg.Site.GoogleAdsense,
+		Class:  "popular_videos_box",
 	})
 
 	c.HTML(http.StatusOK, "pages/youtube/index.tmpl", data)
