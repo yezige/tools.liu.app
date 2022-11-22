@@ -18,7 +18,7 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /tools.liu.app
 
-RUN mkdir -p /var/log/tools/
+RUN mkdir -p /var/log/tools.liu.app/
 
 COPY ./templates ./templates
 COPY ./pages ./pages
@@ -35,4 +35,4 @@ EXPOSE 8088
 
 ENTRYPOINT ["./tools"]
 
-CMD ["-config", "./config_production.yaml"]
+CMD ["-config", "./config_production.yaml", ">/var/log/tools.liu.app/error_log", "2>&1"]
