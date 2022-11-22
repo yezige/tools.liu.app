@@ -92,11 +92,13 @@ const delEmptyThtd = function () {
 }
 
 const setMenu = function () {
-  $('.menu a').show().each(function () {
-    if ($(this).attr('href') == location.pathname) {
-      $(this).addClass('active')
-    }
-  })
+  $('.menu a')
+    .show()
+    .each(function () {
+      if ($(this).attr('href') == location.pathname) {
+        $(this).addClass('active')
+      }
+    })
 }
 
 const searchHandler = function () {
@@ -123,26 +125,34 @@ const setLazyload = function () {
 const moveLeft = function (event) {
   const videoBox = event.currentTarget.closest('.popular_videos_box')
   const videos = videoBox.querySelector('.videos')
-  if (!videoBox){
+  if (!videoBox) {
     return false
   }
 
-  videos.scrollLeft -= videoBox.offsetWidth
+  let scrollLeft = videos.scrollLeft - videoBox.offsetWidth
+  videos.scrollTo({
+    left: scrollLeft,
+    behavior: 'smooth'
+  })
 
-  if (videos.scrollLeft <= 0) {
+  if (scrollLeft <= 0) {
     videoBox.querySelector('.move_left_btn').classList.remove('active')
   }
 }
 const moveRight = function (event) {
   const videoBox = event.currentTarget.closest('.popular_videos_box')
   const videos = videoBox.querySelector('.videos')
-  if (!videoBox){
+  if (!videoBox) {
     return false
   }
 
-  videos.scrollLeft += videoBox.offsetWidth
+  let scrollLeft = videos.scrollLeft + videoBox.offsetWidth
+  videos.scrollTo({
+    left: scrollLeft,
+    behavior: 'smooth'
+  })
 
-  if (videos.scrollLeft > 0) {
+  if (scrollLeft > 0) {
     videoBox.querySelector('.move_left_btn').classList.add('active')
   }
 }
