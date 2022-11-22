@@ -34,7 +34,7 @@
 .popular_videos_box .videos {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: scroll;
+  overflow: hidden;
   align-items: flex-start;
 }
 
