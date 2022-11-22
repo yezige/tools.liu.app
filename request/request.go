@@ -67,10 +67,10 @@ func (r *RequestObj) PostJSON() *RequestObj {
 }
 
 func (r *RequestObj) GetBody() ([]byte, error) {
-	var res []byte
-	if _, err := r.resp.Body.Read(res); err != nil {
+	defer r.resp.Body.Close()
+	res, err := io.ReadAll(r.resp.Body)
+	if err != nil {
 		return nil, err
 	}
-	defer r.resp.Body.Close()
-	return io.ReadAll(r.resp.Body)
+	return res, nil
 }
