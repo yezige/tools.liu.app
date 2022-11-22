@@ -50,6 +50,8 @@ jobs:
       HOST_IP: ${{ secrets.HOST_IP }}
       HOST_PORT: ${{ secrets.HOST_PORT }}
       HOST_USER: ${{ secrets.HOST_USER }}
+      FOLDER: /data/docker/dnmp
+      # FOLDER: /data/dnmp-hk
     steps:
       - uses: actions/checkout@v2
 
@@ -62,4 +64,4 @@ jobs:
           ssh-keyscan -p ${{ env.HOST_PORT }} ${{ env.HOST_IP }} >> ~/.ssh/known_hosts
 
       - name: Update source folder
-        run: ssh -p ${{ env.HOST_PORT }} ${{ env.HOST_USER }}@${{ env.HOST_IP }} "cd /data/dnmp-hk/data/www/tools.liu.app/ && git pull && git submodule update --init --recursive --remote && echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u yezige --password-stdin && docker pull ghcr.io/yezige/${{ env.IMAGE_NAME }}:latest && /usr/local/bin/docker-compose up -d tools && docker exec -i nginx nginx -s reload && exit"
+        run: ssh -p ${{ env.HOST_PORT }} ${{ env.HOST_USER }}@${{ env.HOST_IP }} "cd ${{ env.FOLDER }}/data/www/tools.liu.app/ && git pull && git submodule update --init --recursive --remote && echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u yezige --password-stdin && docker pull ghcr.io/yezige/${{ env.IMAGE_NAME }}:latest && /usr/local/bin/docker-compose up -d tools && docker exec -i nginx nginx -s reload && exit"
