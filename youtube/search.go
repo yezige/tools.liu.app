@@ -252,7 +252,7 @@ func Download(id string) (result *[]SelectionFormat, err error) {
 
 	video, err := client.GetVideo(id)
 	if err != nil {
-		panic(err)
+		logx.LogError.Infoln(err)
 	}
 
 	// 排序
