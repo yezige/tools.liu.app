@@ -46,7 +46,7 @@ jobs:
     needs: push-ghcr
     runs-on: ubuntu-latest
     env:
-      DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      HOST_KEY_SSH: ${{ secrets.HOST_KEY_SSH }}
       HOST_IP: ${{ secrets.HOST_IP }}
       HOST_PORT: ${{ secrets.HOST_PORT }}
       HOST_USER: ${{ secrets.HOST_USER }}
