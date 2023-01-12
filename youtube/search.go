@@ -36,6 +36,11 @@ type PopularResult struct {
 	NextPageToken string   `json:"nextPageToken"`
 }
 
+type DownloadResult struct {
+	Format      *[]SelectionFormat   `json:"format"`
+	Playability SelectionPlayability `json:"playability"`
+}
+
 type Video struct {
 	ID         string            `json:"id"`
 	Snippet    SectionSnippet    `json:"snippet"`
@@ -92,6 +97,10 @@ type SelectionID struct {
 type SelectionFormat struct {
 	F   youtubedl.Format `json:"f"`
 	Ext string           `json:"ext"`
+}
+
+type SelectionPlayability struct {
+	Status string `json:"status"`
 }
 
 func Popular(regionCode string, videoCategoryId string) (result *PopularResult, err error) {
@@ -236,7 +245,7 @@ func GetInfo(id string) (result *PopularResult, err error) {
 	return result, nil
 }
 
-func Download(id string) (result *[]SelectionFormat, err error) {
+func Download(id string) (result *DownloadResult, err error) {
 
 	// 先查询redis
 	info, err := redis.New().Get("youtube:download:" + id)
@@ -252,7 +261,8 @@ func Download(id string) (result *[]SelectionFormat, err error) {
 
 	video, err := client.GetVideo(id)
 	if err != nil {
-		panic(err)
+		logx.LogError.Infoln(err)
+		return nil, err
 	}
 
 	// 排序
@@ -269,7 +279,12 @@ func Download(id string) (result *[]SelectionFormat, err error) {
 		resSlice[k] = SelectionFormat{F: v, Ext: GetExtByMime(v.MimeType)}
 	}
 
-	result = &resSlice
+	result = &DownloadResult{
+		Format: &resSlice,
+		Playability: SelectionPlayability{
+			Status: video.PlayabilityStatus.Status,
+		},
+	}
 
 	// 存储到redis
 	formatJson, err := json.Marshal(result)

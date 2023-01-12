@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -23,7 +24,7 @@ func main() {
 	)
 	flag.StringVar(&configFile, "c", "", "Configuration file path.")
 	flag.StringVar(&configFile, "config", "", "Configuration file path.")
-	
+
 	flag.Parse()
 	// set default parameters.
 	cfg, err := config.LoadConf(configFile)
@@ -44,6 +45,18 @@ func main() {
 		log.Fatalf("can't load log module, error: %v", err)
 	}
 
+	// set log output
+	f, err := os.OpenFile(cfg.Log.ErrorLog, os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
+	if err != nil {
+		return
+	}
+	defer func() {
+		f.Close()
+	}()
+	multiWriter := io.MultiWriter(os.Stdout, f)
+	log.SetOutput(multiWriter)
+	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+
 	// 保存到pid文件
 	if err = createPIDFile(cfg); err != nil {
 		logx.LogError.Fatal(err)
@@ -57,7 +70,7 @@ func main() {
 		}),
 		queue.WithLogger(logx.QueueLogger()),
 	)
-	
+
 	q := queue.NewPool(
 		int(cfg.Core.WorkerNum),
 		queue.WithWorker(w),

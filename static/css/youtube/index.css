@@ -34,6 +34,7 @@
 .popular_videos_box .videos {
   display: flex;
   flex-wrap: nowrap;
+  overflow: hidden;
   overflow-x: scroll;
   align-items: flex-start;
 }
@@ -51,7 +52,7 @@
   width: 251px;
   height: 100%;
 }
-.video.ads{
+.video.ads {
   min-width: 251px;
   height: 322px;
 }
@@ -68,7 +69,7 @@
   background-position: center;
   background-repeat: no-repeat;
   margin-top: unset !important;
-  margin-bottom: .8em !important;
+  margin-bottom: 0.8em !important;
 }
 .video .video_info {
   width: 100%;
@@ -92,6 +93,11 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   letter-spacing: 0;
+}
+
+.video .video_info .down_unplayable {
+  font-size: 0.6rem;
+  color: var(--text-nonhigh-color);
 }
 
 .video .absolute {

@@ -154,14 +154,15 @@ func YoutubeDownloadHandler(c *gin.Context) {
 	data.Page.Keywords += " | " + data.Info.Snippet.Description
 
 	// 通过视频id获取视频下载信息
-	formats, err := youtube.Download(videoID)
+	down, err := youtube.Download(videoID)
 	if err != nil {
 		data.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}
 
-	data.DownloadList = formats
+	data.DownloadList = down.Format
+	data.Playability = down.Playability
 
 	c.HTML(http.StatusOK, "pages/youtube/download.tmpl", data)
 }

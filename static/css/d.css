@@ -235,7 +235,7 @@ img.lazyload[src="/static/images/whiteboard.svg"] {
   height: 5em;
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   background: var(--menu-bg-color);
   box-shadow: 0 8px 32px 0 var(--shadow-color);

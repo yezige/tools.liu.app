@@ -18,7 +18,7 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /tools.liu.app
 
-RUN mkdir -p /var/log/tools/
+RUN mkdir -p /var/log/tools.liu.app/
 
 COPY ./templates ./templates
 COPY ./pages ./pages
