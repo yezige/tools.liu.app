@@ -127,6 +127,13 @@
   height: 24px;
   background: var(--image-bg-download) no-repeat center/24px 24px;
 }
+.download_box .online_btn {
+  cursor: pointer;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: var(--image-bg-online) no-repeat center/24px 24px;
+}
 
 .download_list {
   display: flex;

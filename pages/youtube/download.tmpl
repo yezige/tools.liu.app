@@ -30,6 +30,7 @@
         <span class="item">{{ I "down-audio" }}</span>
         <span class="item">{{ I "down-size" }}</span>
         <span class="item">{{ I "down-download" }}</span>
+        <span class="item">{{ I "down-online" }}</span>
       </div>
       {{ range .DownloadList }}
       <div class="download_item">
@@ -42,6 +43,11 @@
         <span class="item">
           <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}" download="{{ $.Info.Snippet.Title }}">
             <span class="download_btn"></span>
+          </a>
+        </span>
+        <span class="item">
+          <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}&online=1">
+            <span class="online_btn"></span>
           </a>
         </span>
       </div>

@@ -37,6 +37,9 @@ type PopularResult struct {
 }
 
 type DownloadResult struct {
+	Title       string               `json:"title"`
+	Description string               `json:"description"`
+	Author      string               `json:"author"`
 	Format      *[]SelectionFormat   `json:"format"`
 	Playability SelectionPlayability `json:"playability"`
 }
@@ -275,12 +278,16 @@ func Download(id string) (result *DownloadResult, err error) {
 		if err != nil {
 			logx.LogError.Infoln(err)
 		}
-		v.URL = SetDownloadUrl(v.URL)
+		fileName := url.QueryEscape(video.Title) + "." + GetExtByMime(v.MimeType)
+		v.URL = SetDownloadUrl(v.URL, fileName)
 		resSlice[k] = SelectionFormat{F: v, Ext: GetExtByMime(v.MimeType)}
 	}
 
 	result = &DownloadResult{
-		Format: &resSlice,
+		Title:       video.Title,
+		Description: video.Description,
+		Author:      video.Author,
+		Format:      &resSlice,
 		Playability: SelectionPlayability{
 			Status: video.PlayabilityStatus.Status,
 		},
@@ -291,7 +298,7 @@ func Download(id string) (result *DownloadResult, err error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := redis.New().SetTTL("youtube:download:"+id, formatJson, time.Second*30); err != nil {
+	if err := redis.New().SetTTL("youtube:download:"+id, formatJson, time.Minute*10); err != nil {
 		return nil, err
 	}
 
@@ -340,9 +347,10 @@ func SetSearchVideo(vs []*SearchVideo) {
 		item.Snippet.Thumbnails.Medium.Url = strings.Replace(item.Snippet.Thumbnails.Medium.Url, "i.ytimg.com", "ytimg.liu.dev", 1)
 	}
 }
-func SetDownloadUrl(u string) string {
+func SetDownloadUrl(u string, fileName string) string {
 	// 修改为ytdl.liu.dev
 	params := url.Values{}
 	params.Add("u", u)
+	params.Add("filename", fileName)
 	return `https://ytdl.liu.app?` + params.Encode()
 }

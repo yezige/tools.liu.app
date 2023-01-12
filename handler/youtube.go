@@ -149,9 +149,9 @@ func YoutubeDownloadHandler(c *gin.Context) {
 	data.Info = *info.Items[0]
 
 	// 根据视频信息更新Title
-	data.Page.Title += " | " + data.Info.Snippet.Title
-	data.Page.Description += " | " + data.Info.Snippet.Description
-	data.Page.Keywords += " | " + data.Info.Snippet.Description
+	data.Page.Title = data.Info.Snippet.Title + " | " + data.Page.Title
+	data.Page.Description = " | " + data.Info.Snippet.Description + " | " + data.Page.Description
+	data.Page.Keywords = " | " + data.Info.Snippet.Description + " | " + data.Page.Keywords
 
 	// 通过视频id获取视频下载信息
 	down, err := youtube.Download(videoID)
