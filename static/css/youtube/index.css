@@ -11,7 +11,7 @@
 .search_box .search_input {
   color: var(--text-color);
   height: 34px;
-  font-size: 16px;
+  font-size: 1rem;
   border: none;
   background: transparent;
   margin: 0;
@@ -263,4 +263,33 @@
 }
 .move_box .move_right_btn.active {
   display: block;
+}
+
+.down_title{
+  font-size: 1.2rem;
+}
+.down_content{
+  padding: 0;
+}
+.downopt_content{
+  padding: 0 20px;
+}
+.row {
+  display: flex;
+  padding: 10px 0;
+}
+.row .head {
+  display: flex;
+  align-items: center;
+  min-width: 120px;
+  text-align: right;
+  margin-right: 15px;
+  line-height: 1.8;
+}
+.row .value{
+  display: flex;
+  align-items: center;
+}
+.row .value input {
+  width: 400px;
 }

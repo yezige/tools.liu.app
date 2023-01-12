@@ -1,3 +1,3 @@
-import { setSearch } from "../util.js";
+import { setSearch } from '../util.js'
 
 setSearch()

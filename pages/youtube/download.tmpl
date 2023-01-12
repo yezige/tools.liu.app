@@ -2,6 +2,7 @@
 
 {{define "body"}}
 <link rel="stylesheet" href="/static/css/youtube/index.css" />
+<link rel="stylesheet" href="/static/css/switch.css" />
 <article id="page">
   <h1 class="title">{{ .Page.BodyName }}</h1>
   <div class="content">
@@ -21,38 +22,76 @@
         </div>
       </div>
     </div>
+    <div class="downopt_box">
+      <div class="down_title">下载选项</div>
+      <div class="down_content downopt_content">
+        <div class="row">
+          <div class="head">是否极速下载</div>
+          <div class="value">
+            <label class="switch">
+              <input type="checkbox" id="to-fast" />
+              <span class="slider round"></span>
+            </label>
+            <div class="tips mg_l_15"><span>注意: 极速需要科学网络</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="head">仅显示有音频</div>
+          <div class="value">
+            <label class="switch">
+              <input type="checkbox" id="has-audio" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="download_list">
-      <div class="download_item download_header">
-        <span class="item">{{ I "down-quality" }}</span>
-        <span class="item">{{ I "down-fps" }}</span>
-        <span class="item">{{ I "down-bitrate" }}</span>
-        <span class="item">{{ I "down-format" }}</span>
-        <span class="item">{{ I "down-audio" }}</span>
-        <span class="item">{{ I "down-size" }}</span>
-        <span class="item">{{ I "down-download" }}</span>
-        <span class="item">{{ I "down-online" }}</span>
+      <div class="down_title">可选格式</div>
+      <div class="down_content">
+        <div class="download_item download_header">
+          <span class="item">{{ I "down-quality" }}</span>
+          <span class="item">{{ I "down-fps" }}</span>
+          <span class="item">{{ I "down-bitrate" }}</span>
+          <span class="item">{{ I "down-format" }}</span>
+          <span class="item">{{ I "down-audio" }}</span>
+          <span class="item">{{ I "down-size" }}</span>
+          <span class="item">{{ I "down-download" }}</span>
+          <span class="item">{{ I "down-online" }}</span>
+        </div>
+        {{ range .DownloadList }}
+        <div class="download_item download_content">
+          <span class="item">{{ if .F.QualityLabel }}{{ .F.QualityLabel }}{{else}}{{ .F.Quality }}{{ end }}</span>
+          <span class="item">{{ if .F.FPS}}{{ .F.FPS }}{{ end }}</span>
+          <span class="item">{{ .F.Bitrate | bpsFormat }}</span>
+          <span class="item" title="iTAG: {{ .F.ItagNo }}">{{ .Ext }}</span>
+          <span class="item audio" data-audio="{{ if gt .F.AudioChannels 0}}1{{else}}0{{ end }}">{{ if gt .F.AudioChannels 0}}✔{{else}}{{ end }}</span>
+          <span class="item">{{ if .F.ContentLength }}{{ .F.ContentLength | sizeFormat }}{{else}}-{{ end }}</span>
+          <span class="item down-standard">
+            <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL_PROXY }}" download="{{ $.Info.Snippet.Title }}">
+              <span class="download_btn"></span>
+            </a>
+          </span>
+          <span class="item down-fast" style="display: none;">
+            <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}" download="{{ $.Info.Snippet.Title }}">
+              <span class="download_btn"></span>
+            </a>
+          </span>
+          <span class="item down-standard">
+            <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL_PROXY }}&online=1">
+              <span class="online_btn"></span>
+            </a>
+          </span>
+          <span class="item down-fast" style="display: none;">
+            <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}">
+              <span class="online_btn"></span>
+            </a>
+          </span>
+        </div>
+        {{ end }}
       </div>
-      {{ range .DownloadList }}
-      <div class="download_item">
-        <span class="item">{{ if .F.QualityLabel }}{{ .F.QualityLabel }}{{else}}{{ .F.Quality }}{{ end }}</span>
-        <span class="item">{{ if .F.FPS}}{{ .F.FPS }}{{ end }}</span>
-        <span class="item">{{ .F.Bitrate | bpsFormat }}</span>
-        <span class="item" title="iTAG: {{ .F.ItagNo }}">{{ .Ext }}</span>
-        <span class="item">{{ if gt .F.AudioChannels 0}}✔{{else}}{{ end }}</span>
-        <span class="item">{{ if .F.ContentLength }}{{ .F.ContentLength | sizeFormat }}{{else}}-{{ end }}</span>
-        <span class="item">
-          <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}" download="{{ $.Info.Snippet.Title }}">
-            <span class="download_btn"></span>
-          </a>
-        </span>
-        <span class="item">
-          <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}&online=1">
-            <span class="online_btn"></span>
-          </a>
-        </span>
-      </div>
-      {{ end }}
     </div>
   </div>
+  <script src="/static/js/youtube/download.js" type="module"></script>
 </article>
 {{ end }}

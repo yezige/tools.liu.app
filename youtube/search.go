@@ -279,7 +279,7 @@ func Download(id string) (result *DownloadResult, err error) {
 			logx.LogError.Infoln(err)
 		}
 		fileName := url.QueryEscape(video.Title) + "." + GetExtByMime(v.MimeType)
-		v.URL = SetDownloadUrl(v.URL, fileName)
+		v.URL_PROXY = SetDownloadUrl(v.URL, fileName)
 		resSlice[k] = SelectionFormat{F: v, Ext: GetExtByMime(v.MimeType)}
 	}
 
