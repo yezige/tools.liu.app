@@ -281,7 +281,7 @@
 .row .head {
   display: flex;
   align-items: center;
-  min-width: 120px;
+  width: 180px;
   text-align: right;
   margin-right: 15px;
   line-height: 1.8;
