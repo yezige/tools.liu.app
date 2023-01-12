@@ -1,15 +1,4 @@
 /* The switch - the box around the slider */
-
-body {
-  --btn-default-bg-color: #ff7043;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    --btn-default-bg-color: #c63f17;
-  }
-}
-
 .switch {
   position: relative;
   display: inline-block;
@@ -51,11 +40,11 @@ body {
 }
 
 input:checked + .slider {
-  background-color: var(--btn-default-bg-color);
+  background-color: var(--btn-bg-color);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--btn-default-bg-color);
+  box-shadow: 0 0 1px var(--btn-bg-color);
 }
 
 input:checked + .slider:before {
