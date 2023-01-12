@@ -329,5 +329,5 @@ func SetDownloadUrl(u string) string {
 	// 修改为ytdl.liu.dev
 	params := url.Values{}
 	params.Add("u", u)
-	return `https://ytdl.liu.dev?` + params.Encode()
+	return `https://ytdl.liu.app?` + params.Encode()
 }
