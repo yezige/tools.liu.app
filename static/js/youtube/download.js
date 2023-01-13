@@ -1,25 +1,25 @@
 import { docCookies } from '../cookie.js'
 
 const toggleFast = function(showfast) {
-  const display = showfast ? 'flex' : 'none'
-  const nodisplay = showfast ? 'none' : 'flex'
+  const fast_display = showfast ? 'flex' : 'none'
+  const standard_display = showfast ? 'none' : 'flex'
   document.querySelectorAll('.item.down-fast').forEach((item) => {
-    item.style.display = display
+    item.style.display = fast_display
   })
   document.querySelectorAll('.item.down-standard').forEach((item) => {
-    item.style.display = nodisplay
+    item.style.display = standard_display
   })
   setDownOpt()
 }
 
 const toggleAudio = function(showaudio) {
-  const display = showaudio ? 'flex' : 'none'
-  const nodisplay = showaudio ? 'none' : 'flex'
+  const audio_display = showaudio ? 'flex' : 'flex'
+  const other_display = showaudio ? 'none' : 'flex'
   document.querySelectorAll('.download_content').forEach((row) => {
     if (row.querySelector('[data-audio="1"]')) {
-      row.style.display = display
+      row.style.display = audio_display
     } else {
-      row.style.display = nodisplay
+      row.style.display = other_display
     }
   })
   setDownOpt()
