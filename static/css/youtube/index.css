@@ -265,31 +265,46 @@
   display: block;
 }
 
-.down_title{
+.down_title {
   font-size: 1.2rem;
 }
-.down_content{
+.down_content {
   padding: 0;
 }
-.downopt_content{
+.downopt_content {
   padding: 0 20px;
 }
 .row {
   display: flex;
+  flex-wrap: wrap;
   padding: 10px 0;
 }
 .row .head {
   display: flex;
   align-items: center;
-  width: 180px;
+  min-width: 120px;
   text-align: right;
   margin-right: 15px;
   line-height: 1.8;
 }
-.row .value{
+.row .value {
   display: flex;
   align-items: center;
 }
 .row .value input {
   width: 400px;
+}
+
+/* <= 414的屏幕 */
+@media screen and (max-width: 414px) {
+  .download_item.download_header.en .item {
+    font-size: .8rem;
+  }
+}
+
+/* <= 390的屏幕 */
+@media screen and (max-width: 393px) {
+  .download_item.download_header.en .item {
+    font-size: .7rem;
+  }
 }

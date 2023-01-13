@@ -177,13 +177,15 @@ table th {
 .tips {
   display: inline-flex;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   cursor: pointer;
-  color: var(--text-color);
-  margin-left: 5px;
+  color: var(--text-nonhigh-color);
 }
 .mg_l_15{
   margin-left: 15px;
+}
+.mg_r_15{
+  margin-right: 15px;
 }
 
 
@@ -299,7 +301,7 @@ img.lazyload[src="/static/images/whiteboard.svg"] {
   z-index: -1;
   height: 5em;
   padding: 0 3em;
-  margin-top: -70px;
+  margin-top: -200px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -395,6 +397,7 @@ img.lazyload[src="/static/images/whiteboard.svg"] {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .showcase main #content {
   background: var(--content-bg-color);
@@ -496,9 +499,9 @@ article .title_desc_box{
 }
 /* <= 780的屏幕 */
 @media screen and (max-width: 780px) {
-  body {
+  /* body {
     font-size: 0.875em;
-  }
+  } */
   .showcase header .header {
     padding: 0 20px;
   }
