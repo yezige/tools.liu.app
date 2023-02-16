@@ -248,15 +248,17 @@ func GetInfo(id string) (result *PopularResult, err error) {
 	return result, nil
 }
 
-func Download(id string) (result *DownloadResult, err error) {
+func Download(id string, nocache bool) (result *DownloadResult, err error) {
 
 	// 先查询redis
-	info, err := redis.New().Get("youtube:download:" + id)
-	if err == nil {
-		if err := json.Unmarshal([]byte(info), &result); err != nil {
-			return nil, err
+	if (!nocache) {
+		info, err := redis.New().Get("youtube:download:" + id)
+		if err == nil {
+			if err := json.Unmarshal([]byte(info), &result); err != nil {
+				return nil, err
+			}
+			return result, err
 		}
-		return result, err
 	}
 
 	// 调用youtube-dl接口获取视频下载地址

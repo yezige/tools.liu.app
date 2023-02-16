@@ -55,7 +55,7 @@ require (
 	github.com/stretchr/testify v1.8.0
 	github.com/subosito/gotenv v1.3.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
-	github.com/yezige/youtube/v2 v2.7.22-0.20230112084105-e6e999870619
+	github.com/yezige/youtube/v2 v2.7.22
 	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
 	golang.org/x/net v0.0.0-20220617184016-355a448f1bc9 // indirect
 	golang.org/x/sync v0.0.0-20220601150217-0de741cfad7f

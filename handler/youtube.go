@@ -138,6 +138,8 @@ func YoutubeDownloadHandler(c *gin.Context) {
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
 		return
 	}
+	// 是否使用缓存
+	noCache, err := strconv.ParseBool(c.DefaultQuery("nocache", "0"))
 
 	// 通过视频id获取视频信息
 	info, err := youtube.GetInfo(videoID)
@@ -154,7 +156,7 @@ func YoutubeDownloadHandler(c *gin.Context) {
 	data.Page.Keywords = " | " + data.Info.Snippet.Description + " | " + data.Page.Keywords
 
 	// 通过视频id获取视频下载信息
-	down, err := youtube.Download(videoID)
+	down, err := youtube.Download(videoID, noCache)
 	if err != nil {
 		data.Page.ErrorMsg = err.Error()
 		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
