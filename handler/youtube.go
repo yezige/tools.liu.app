@@ -165,6 +165,12 @@ func YoutubeDownloadHandler(c *gin.Context) {
 
 	data.DownloadList = down.Format
 	data.Playability = down.Playability
+	// 下载-尾
+	data.Page.AdsConfig = append(data.Page.AdsConfig, core.AdsConfig{
+		Slot:   "2798667502",
+		Client: cfg.Site.GoogleAdsense,
+		Class:  "adsbygoogle",
+	})
 
 	c.HTML(http.StatusOK, "pages/youtube/download.tmpl", data)
 }
@@ -215,6 +221,18 @@ func YoutubeSearchHandler(c *gin.Context) {
 		return
 	}
 	data.SearchList = search.Items
+	// 搜索-头
+	data.Page.AdsConfig = append(data.Page.AdsConfig, core.AdsConfig{
+		Slot:   "1820627751",
+		Client: cfg.Site.GoogleAdsense,
+		Class:  "adsbygoogle",
+	})
+	// 搜索-尾
+	data.Page.AdsConfig = append(data.Page.AdsConfig, core.AdsConfig{
+		Slot:   "8194464410",
+		Client: cfg.Site.GoogleAdsense,
+		Class:  "adsbygoogle",
+	})
 
 	c.HTML(http.StatusOK, "pages/youtube/search.tmpl", data)
 }

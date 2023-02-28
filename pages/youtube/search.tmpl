@@ -14,6 +14,9 @@
       </div>
       <div class="searchlist_box">
         <h2 class="title">{{ I "searh-result" }}</h2>
+        <div style="padding-bottom: 20px;">
+          {{template "third/adsbygoogle" index $.Page.AdsConfig 0 }}
+        </div>
         <div class="videos">
           {{ range .SearchList }}
           <div class="video">
@@ -31,6 +34,9 @@
             </div>
           </div>
           {{ end }}
+        </div>
+        <div style="padding-top: 20px;">
+          {{template "third/adsbygoogle" index $.Page.AdsConfig 1 }}
         </div>
       </div>
     </div>
