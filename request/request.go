@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+
+	"github.com/yezige/tools.liu.app/logx"
 )
 
 type RequestObj struct {
@@ -38,6 +40,7 @@ func (r *RequestObj) SetParams(params map[string]interface{}) *RequestObj {
 }
 
 func (r *RequestObj) Get() *RequestObj {
+	logx.LogError.Debugln("Request:" + r.u + "-GETIN:" + r.p.Encode())
 	r.resp, r.err = http.Get(r.u + "?" + r.p.Encode())
 	if r.err != nil {
 		return r
@@ -46,6 +49,8 @@ func (r *RequestObj) Get() *RequestObj {
 }
 
 func (r *RequestObj) Post() *RequestObj {
+	paramsJson, _ := json.Marshal(r.p)
+	logx.LogError.Debugln("Request:" + r.u + "-POSTIN:" + string(paramsJson))
 	r.resp, r.err = http.PostForm(r.u, r.p)
 	if r.err != nil {
 		return r
@@ -59,6 +64,7 @@ func (r *RequestObj) PostJSON() *RequestObj {
 		r.err = err
 		return r
 	}
+	logx.LogError.Debugln("Request:" + r.u + "-POSTIN:" + string(paramsJson))
 	r.resp, r.err = http.Post(r.u, "application/json", bytes.NewBuffer(paramsJson))
 	if r.err != nil {
 		return r
@@ -67,10 +73,16 @@ func (r *RequestObj) PostJSON() *RequestObj {
 }
 
 func (r *RequestObj) GetBody() ([]byte, error) {
+	if r.err != nil {
+		logx.LogError.Debugln("Request:" + r.u + "-OUT:" + r.err.Error())
+		return nil, r.err
+	}
 	defer r.resp.Body.Close()
 	res, err := io.ReadAll(r.resp.Body)
 	if err != nil {
+		logx.LogError.Debugln("Request:" + r.u + "-OUT:" + err.Error())
 		return nil, err
 	}
+	logx.LogError.Debugln("Request:" + r.u + "-OUT:" + string(res))
 	return res, nil
 }

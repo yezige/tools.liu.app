@@ -138,7 +138,7 @@ func Popular(regionCode string, videoCategoryId string) (result *PopularResult, 
 	}
 
 	// 存储到redis
-	if err := redis.New().SetTTL("youtube:popular:"+regionCode+":"+videoCategoryId, res, time.Hour*1); err != nil {
+	if err := redis.New().SetTTL("youtube:popular:"+regionCode+":"+videoCategoryId, res, time.Hour*24); err != nil {
 		return nil, err
 	}
 
