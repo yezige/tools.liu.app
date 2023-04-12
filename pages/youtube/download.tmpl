@@ -15,7 +15,7 @@
           <div class="video_info">
             <div class="video_title">{{ .Info.Snippet.Title }}</div>
             <p class="video_description">{{ .Info.Snippet.Description }}</p>
-            {{if ne .Playability.Status "OK" }}
+            {{if ne .PlayabilityStatus "OK" }}
             <p class="down_unplayable">{{ I "down-unplayable" }}</p>
             {{end}}
           </div>

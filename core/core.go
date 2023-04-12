@@ -38,15 +38,15 @@ type SelectionPopular struct {
 
 type PageSearchConfig struct {
 	Page       PageConfig             `json:"page"`
-	SearchList []*youtube.SearchVideo `json:"search_list"`
+	SearchList []*youtube.Video `json:"search_list"`
 	Q          string                 `json:"q"`
 }
 
 type PageDownloadConfig struct {
-	Page         PageConfig                 `json:"page"`
-	DownloadList *[]youtube.SelectionFormat `json:"download_list"`
-	Info         youtube.Video              `json:"info"`
-	Playability  youtube.SelectionPlayability
+	Page              PageConfig                 `json:"page"`
+	DownloadList      *[]youtube.SelectionFormat `json:"download_list"`
+	Info              *youtube.Video              `json:"info"`
+	PlayabilityStatus string                     `json:"playability_status"`
 }
 type PageAboutConfig struct {
 	Page PageConfig `json:"page"`

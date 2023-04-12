@@ -37,11 +37,9 @@ type PopularResult struct {
 }
 
 type DownloadResult struct {
-	Title       string               `json:"title"`
-	Description string               `json:"description"`
-	Author      string               `json:"author"`
-	Format      *[]SelectionFormat   `json:"format"`
-	Playability SelectionPlayability `json:"playability"`
+	Video  *Video             `json:"video"`
+	Info   *youtubedl.Video   `json:"info"`
+	Format *[]SelectionFormat `json:"format"`
 }
 
 type Video struct {
@@ -81,10 +79,10 @@ type SectionStatistics struct {
 }
 
 type SearchResult struct {
-	Items         []*SearchVideo `json:"items"`
-	Etag          string         `json:"etag"`
-	Kind          string         `json:"kind"`
-	NextPageToken string         `json:"nextPageToken"`
+	Items         []*Video `json:"items"`
+	Etag          string   `json:"etag"`
+	Kind          string   `json:"kind"`
+	NextPageToken string   `json:"nextPageToken"`
 }
 
 type SearchVideo struct {
@@ -165,7 +163,7 @@ func Search(key string) (result *SearchResult, err error) {
 			return nil, err
 		}
 		// 修改 i.ytimg.com 为 ytimg.liu.app
-		SetSearchVideo(result.Items)
+		SetVideoURL(result.Items)
 		return result, err
 	}
 
@@ -197,7 +195,7 @@ func Search(key string) (result *SearchResult, err error) {
 	}
 
 	// 修改 i.ytimg.com 为 ytimg.liu.app
-	SetSearchVideo(result.Items)
+	SetVideoURL(result.Items)
 
 	return result, nil
 }
@@ -251,7 +249,7 @@ func GetInfo(id string) (result *PopularResult, err error) {
 func Download(id string, nocache bool) (result *DownloadResult, err error) {
 
 	// 先查询redis
-	if (!nocache) {
+	if !nocache {
 		info, err := redis.New().Get("youtube:download:" + id)
 		if err == nil {
 			if err := json.Unmarshal([]byte(info), &result); err != nil {
@@ -286,14 +284,25 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 	}
 
 	result = &DownloadResult{
-		Title:       video.Title,
-		Description: video.Description,
-		Author:      video.Author,
-		Format:      &resSlice,
-		Playability: SelectionPlayability{
-			Status: video.PlayabilityStatus.Status,
+		Video: &Video{
+			ID: video.ID,
+			Snippet: SectionSnippet{
+				Title:       video.Title,
+				Description: video.Description,
+				PublishedAt: video.PublishDate.Format("2023-04-12 14:38:01"),
+				Thumbnails: SectionThumbnail{
+					High: SectionThumbnailDetail{
+						Url: video.Thumbnails[len(video.Thumbnails)-1].URL,
+					},
+				},
+			},
 		},
+		Info:   video,
+		Format: &resSlice,
 	}
+
+	// 修改 i.ytimg.com 为 ytimg.liu.app
+	SetVideoURL([]*Video{result.Video})
 
 	// 存储到redis
 	formatJson, err := json.Marshal(result)
@@ -334,14 +343,6 @@ func ExtractVideoID(videoID string) (string, error) {
 	return "", errors.New("invalid video id")
 }
 func SetVideoURL(vs []*Video) {
-	// 修改 i.ytimg.com 为 ytimg.liu.dev
-	for _, item := range vs {
-		item.Snippet.Thumbnails.Default.Url = strings.Replace(item.Snippet.Thumbnails.Default.Url, "i.ytimg.com", "ytimg.liu.dev", 1)
-		item.Snippet.Thumbnails.High.Url = strings.Replace(item.Snippet.Thumbnails.High.Url, "i.ytimg.com", "ytimg.liu.dev", 1)
-		item.Snippet.Thumbnails.Medium.Url = strings.Replace(item.Snippet.Thumbnails.Medium.Url, "i.ytimg.com", "ytimg.liu.dev", 1)
-	}
-}
-func SetSearchVideo(vs []*SearchVideo) {
 	// 修改 i.ytimg.com 为 ytimg.liu.dev
 	for _, item := range vs {
 		item.Snippet.Thumbnails.Default.Url = strings.Replace(item.Snippet.Thumbnails.Default.Url, "i.ytimg.com", "ytimg.liu.dev", 1)

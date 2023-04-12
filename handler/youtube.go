@@ -139,8 +139,9 @@ func YoutubeDownloadHandler(c *gin.Context) {
 		return
 	}
 	// 是否使用缓存
-	noCache, err := strconv.ParseBool(c.DefaultQuery("nocache", "0"))
+	noCache, _ := strconv.ParseBool(c.DefaultQuery("nocache", "0"))
 
+	// 改为从Download获取
 	// // 通过视频id获取视频信息
 	// info, err := youtube.GetInfo(videoID)
 	// if err != nil {
@@ -154,9 +155,6 @@ func YoutubeDownloadHandler(c *gin.Context) {
 	// data.Page.Title = data.Info.Snippet.Title + " | " + data.Page.Title
 	// data.Page.Description = " | " + data.Info.Snippet.Description + " | " + data.Page.Description
 	// data.Page.Keywords = " | " + data.Info.Snippet.Description + " | " + data.Page.Keywords
-	data.Page.Title = "视频详情" + " | " + data.Page.Title
-	data.Page.Description = " | " + "视频详情描述" + " | " + data.Page.Description
-	data.Page.Keywords = " | " + "视频详情关键字" + " | " + data.Page.Keywords
 
 	// 通过视频id获取视频下载信息
 	down, err := youtube.Download(videoID, noCache)
@@ -167,7 +165,13 @@ func YoutubeDownloadHandler(c *gin.Context) {
 	}
 
 	data.DownloadList = down.Format
-	data.Playability = down.Playability
+	data.PlayabilityStatus = down.Info.PlayabilityStatus.Status
+	data.Info = down.Video
+
+	// 根据视频信息更新Title
+	data.Page.Title = data.Info.Snippet.Title + " | " + data.Page.Title
+	data.Page.Description = " | " + data.Info.Snippet.Description + " | " + data.Page.Description
+	data.Page.Keywords = " | " + data.Info.Snippet.Description + " | " + data.Page.Keywords
 	// 下载-尾
 	data.Page.AdsConfig = append(data.Page.AdsConfig, core.AdsConfig{
 		Slot:   "2798667502",
