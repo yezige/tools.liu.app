@@ -141,19 +141,22 @@ func YoutubeDownloadHandler(c *gin.Context) {
 	// 是否使用缓存
 	noCache, err := strconv.ParseBool(c.DefaultQuery("nocache", "0"))
 
-	// 通过视频id获取视频信息
-	info, err := youtube.GetInfo(videoID)
-	if err != nil {
-		data.Page.ErrorMsg = err.Error()
-		c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
-		return
-	}
-	data.Info = *info.Items[0]
+	// // 通过视频id获取视频信息
+	// info, err := youtube.GetInfo(videoID)
+	// if err != nil {
+	// 	data.Page.ErrorMsg = err.Error()
+	// 	c.HTML(http.StatusOK, "pages/error/error.tmpl", data)
+	// 	return
+	// }
+	// data.Info = *info.Items[0]
 
-	// 根据视频信息更新Title
-	data.Page.Title = data.Info.Snippet.Title + " | " + data.Page.Title
-	data.Page.Description = " | " + data.Info.Snippet.Description + " | " + data.Page.Description
-	data.Page.Keywords = " | " + data.Info.Snippet.Description + " | " + data.Page.Keywords
+	// // 根据视频信息更新Title
+	// data.Page.Title = data.Info.Snippet.Title + " | " + data.Page.Title
+	// data.Page.Description = " | " + data.Info.Snippet.Description + " | " + data.Page.Description
+	// data.Page.Keywords = " | " + data.Info.Snippet.Description + " | " + data.Page.Keywords
+	data.Page.Title = "视频详情" + " | " + data.Page.Title
+	data.Page.Description = " | " + "视频详情描述" + " | " + data.Page.Description
+	data.Page.Keywords = " | " + "视频详情关键字" + " | " + data.Page.Keywords
 
 	// 通过视频id获取视频下载信息
 	down, err := youtube.Download(videoID, noCache)
