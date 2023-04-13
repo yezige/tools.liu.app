@@ -38,7 +38,7 @@ type SelectionPopular struct {
 
 type PageSearchConfig struct {
 	Page       PageConfig             `json:"page"`
-	SearchList []*youtube.Video `json:"search_list"`
+	SearchList []*youtube.SearchVideo `json:"search_list"`
 	Q          string                 `json:"q"`
 }
 

@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"strings"
 	"time"
+	"unsafe"
 
 	"github.com/yezige/tools.liu.app/config"
 	"github.com/yezige/tools.liu.app/logx"
@@ -47,6 +48,33 @@ type Video struct {
 	Snippet    SectionSnippet    `json:"snippet"`
 	Statistics SectionStatistics `json:"statistics"`
 }
+type SearchVideo struct {
+	ID         SelectionID       `json:"id"`
+	Snippet    SectionSnippet    `json:"snippet"`
+	Statistics SectionStatistics `json:"statistics"`
+}
+type Videos []*Video
+type SearchVideos []*SearchVideo
+
+type Videoer interface {
+	SetThumbnail()
+}
+
+func (vs Videos) SetThumbnail() {
+	for _, v := range vs{
+		SetVideoThumbnail(&v.Snippet.Thumbnails.Default)
+		SetVideoThumbnail(&v.Snippet.Thumbnails.High)
+		SetVideoThumbnail(&v.Snippet.Thumbnails.Medium)
+	}
+}
+func (vs SearchVideos) SetThumbnail() {
+	for _, v := range vs{
+		SetVideoThumbnail(&v.Snippet.Thumbnails.Default)
+		SetVideoThumbnail(&v.Snippet.Thumbnails.High)
+		SetVideoThumbnail(&v.Snippet.Thumbnails.Medium)
+	}
+}
+
 type SectionSnippet struct {
 	CategoryID           string           `json:"categoryId"`
 	Description          string           `json:"description"`
@@ -79,17 +107,12 @@ type SectionStatistics struct {
 }
 
 type SearchResult struct {
-	Items         []*Video `json:"items"`
-	Etag          string   `json:"etag"`
-	Kind          string   `json:"kind"`
-	NextPageToken string   `json:"nextPageToken"`
+	Items         []*SearchVideo `json:"items"`
+	Etag          string         `json:"etag"`
+	Kind          string         `json:"kind"`
+	NextPageToken string         `json:"nextPageToken"`
 }
 
-type SearchVideo struct {
-	ID         SelectionID       `json:"id"`
-	Snippet    SectionSnippet    `json:"snippet"`
-	Statistics SectionStatistics `json:"statistics"`
-}
 type SelectionID struct {
 	Kind    string `json:"kind"`
 	VideoID string `json:"videoId"`
@@ -112,7 +135,7 @@ func Popular(regionCode string, videoCategoryId string) (result *PopularResult, 
 			return nil, err
 		}
 		// 修改 i.ytimg.com 为 ytimg.liu.app
-		SetVideoURL(result.Items)
+		SetVideoURL((*Videos)(unsafe.Pointer(&result.Items)))
 		return result, nil
 	}
 
@@ -146,7 +169,7 @@ func Popular(regionCode string, videoCategoryId string) (result *PopularResult, 
 	}
 
 	// 修改 i.ytimg.com 为 ytimg.liu.app
-	SetVideoURL(result.Items)
+	SetVideoURL((*Videos)(unsafe.Pointer(&result.Items)))
 
 	return result, nil
 }
@@ -163,7 +186,7 @@ func Search(key string) (result *SearchResult, err error) {
 			return nil, err
 		}
 		// 修改 i.ytimg.com 为 ytimg.liu.app
-		SetVideoURL(result.Items)
+		SetVideoURL((*SearchVideos)(unsafe.Pointer(&result.Items)))
 		return result, err
 	}
 
@@ -195,7 +218,7 @@ func Search(key string) (result *SearchResult, err error) {
 	}
 
 	// 修改 i.ytimg.com 为 ytimg.liu.app
-	SetVideoURL(result.Items)
+	SetVideoURL((*SearchVideos)(unsafe.Pointer(&result.Items)))
 
 	return result, nil
 }
@@ -209,7 +232,7 @@ func GetInfo(id string) (result *PopularResult, err error) {
 			return nil, err
 		}
 		// 修改 i.ytimg.com 为 ytimg.liu.app
-		SetVideoURL(result.Items)
+		SetVideoURL((*Videos)(unsafe.Pointer(&result.Items)))
 
 		return result, err
 	}
@@ -241,7 +264,7 @@ func GetInfo(id string) (result *PopularResult, err error) {
 	}
 
 	// 修改 i.ytimg.com 为 ytimg.liu.app
-	SetVideoURL(result.Items)
+	SetVideoURL((*Videos)(unsafe.Pointer(&result.Items)))
 
 	return result, nil
 }
@@ -302,7 +325,7 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 	}
 
 	// 修改 i.ytimg.com 为 ytimg.liu.app
-	SetVideoURL([]*Video{result.Video})
+	SetVideoURL(Videos{result.Video})
 
 	// 存储到redis
 	formatJson, err := json.Marshal(result)
@@ -342,13 +365,12 @@ func ExtractVideoID(videoID string) (string, error) {
 	}
 	return "", errors.New("invalid video id")
 }
-func SetVideoURL(vs []*Video) {
+func SetVideoURL(videos Videoer) {
 	// 修改 i.ytimg.com 为 ytimg.liu.dev
-	for _, item := range vs {
-		item.Snippet.Thumbnails.Default.Url = strings.Replace(item.Snippet.Thumbnails.Default.Url, "i.ytimg.com", "ytimg.liu.dev", 1)
-		item.Snippet.Thumbnails.High.Url = strings.Replace(item.Snippet.Thumbnails.High.Url, "i.ytimg.com", "ytimg.liu.dev", 1)
-		item.Snippet.Thumbnails.Medium.Url = strings.Replace(item.Snippet.Thumbnails.Medium.Url, "i.ytimg.com", "ytimg.liu.dev", 1)
-	}
+	videos.SetThumbnail()
+}
+func SetVideoThumbnail(std *SectionThumbnailDetail) {
+	std.Url = strings.Replace(std.Url, "i.ytimg.com", "ytimg.liu.dev", 1)
 }
 func SetDownloadUrl(u string, fileName string) string {
 	// 修改为ytdl.liu.dev
