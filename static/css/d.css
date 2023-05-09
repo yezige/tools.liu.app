@@ -19,7 +19,7 @@
   --image-bg-search: url('/static/images/search_black.svg');
   --image-bg-download: url('/static/images/download_black.svg');
   --image-bg-online: url('/static/images/online_black.svg');
-  --image-bg-loading: url('/static/images/loading_black.svg');
+  --image-bg-loading: url('/static/images/loading.svg');
   --image-bg-move-left: url('/static/images/move_left_black.svg');
   --image-bg-move-right: url('/static/images/move_right_black.svg');
 }
@@ -45,7 +45,7 @@
     --image-bg-search: url('/static/images/search_light.svg');
     --image-bg-download: url('/static/images/download_light.svg');
     --image-bg-online: url('/static/images/online_light.svg');
-    --image-bg-loading: url('/static/images/loading_light.svg');
+    --image-bg-loading: url('/static/images/loading.svg');
     --image-bg-move-left: url('/static/images/move_left_light.svg');
     --image-bg-move-right: url('/static/images/move_right_light.svg');
   }

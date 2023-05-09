@@ -29,7 +29,7 @@
             <div class="videos">
               {{ range $itemkey, $itemval := .Items }}
               <div class="video">
-                <a class="video_link" href="/youtube/download?id={{ .ID }}">
+                <a class="video_link nofancybox" href="/youtube/download?id={{ .ID }}">
                   <img class="video_thumbnail lazyload" data-src="{{ .Snippet.Thumbnails.High.Url }}" src="/static/images/whiteboard.svg" alt="{{ .Snippet.Title }}" />
                 </a>
                 <div class="video_info">
@@ -43,7 +43,7 @@
                 </div>
               </div>
               {{ if eq $itemkey 3 }}
-                {{template "third/adsbygoogle" index $.Page.AdsConfig 0 }}
+              {{template "third/adsbygoogle" index $.Page.AdsConfig 0 }}
               {{ end }}
               {{ end }}
             </div>
@@ -53,7 +53,7 @@
           </div>
         </div>
         {{ if eq $key 0 }}
-          <!-- {{template "third/adsbygoogle" index $.Page.AdsConfig 1 }} -->
+        <!-- {{template "third/adsbygoogle" index $.Page.AdsConfig 1 }} -->
         {{ end }}
       </div>
       {{ end }}

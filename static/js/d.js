@@ -1,6 +1,6 @@
 import { setFancybox, setToggle, loadComments, delEmptyThtd, setMenu, setLazyload, setVideoMove} from './util.js'
 
-$(function(){
+$(function() {
   delEmptyThtd()
   setFancybox()
   setToggle()

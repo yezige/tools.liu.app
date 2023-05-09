@@ -1,3 +1,4 @@
+@import '/static/css/loading.css';
 .search_box {
   display: flex;
   border: 1px solid var(--border-color);
@@ -63,6 +64,9 @@
 .video .video_link {
   width: inherit;
   height: inherit;
+}
+.video .video_thumbnail_box{
+  width: 251px;
 }
 .video .video_thumbnail {
   background-size: cover;
