@@ -172,7 +172,7 @@ table th {
   border-bottom: 3px solid var(--code-bg-color);
 }
 .bold{
-  font-weight: 400 !important;
+  font-weight: 600 !important;
 }
 .tips {
   display: inline-flex;

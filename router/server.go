@@ -65,6 +65,7 @@ func routerEngine(cfg *config.ConfYaml, q *queue.Queue) *gin.Engine {
 	r.GET("/youtube/search", handler.YoutubeSearchHandler)
 	r.GET("/about", handler.AboutHandler)
 	r.GET("/tags", handler.TagsHandler)
+	r.GET("/sponsor", handler.SponsorHandler)
 
 	r.GET(cfg.API.StatGoURI, ginapi.GinHandler)
 	r.GET("/api/youtube/popular", handler.ApiYoutubePopularHandler)

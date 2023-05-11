@@ -45,13 +45,17 @@ type PageSearchConfig struct {
 type PageDownloadConfig struct {
 	Page              PageConfig                 `json:"page"`
 	DownloadList      *[]youtube.SelectionFormat `json:"download_list"`
-	Info              *youtube.Video              `json:"info"`
+	Info              *youtube.Video             `json:"info"`
 	PlayabilityStatus string                     `json:"playability_status"`
 }
 type PageAboutConfig struct {
 	Page PageConfig `json:"page"`
 }
 type PageTagConfig struct {
+	Page PageConfig `json:"page"`
+	Name string     `json:"name"`
+}
+type PageSponsorConfig struct {
 	Page PageConfig `json:"page"`
 	Name string     `json:"name"`
 }
