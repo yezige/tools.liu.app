@@ -400,6 +400,7 @@ img.lazyload[src="/static/images/whiteboard.svg"] {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  flex-wrap:wrap;
 }
 .showcase main #content {
   background: var(--content-bg-color);
