@@ -121,6 +121,7 @@ func YoutubeDownloadHandler(c *gin.Context) {
 			Permalink:   "/youtube/download",
 			BodyName:    I("body-name-youtube"),
 		},
+		DownloadTotal: redis.New().GetInt64("youtube:download:total"),
 	}
 
 	cfg, err := config.GetConfig()
