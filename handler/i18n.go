@@ -2,7 +2,6 @@ package handler
 
 import (
 	"strconv"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/text/language"
@@ -12,12 +11,14 @@ import (
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 
+var AcceptLanguage = []language.Tag{language.Chinese, language.English}
+
 func SetI18n() gin.HandlerFunc {
 	return ginI18n.Localize(
 		// 默认使用 yaml 格式解析语言文件
 		ginI18n.WithBundle(&ginI18n.BundleCfg{
 			RootPath:         "./lang",
-			AcceptLanguage:   []language.Tag{language.Chinese, language.English},
+			AcceptLanguage:   AcceptLanguage,
 			DefaultLanguage:  language.Chinese,
 			FormatBundleFile: "yaml",
 			UnmarshalFunc:    yaml.Unmarshal,
@@ -37,7 +38,7 @@ func SetI18n() gin.HandlerFunc {
 
 				lng = context.GetHeader("Accept-Language")
 				if lng != "" {
-					return strings.Split(lng, ",")[0]
+					return getAcceptLanguage(lng)
 				}
 
 				return defaultLng
@@ -67,4 +68,12 @@ func I(key string, args ...string) string {
 	} else {
 		return key
 	}
+}
+
+func getAcceptLanguage(acceptLanguageHeader string) string {
+	var matcher = language.NewMatcher(AcceptLanguage)
+	t, _, _ := language.ParseAcceptLanguage(acceptLanguageHeader)
+	_, idx, _ := matcher.Match(t...)
+
+	return AcceptLanguage[idx].String()
 }
