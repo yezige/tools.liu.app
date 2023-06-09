@@ -178,9 +178,10 @@ func Search(key string) (result *SearchResult, err error) {
 	if key == "" {
 		return nil, errors.New("key is empty")
 	}
+	keyRedis := strings.ReplaceAll(key, " ", "_")
 
 	// 先查询redis
-	search, err := redis.New().Get("youtube:search:" + key)
+	search, err := redis.New().Get("youtube:search:" + keyRedis)
 	if err == nil {
 		if err := json.Unmarshal([]byte(search), &result); err != nil {
 			return nil, err
@@ -208,7 +209,7 @@ func Search(key string) (result *SearchResult, err error) {
 	}
 
 	// 存储到redis
-	if err := redis.New().SetTTL("youtube:search:"+key, res, time.Hour*1); err != nil {
+	if err := redis.New().SetTTL("youtube:search:"+keyRedis, res, time.Hour*1); err != nil {
 		return nil, err
 	}
 

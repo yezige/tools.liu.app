@@ -71,6 +71,9 @@ site:
     count: true # 不使用disqus自带的count方式，防止引disqus的js时404
     emoji_path: https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/
   fancybox: true
+  sponsors:
+    - sponsor1
+    - sponsor2
 `)
 
 // ConfYaml is config structure.
@@ -135,6 +138,7 @@ type SectionSite struct {
 	GoogleAdsense          string              `yaml:"google_adsense" mapstructure:"google_adsense" json:"google_adsense"`
 	Disqus                 SectionDisqus       `yaml:"disqus" mapstructure:"disqus" json:"disqus"`
 	Fancybox               bool                `yaml:"fancybox" mapstructure:"fancybox" json:"fancybox"`
+	Sponsors               []string            `yaml:"sponsors" mapstructure:"sponsors" json:"sponsors"`
 }
 
 type SectionTwitter struct {
@@ -167,7 +171,7 @@ func LoadConf(confPath ...string) (*ConfYaml, error) {
 	setDefault()
 
 	viper.SetConfigType("yaml")
-	viper.AutomaticEnv()           // read in environment variables that match
+	viper.AutomaticEnv()        // read in environment variables that match
 	viper.SetEnvPrefix("TOOLS") // will be uppercased automatically
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 

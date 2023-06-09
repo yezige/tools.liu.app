@@ -1,4 +1,4 @@
-@import '/static/css/loading.css';
+/* @import '/static/css/loading.css'; */
 .search_box {
   display: flex;
   border: 1px solid var(--border-color);

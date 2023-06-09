@@ -172,7 +172,7 @@ table th {
   border-bottom: 3px solid var(--code-bg-color);
 }
 .bold{
-  font-weight: 400 !important;
+  font-weight: 600 !important;
 }
 .tips {
   display: inline-flex;
@@ -187,7 +187,9 @@ table th {
 .mg_r_15{
   margin-right: 15px;
 }
-
+.mg_b_15{
+  margin-bottom: 15px;
+}
 
 
 
@@ -398,6 +400,7 @@ img.lazyload[src="/static/images/whiteboard.svg"] {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  flex-wrap:wrap;
 }
 .showcase main #content {
   background: var(--content-bg-color);

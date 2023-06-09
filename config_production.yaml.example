@@ -58,3 +58,6 @@ site:
     count: true # 不使用disqus自带的count方式，防止引disqus的js时404
     emoji_path: https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/
   fancybox: true
+  sponsors:
+    - sponsor1
+    - sponsor2
