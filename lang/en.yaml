@@ -42,6 +42,8 @@ down-opt-fast-tips: 'Tips: Fast requires "Over the Great Firewall" Network'
 down-opt-audio: 'Only show audio'
 down-list-title: 'Download List'
 down-list-tips: 'Tips: If you click Download to enter the preview page, you can try to right-click the download button to save the link as, right-click to use IDM to download.'
+down-addaudio-title: 'Merge sound playback'
+down-addaudio-desc: Download a video file without sound, and use PotPlayer (https://potplayer.daum.net) to open the video, right click on the playback interface -> Open -> Load External Audio -> File Type select "All Files (*.*)" -> Select the downloaded audio file (for example xxx.weba), now the video has sound, as shown below.
 sponsor: 'SPONSOR'
 sponsor-url: 'https://www.paypal.com/paypalme/yezige'
 searh-result: 'Search Result'

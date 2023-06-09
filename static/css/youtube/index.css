@@ -298,6 +298,9 @@
 .row .value input {
   width: 400px;
 }
+.addaudio_list .down_content{
+  font-size: .9rem;
+}
 
 /* <= 414的屏幕 */
 @media screen and (max-width: 414px) {
