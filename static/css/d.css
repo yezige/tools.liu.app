@@ -137,7 +137,7 @@ code {
 pre {
   padding: 10px 12px;
   border-radius: 5px;
-  overflow: scroll;
+  overflow: auto;
 }
 blockquote {
   border-left: 4px solid var(--code-bg-color);
