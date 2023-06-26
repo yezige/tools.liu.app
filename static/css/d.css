@@ -131,7 +131,7 @@ pre, code {
 }
 code {
   font-size: 0.9em;
-  padding: 3px 6px;
+  padding: 5px 8px;
   border-radius: 3px;
 }
 pre {
@@ -199,7 +199,9 @@ table th {
 .mg_b_15{
   margin-bottom: 15px;
 }
-
+.p_10_0{
+  padding: 10px 0;
+}
 
 
 

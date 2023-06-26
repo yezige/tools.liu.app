@@ -47,7 +47,7 @@ down-list-tips: 'Tips: If you click Download to enter the preview page, you can 
 down-addaudio-title: 'Merge sound playback'
 down-addaudio-desc: Download a video file without sound, and use PotPlayer (https://potplayer.daum.net) to open the video, right click on the playback interface -> Open -> Load External Audio -> File Type select "All Files (*.*)" -> Select the downloaded audio file (for example xxx.weba), now the video has sound, as shown below.
 down-ffmpeg-title: 'Merge video and audio using FFmpeg'
-down-ffmpeg-desc: ffmpeg -i video.webm -i audio.weba -vcodec copy output.mp4
+down-ffmpeg-desc: The synthesized output.mp4 will have sound
 sponsor: 'SPONSOR'
 sponsor-url: 'https://www.paypal.com/paypalme/yezige'
 searh-result: 'Search Result'

@@ -46,8 +46,8 @@ down-list-title: '下载列表'
 down-list-tips: '提示：如果点击下载进入预览页，可尝试下载按钮右键链接另存为、右键使用 IDM 下载。'
 down-addaudio-title: '合并声音播放'
 down-addaudio-desc: '下载无声音的视频文件，并使用 PotPlayer (https://potplayer.daum.net) 打开视频，播放界面鼠标右键 -> 打开 -> 载入音频 -> 文件类型选择「所有文件(*.*)」 -> 选择下载的音频文件（例如xxx.weba），现在视频就有声音了，如下图。'
-down-ffmpeg-title: '使用 FFmpeg 合并视频音频'
-down-ffmpeg-desc: ffmpeg -i video.webm -i audio.weba -vcodec copy output.mp4
+down-ffmpeg-title: 使用 FFmpeg 合并视频音频
+down-ffmpeg-desc: 合成后的 output.mp4 将是有声音的
 sponsor: '请我喝杯咖啡'
 sponsor-url: 'https://tools.liu.app/static/images/praise_small.jpg'
 searh-result: '搜索结果'

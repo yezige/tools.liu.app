@@ -101,13 +101,17 @@
     <div class="addaudio_list">
       <div class="down_title">{{ I "down-addaudio-title" }}</div>
       <div class="down_content downopt_content">
-        <div class="row"><div>{{ I "down-addaudio-desc" }}</div></div>
+        <div class="p_10_0"><div>{{ I "down-addaudio-desc" }}</div></div>
         <img class="lazyload" src="/static/images/down-addaudio-desc.png" alt="{{ I "down-addaudio-title" }}" width="200"/>
       </div>
       <div class="down_title">{{ I "down-ffmpeg-title" }}</div>
       <div class="down_content downopt_content">
-        <div class="row">
-          <pre>{{ I "down-ffmpeg-desc" }}</pre>
+        <div class="p_10_0">
+          <pre>ffmpeg -i video.webm -i audio.weba -vcodec copy output.mp4</pre>
+          <p>{{ I "down-ffmpeg-desc" }}</p>
+          <p>FFmpeg Download: <a href="https://ffmpeg.org/download.html" target="_blank" rel="noopener noreferrer">https://ffmpeg.org/download.html</a></p>
+          <p>Windows: <code>winget install ffmpeg</code></p>
+          <p>Mac: <a href="https://evermeet.cx/ffmpeg/" target="_blank" rel="noopener noreferrer">https://evermeet.cx/ffmpeg/</a></p>
         </div>
       </div>
     </div>
