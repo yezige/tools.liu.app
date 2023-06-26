@@ -1,3 +1,5 @@
+@import url('http://fonts.googleapis.cn/css2?family=Source+Code+Pro&display=swap');
+
 :root {
   --body-bg-color: #121212;
   --menu-bg-color: #212121;
@@ -123,12 +125,18 @@ a,
 a.transform:hover {
   transform: translateY(-3px);
 }
-code {
-  font-family: 'Source+Code+Pro', sans-serif;
-  font-size: 0.9em;
+pre, code {
+  font-family: 'Source Code Pro', sans-serif;
   background-color: var(--code-bg-color);
+}
+code {
+  font-size: 0.9em;
   padding: 3px 6px;
   border-radius: 3px;
+}
+pre {
+  padding: 10px 12px;
+  border-radius: 5px;
 }
 blockquote {
   border-left: 4px solid var(--code-bg-color);
