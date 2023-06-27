@@ -43,8 +43,8 @@ down-opt-fast: 是否极速下载
 down-opt-fast-tips: '注意: 极速需要科学网络'
 down-opt-audio: 仅显示有音频的行
 down-list-title: 下载列表
-down-list-tips: 提示：如果点击下载进入预览页，可尝试下载按钮右键链接另存为、右键使用 IDM 下载 ✌。
-down-list-tips-2: 提示：对于视频没有声音的问题，可分别下载视频和音频然后使用下列两种方式解决 👇。
+down-list-tips: '📢 如果点击下载进入预览页，可尝试下载按钮右键链接另存为、右键使用 IDM 下载。'
+down-list-tips-2: '📢 对于视频没有声音的问题，可分别下载视频和音频然后使用下列两种方式解决 👇。'
 down-addaudio-title: 使用 PotPlayer 合并视频音频播放
 down-addaudio-desc: 下载无声音的视频文件，并使用 PotPlayer (https://potplayer.daum.net) 打开视频，播放界面鼠标右键 -> 打开 -> 载入音频 -> 文件类型选择「所有文件(*.*)」 -> 选择下载的音频文件（例如xxx.weba），现在视频就有声音了，如下图。
 down-ffmpeg-title: 使用 FFmpeg 合并视频音频为一个文件

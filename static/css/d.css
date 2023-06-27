@@ -34,7 +34,7 @@
     --code-bg-color: rgba(255, 255, 255, 0.2);
     --icon-bg-color: rgba(255, 255, 255, 0.66);
     --text-high-color: rgba(0, 0, 0, 0.95);
-    --text-nonhigh-color: rgba(0, 0, 0, 0.28);
+    --text-nonhigh-color: rgba(0, 0, 0, 0.6);
     --text-color: rgba(0, 0, 0, 0.91);
     --text-active-color: #ef5350;
     --link-color: #ef5350;
@@ -186,8 +186,8 @@ table th {
 .tips {
   display: inline-flex;
   align-items: center;
-  font-size: 0.7rem;
-  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 400;
   color: var(--text-nonhigh-color);
 }
 .mg_l_15{
