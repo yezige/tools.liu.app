@@ -43,8 +43,8 @@ down-opt-fast: Fast download
 down-opt-fast-tips: 'Tips: Fast requires "Over the Great Firewall" Network'
 down-opt-audio: Only show audio
 down-list-title: Download List
-down-list-tips: '🔈Tips: If you click Download to enter the preview page, you can try to right-click the download button to save the link as, right-click to use IDM to download ✌.'
-down-list-tips-2: '🔈Tips: For the problem that the video has no sound, you can download the video and audio separately and use the following two methods to solve the problem 👇.'
+down-list-tips: 'Tips: If you click Download to enter the preview page, you can try to right-click the download button to save the link as, right-click to use IDM to download ✌.'
+down-list-tips-2: 'Tips: For the problem that the video has no sound, you can download the video and audio separately and use the following two methods to solve the problem 👇.'
 down-addaudio-title: Use PotPlayer to combine video and audio playback
 down-addaudio-desc: Download a video file without sound, and use PotPlayer (https://potplayer.daum.net) to open the video, right click on the playback interface -> Open -> Load External Audio -> File Type select "All Files (*.*)" -> Select the downloaded audio file (for example xxx.weba), now the video has sound, as shown below.
 down-ffmpeg-title: Use FFmpeg to combine video and audio into one file
