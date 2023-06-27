@@ -1,55 +1,56 @@
 lng: zh
-title: 'YouTube搜索 | YouTube下载 | YouTube | YouTube视频搜索下载 | 支持搜索 | 保存到本地 | 全程无需科学 | YouTube HD Video Downloader'
-desc: 'YouTube|youtube search|youtube download|YouTube搜索|YouTube下载|油管|YouTube视频搜索下载|YouTube 油管 高清视频 下载|youtube官网下载|youtube网页版|youtube中文|youtube官网中文版|youtube下载apk|youtube下载安卓|youtube下载工具chrome|youtube保存到本地|无需科学|不需要科学|不用科学|全程无需科学|YouTube HD Video Downloader'
-keywords: 'YouTube 油管 高清视频 下载 YouTube HD Video Downloader'
-tags: 'youtube|youtube search|youtube Download|youtube HD Video Downloader|youtube搜索|youtube下载|油管|youtube官网下载|youtube网页版|youtube中文|youtube官网中文版|youtube下载apk|youtube下载安卓|youtube下载工具chrome|youtube高清视频下载|youtube搜索下载|youtube保存到本地|无需科学|不需要科学|不用科学|全程无需科学|下载|youtube HD Video|Downloader|youtube下载电脑版|youtube解析下载|youtube下载4k|油管下载神器|youtube解析1080p|油管网|油管网站|下载器|下载器网站|下载器网|YouTubi|youtubei'
-menu-youtube: 'Youtube'
-menu-about: '关于'
-menu-tags: '标签'
-menu-sponsor: '赞助名单'
-search-placeholder: '输入任意字符或视频链接以搜索'
-search-result: '搜索结果'
-body-name-youtube: 'YouTube 视频搜索下载 · 全程无需科学'
-body-name-tags: '标签'
-body-name-about: '关于'
-body-name-sponsor: '赞助名单'
-about-title: '联系我'
-about-welcome: '欢迎在下方留言。'
-about-cheers: '( ゜- ゜)つ💊 乾杯~'
-title-desc-use: '总使用次数'
-title-desc-comment: '评论总数'
-popular-us: '热门视频-美国'
-popular-hk: '热门视频-中国'
-popular-film-animation: '热门-电影和动画'
-popular-gaming: '热门-游戏'
-popular-entertainment: '热门-娱乐'
-popular-music: '热门-音乐'
-popular-sports: '热门-体育'
-down-itag: '标注'
-down-quality: '质量'
-down-fps: '帧率'
-down-bitrate: '码率'
-down-format: '格式'
-down-audio: '音频'
-down-size: '大小'
-down-download: '下载'
-down-online: '观看'
-down-how: '如何下载'
-down-step1: '第一步'
-down-step2: '第二步'
-down-step3: '第三步'
-down-opt-title: '下载选项'
-down-opt-fast: '是否极速下载'
+title: YouTube搜索 | YouTube下载 | YouTube | YouTube视频搜索下载 | 支持搜索 | 保存到本地 | 全程无需科学 | YouTube HD Video Downloader
+desc: YouTube|youtube search|youtube download|YouTube搜索|YouTube下载|油管|YouTube视频搜索下载|YouTube 油管 高清视频 下载|youtube官网下载|youtube网页版|youtube中文|youtube官网中文版|youtube下载apk|youtube下载安卓|youtube下载工具chrome|youtube保存到本地|无需科学|不需要科学|不用科学|全程无需科学|YouTube HD Video Downloader
+keywords: YouTube 油管 高清视频 下载 YouTube HD Video Downloader
+tags: youtube|youtube search|youtube Download|youtube HD Video Downloader|youtube搜索|youtube下载|油管|youtube官网下载|youtube网页版|youtube中文|youtube官网中文版|youtube下载apk|youtube下载安卓|youtube下载工具chrome|youtube高清视频下载|youtube搜索下载|youtube保存到本地|无需科学|不需要科学|不用科学|全程无需科学|下载|youtube HD Video|Downloader|youtube下载电脑版|youtube解析下载|youtube下载4k|油管下载神器|youtube解析1080p|油管网|油管网站|下载器|下载器网站|下载器网|YouTubi|youtubei
+menu-youtube: Youtube
+menu-about: 关于
+menu-tags: 标签
+menu-sponsor: 赞助名单
+search-placeholder: 输入任意字符或视频链接以搜索
+search-result: 搜索结果
+body-name-youtube: YouTube 视频搜索下载 · 全程无需科学
+body-name-tags: 标签
+body-name-about: 关于
+body-name-sponsor: 赞助名单
+about-title: 联系我
+about-welcome: 欢迎在下方留言。
+about-cheers: ( ゜- ゜)つ💊 乾杯~
+title-desc-use: 总使用次数
+title-desc-comment: 评论总数
+popular-us: 热门视频-美国
+popular-hk: 热门视频-中国
+popular-film-animation: 热门-电影和动画
+popular-gaming: 热门-游戏
+popular-entertainment: 热门-娱乐
+popular-music: 热门-音乐
+popular-sports: 热门-体育
+down-itag: 标注
+down-quality: 质量
+down-fps: 帧率
+down-bitrate: 码率
+down-format: 格式
+down-audio: 音频
+down-size: 大小
+down-download: 下载
+down-online: 观看
+down-how: 如何下载
+down-step1: 第一步
+down-step2: 第二步
+down-step3: 第三步
+down-opt-title: 下载选项
+down-opt-fast: 是否极速下载
 down-opt-fast-tips: '注意: 极速需要科学网络'
-down-opt-audio: '仅显示有音频的行'
-down-list-title: '下载列表'
-down-list-tips: '提示：如果点击下载进入预览页，可尝试下载按钮右键链接另存为、右键使用 IDM 下载。'
-down-addaudio-title: '合并声音播放'
-down-addaudio-desc: '下载无声音的视频文件，并使用 PotPlayer (https://potplayer.daum.net) 打开视频，播放界面鼠标右键 -> 打开 -> 载入音频 -> 文件类型选择「所有文件(*.*)」 -> 选择下载的音频文件（例如xxx.weba），现在视频就有声音了，如下图。'
-down-ffmpeg-title: 使用 FFmpeg 合并视频音频
+down-opt-audio: 仅显示有音频的行
+down-list-title: 下载列表
+down-list-tips: 🔈提示：如果点击下载进入预览页，可尝试下载按钮右键链接另存为、右键使用 IDM 下载 ✌。
+down-list-tips-2: 🔈提示：对于视频没有声音的问题，可分别下载视频和音频然后使用下列两种方式解决 👇。
+down-addaudio-title: 使用 PotPlayer 合并视频音频播放
+down-addaudio-desc: 下载无声音的视频文件，并使用 PotPlayer (https://potplayer.daum.net) 打开视频，播放界面鼠标右键 -> 打开 -> 载入音频 -> 文件类型选择「所有文件(*.*)」 -> 选择下载的音频文件（例如xxx.weba），现在视频就有声音了，如下图。
+down-ffmpeg-title: 使用 FFmpeg 合并视频音频为一个文件
 down-ffmpeg-desc: 合成后的 output.mp4 将是有声音的
-sponsor: '请我喝杯咖啡'
-sponsor-url: 'https://tools.liu.app/static/images/praise_small.jpg'
-searh-result: '搜索结果'
+sponsor: 请我喝杯咖啡
+sponsor-url: https://tools.liu.app/static/images/praise_small.jpg
+searh-result: 搜索结果
 down-unplayable: 影片状态为 UNPLAYABLE，下载可能会触犯当地法律，责任为下载人承担。
 sponsor-desc: 真的非常非常感谢能得到诸位的赞助，被肯定的感觉你们懂。💪💪💪

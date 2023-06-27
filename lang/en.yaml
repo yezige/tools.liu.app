@@ -1,55 +1,56 @@
 lng: en
-title: 'YouTube Download | YouTube Search | YouTube HD Video Downloader | YouTube 视频搜索下载 | 支持搜索 | 保存到本地 | 全程无需科学'
-desc: 'YouTube Download | YouTube Search | YouTube HD Video Downloader | YouTube 油管 高清视频 下载'
-keywords: 'YouTube 油管 高清视频 下载 YouTube HD Video Downloader'
-tags: 'YouTube|YouTube Download|YouTube Search|YouTube HD Video Downloader|YouTube HD Video|YouTube Downloader|Youtube download pc version|Youtube parsing download|Youtube download 4k|You Tube Download Artifact|Youtube parsing 1080p|Downloader|Downloader web|YouTubi|YouTubei'
-menu-youtube: 'Youtube'
-menu-about: 'About'
-menu-tags: 'Tags'
-menu-sponsor: 'Sponsors'
-search-placeholder: 'Type any character or video link to search'
-search-result: 'Search Result'
-body-name-youtube: 'YouTube Video Search Download · No proxy required'
-body-name-tags: 'Tags'
-body-name-about: 'About'
-body-name-sponsor: 'Sponsors'
-about-title: 'Contact me'
-about-welcome: 'Welcome to leave a message below.'
-about-cheers: '( ゜- ゜)つ💊 Cheers~'
-title-desc-use: 'Usage times'
-title-desc-comment: 'Number of comments'
-popular-us: 'Popular US Videos'
-popular-hk: 'Popular China Videos'
-popular-film-animation: 'Popular Film & Animation Videos'
-popular-gaming: 'Popular Gaming Videos'
-popular-entertainment: 'Popular Entertainment Videos'
-popular-music: 'Popular Music Videos'
-popular-sports: 'Popular Sports Videos'
-down-itag: 'iTAG'
-down-quality: 'Quality'
-down-fps: 'FPS'
-down-bitrate: 'Bitrate'
-down-format: 'Format'
-down-audio: 'Audio'
-down-size: 'Size'
-down-download: 'Download'
-down-online: 'Watch'
-down-how: 'How to download'
-down-step1: 'Step 1'
-down-step2: 'Step 2'
-down-step3: 'Step 3'
-down-opt-title: 'Download Options'
-down-opt-fast: 'Fast download'
+title: YouTube Download | YouTube Search | YouTube HD Video Downloader | YouTube 视频搜索下载 | 支持搜索 | 保存到本地 | 全程无需科学
+desc: YouTube Download | YouTube Search | YouTube HD Video Downloader | YouTube 油管 高清视频 下载
+keywords: YouTube 油管 高清视频 下载 YouTube HD Video Downloader
+tags: YouTube|YouTube Download|YouTube Search|YouTube HD Video Downloader|YouTube HD Video|YouTube Downloader|Youtube download pc version|Youtube parsing download|Youtube download 4k|You Tube Download Artifact|Youtube parsing 1080p|Downloader|Downloader web|YouTubi|YouTubei
+menu-youtube: Youtube
+menu-about: About
+menu-tags: Tags
+menu-sponsor: Sponsors
+search-placeholder: Type any character or video link to search
+search-result: Search Result
+body-name-youtube: YouTube Video Search Download · No proxy required
+body-name-tags: Tags
+body-name-about: About
+body-name-sponsor: Sponsors
+about-title: Contact me
+about-welcome: Welcome to leave a message below.
+about-cheers: ( ゜- ゜)つ💊 Cheers~
+title-desc-use: Usage times
+title-desc-comment: Number of comments
+popular-us: Popular US Videos
+popular-hk: Popular China Videos
+popular-film-animation: Popular Film & Animation Videos
+popular-gaming: Popular Gaming Videos
+popular-entertainment: Popular Entertainment Videos
+popular-music: Popular Music Videos
+popular-sports: Popular Sports Videos
+down-itag: iTAG
+down-quality: Quality
+down-fps: FPS
+down-bitrate: Bitrate
+down-format: Format
+down-audio: Audio
+down-size: Size
+down-download: Download
+down-online: Watch
+down-how: How to download
+down-step1: Step 1
+down-step2: Step 2
+down-step3: Step 3
+down-opt-title: Download Options
+down-opt-fast: Fast download
 down-opt-fast-tips: 'Tips: Fast requires "Over the Great Firewall" Network'
-down-opt-audio: 'Only show audio'
-down-list-title: 'Download List'
-down-list-tips: 'Tips: If you click Download to enter the preview page, you can try to right-click the download button to save the link as, right-click to use IDM to download.'
-down-addaudio-title: 'Merge sound playback'
+down-opt-audio: Only show audio
+down-list-title: Download List
+down-list-tips: '🔈Tips: If you click Download to enter the preview page, you can try to right-click the download button to save the link as, right-click to use IDM to download ✌.'
+down-list-tips-2: '🔈Tips: For the problem that the video has no sound, you can download the video and audio separately and use the following two methods to solve the problem 👇.'
+down-addaudio-title: Use PotPlayer to combine video and audio playback
 down-addaudio-desc: Download a video file without sound, and use PotPlayer (https://potplayer.daum.net) to open the video, right click on the playback interface -> Open -> Load External Audio -> File Type select "All Files (*.*)" -> Select the downloaded audio file (for example xxx.weba), now the video has sound, as shown below.
-down-ffmpeg-title: 'Merge video and audio using FFmpeg'
+down-ffmpeg-title: Use FFmpeg to combine video and audio into one file
 down-ffmpeg-desc: The synthesized output.mp4 will have sound
-sponsor: 'SPONSOR'
-sponsor-url: 'https://www.paypal.com/paypalme/yezige'
-searh-result: 'Search Result'
+sponsor: SPONSOR
+sponsor-url: https://www.paypal.com/paypalme/yezige
+searh-result: Search Result
 down-unplayable: The status of the video is UNPLAYABLE, downloading may violate local laws, and the downloader shall bear the responsibility.
 sponsor-desc: Thank you so much for your sponsorship, you know the feeling of being affirmed. 💪💪💪
