@@ -23,7 +23,7 @@ jobs:
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/v}
           fi
-          echo ::set-output name=tags::${VERSION}
+          echo "{tags}=${VERSION}" >> $GITHUB_OUTPUT
 
       - name: Login
         uses: docker/login-action@v1
