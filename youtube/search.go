@@ -367,14 +367,14 @@ func ExtractVideoID(videoID string) (string, error) {
 	return "", errors.New("invalid video id")
 }
 func SetVideoURL(videos Videoer) {
-	// 修改 i.ytimg.com 为 ytimg.liu.dev
+	// 修改 i.ytimg.com 为 ytimg.liu.app
 	videos.SetThumbnail()
 }
 func SetVideoThumbnail(std *SectionThumbnailDetail) {
-	std.Url = strings.Replace(std.Url, "i.ytimg.com", "ytimg.liu.dev", 1)
+	std.Url = strings.Replace(std.Url, "i.ytimg.com", "ytimg.liu.app", 1)
 }
 func SetDownloadUrl(u string, fileName string) string {
-	// 修改为ytdl.liu.dev
+	// 修改为ytdl.liu.app
 	params := url.Values{}
 	params.Add("u", u)
 	params.Add("filename", fileName)
