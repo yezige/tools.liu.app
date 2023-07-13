@@ -237,6 +237,9 @@ const doneProgress = function() {
 }
 const setProgress = async function() {
   NProgress.configure({ showSpinner: false })
+  if (document.body.clientWidth < 1024) {
+    return false
+  }
   NProgress.start()
   window.addEventListener('load', function() {
     NProgress.done()
