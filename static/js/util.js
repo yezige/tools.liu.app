@@ -228,4 +228,38 @@ const setVideoLoading = function() {
     })
   }
 }
-export { setFancybox, setToggle, loadComments, delEmptyThtd, setMenu, setSearch, searchHandler, setLazyload, setVideoMove, showLoading, hideLoading, setVideoLoading, timeout }
+// 顶部加载进度
+const startProgress = function() {
+  NProgress.start()
+}
+const doneProgress = function() {
+  NProgress.done()
+}
+const setProgress = async function() {
+  NProgress.configure({ showSpinner: false })
+  NProgress.start()
+  window.addEventListener('load', function() {
+    NProgress.done()
+  })
+  await timeout(2000)
+  NProgress.done()
+}
+
+export {
+  setFancybox,
+  setToggle,
+  loadComments,
+  delEmptyThtd,
+  setMenu,
+  setSearch,
+  searchHandler,
+  setLazyload,
+  setVideoMove,
+  showLoading,
+  hideLoading,
+  setVideoLoading,
+  timeout,
+  setProgress,
+  startProgress,
+  doneProgress
+}

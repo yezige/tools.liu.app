@@ -1,4 +1,4 @@
-import { setFancybox, setToggle, loadComments, delEmptyThtd, setMenu, setLazyload, setVideoMove} from './util.js'
+import { setFancybox, setToggle, loadComments, delEmptyThtd, setMenu, setLazyload, setVideoMove, setProgress} from './util.js'
 
 $(function() {
   delEmptyThtd()
@@ -8,5 +8,6 @@ $(function() {
   // lozad.js 需要手动开启，lazysizes.js 不需要
   setLazyload()
   setVideoMove()
+  setProgress()
 })
 window.loadComments = loadComments

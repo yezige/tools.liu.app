@@ -29,7 +29,7 @@
             <div class="videos">
               {{ range $itemkey, $itemval := .Items }}
               <div class="video">
-                <a class="video_link nofancybox" href="/youtube/download?id={{ .ID }}">
+                <a class="start_progress video_link nofancybox" href="/youtube/download?id={{ .ID }}">
                   <img class="video_thumbnail lazyload" data-src="{{ .Snippet.Thumbnails.High.Url }}" src="/static/images/whiteboard.svg" alt="{{ .Snippet.Title }}" />
                 </a>
                 <div class="video_info">

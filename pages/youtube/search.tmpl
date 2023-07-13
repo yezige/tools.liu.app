@@ -20,7 +20,7 @@
         <div class="videos">
           {{ range .SearchList }}
           <div class="video">
-            <a class="video_link" href="/youtube/download?id={{ .ID.VideoID }}">
+            <a class="start_progress video_link nofancybox" href="/youtube/download?id={{ .ID.VideoID }}">
               <img class="video_thumbnail lazyload" data-src="{{ .Snippet.Thumbnails.High.Url }}" src="/static/images/whiteboard.svg" alt="{{ .Snippet.Title }}" />
             </a>
             <div class="video_info">
