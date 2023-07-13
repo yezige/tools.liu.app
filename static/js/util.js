@@ -230,16 +230,19 @@ const setVideoLoading = function() {
 }
 // 顶部加载进度
 const startProgress = function() {
+  if (document.body.clientWidth < 1024) {
+    return false
+  }
   NProgress.start()
 }
 const doneProgress = function() {
   NProgress.done()
 }
 const setProgress = async function() {
-  NProgress.configure({ showSpinner: false })
   if (document.body.clientWidth < 1024) {
     return false
   }
+  NProgress.configure({ showSpinner: false })
   NProgress.start()
   window.addEventListener('load', function() {
     NProgress.done()
