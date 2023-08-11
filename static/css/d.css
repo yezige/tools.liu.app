@@ -27,7 +27,7 @@
 }
 @media (prefers-color-scheme: light) {
   :root {
-    --body-bg-color: radial-gradient(100% 100% at 0% 0%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 36.98%), linear-gradient(135deg, #eb757f 26.56%, #42a5f5 75.32%, #ebe78d 96.87%);
+    --body-bg-color: linear-gradient(135deg, #D0E6C8 3.65%, #C8E6C9 15.63%, #C8D3E6 34.38%, #E6C8DB 67.19%, #E6DBC8 86.98%);
     --menu-bg-color: rgba(255, 255, 255, 0.25);
     --content-bg-color: rgba(255, 255, 255, 0.25);
     --footer-bg-color: #fafafa;
