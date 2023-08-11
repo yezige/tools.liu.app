@@ -6,7 +6,7 @@ const dark = window.matchMedia('(prefers-color-scheme: dark)').matches,
   ctx = canvas.getContext('2d'),
   canvas_box = document.querySelector('header .logo'),
   canvas_xy = canvas.getBoundingClientRect(),
-  font_size = 1.5,
+  font_size = 1.8,
   background = dark ? '#121212' : '#f5f5f5', // 背景色
   colors = [
     '#d81b60', // 红
@@ -15,7 +15,7 @@ const dark = window.matchMedia('(prefers-color-scheme: dark)').matches,
     '#ffb300', // 黄
     '#6d4c41', // 咖
   ], // 颜色列表
-  text = CONFIG.page.site.logo || 'Icons',
+  text = canvas_box.textContent,
   width = 120, // canvas 宽度
   height = 43, // canvas 高度
   mouse_diameter = Math.round(height / 3), // 鼠标直径大小
@@ -80,13 +80,11 @@ Particle.prototype.render = function() {
   }
 }
 function initScene() {
-  if ($ && $(canvas_box).is(':hidden')) {
-    return false
-  }
   mouse = { x: -999, y: -999 }
   canvas_box.innerHTML = '' // 可以不清空
   canvas_box.appendChild(canvas)
   canvas.style.letterSpacing = '3px'
+  canvas.style.lineHeight = height
   ctx.scale(dpr, dpr)
 
   ww = canvas.width = width
@@ -94,7 +92,7 @@ function initScene() {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  ctx.font = `${font_size}em Roboto`
+  ctx.font = `${font_size}rem Roboto`
   // ctx.textAlign = "center";
   ctx.fillText(text, canvas.width / 2 - ctx.measureText(text).width / 2, canvas.height / 2 + font_size * 16 / 2 - 3)
 

@@ -31,7 +31,7 @@
     --menu-bg-color: rgba(255, 255, 255, 0.25);
     --content-bg-color: rgba(255, 255, 255, 0.25);
     --footer-bg-color: #fafafa;
-    --code-bg-color: rgba(255, 255, 255, 0.2);
+    --code-bg-color: rgba(255, 255, 255, 0.3);
     --icon-bg-color: rgba(255, 255, 255, 0.66);
     --text-high-color: rgba(0, 0, 0, 0.95);
     --text-nonhigh-color: rgba(0, 0, 0, 0.6);
@@ -77,12 +77,15 @@
 * {
   box-sizing: border-box;
 }
+html{
+  font-size: 16px;
+}
 body {
   margin: 0;
   padding: 0;
   line-height: 1.8;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: 'pingfang sc','Roboto',sans-serif;
   scroll-behavior: smooth;
 }
@@ -542,7 +545,7 @@ article .title_desc_box{
     padding: 0 20px;
   }
   article .title {
-    font-size: 1.8em;
+    font-size: 1.8rem;
   }
   article img {
     width: 100%;
@@ -554,14 +557,19 @@ article .title_desc_box{
     display: none;
   }
 }
+@media screen and (max-width: 767px){
+  html {
+    font-size: 16px;
+  }
+}
 @media screen and (min-width: 1440px) {
-  body {
-    font-size: 1em;
+  html {
+    font-size: 17.6px;
   }
 }
 @media screen and (min-width: 2560px) {
-  body {
-    font-size: 1.8em;
+  html {
+    font-size: 28.8px;
   }
   .showcase main #content {
     max-width: 2000px;
