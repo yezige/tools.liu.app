@@ -92,7 +92,7 @@ function initScene() {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  ctx.font = `${font_size}rem Roboto`
+  ctx.font = `400 ${font_size}rem Roboto`
   // ctx.textAlign = "center";
   ctx.fillText(text, canvas.width / 2 - ctx.measureText(text).width / 2, canvas.height / 2 + font_size * 16 / 2 - 3)
 
@@ -152,24 +152,14 @@ function render(a) {
   }
 }
 
-// window.addEventListener('resize', initScene)
+// passive 被动以提高性能
+// window.addEventListener('resize', initScene, {passive: true})
 canvas.addEventListener('mousemove', onMouseMove, {passive: true})
 canvas.addEventListener('touchmove', onTouchMove, {passive: true})
 canvas.addEventListener('click', onMouseClick, {passive: true})
 canvas.addEventListener('touchend', onTouchEnd, {passive: true})
 
-if (false && FontFace) {
-  // 字体加载完后再渲染
-  const canvasFont = new FontFace('Inconsolata', 'url(./static/font/Inconsolata.woff2)')
-  canvasFont
-    .load()
-    .then((font) => {
-      document.fonts.add(font)
-    })
-    .then(() => {
-      initScene()
-    })
-} else {
+document.fonts.ready.then(function() {
   initScene()
-}
-requestAnimationFrame(render)
+  requestAnimationFrame(render)
+});

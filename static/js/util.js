@@ -56,7 +56,7 @@ const setFancybox = function() {
 const setToggle = function() {
   const menuToggle = document.querySelector('.toggle')
   const menu = document.querySelector('.menu')
-  const header = document.querySelector('.showcase header')
+  const header = document.querySelector('.showbody header')
 
   menuToggle.addEventListener('click', (e) => {
     menuToggle.classList.toggle('active')
