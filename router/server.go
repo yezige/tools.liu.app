@@ -112,7 +112,7 @@ func loadTemplates(templatesDir string, pagesDir string) multitemplate.Renderer 
 				"numFormat": func(num int64) string {
 					return handler.NumFormat(num)
 				},
-				"I": func(key string, args ...string) string {
+				"I": func(key string, args ...interface{}) string {
 					return handler.I(key, args...)
 				},
 				"default": func(key string, args ...string) string {

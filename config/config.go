@@ -139,6 +139,8 @@ type SectionSite struct {
 	Disqus                 SectionDisqus       `yaml:"disqus" mapstructure:"disqus" json:"disqus"`
 	Fancybox               bool                `yaml:"fancybox" mapstructure:"fancybox" json:"fancybox"`
 	Sponsors               []string            `yaml:"sponsors" mapstructure:"sponsors" json:"sponsors"`
+	PayAmount              float64             `yaml:"pay_amount" mapstructure:"pay_amount" json:"pay_amount"`
+	CrossedAmount          float64             `yaml:"crossed_amount" mapstructure:"crossed_amount" json:"crossed_amount"`
 }
 
 type SectionTwitter struct {

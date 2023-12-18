@@ -272,6 +272,10 @@
 .down_title {
   font-size: 1.2rem;
 }
+
+.down_title_2 {
+  font-size: 1rem;
+}
 .down_content {
   padding: 0;
 }

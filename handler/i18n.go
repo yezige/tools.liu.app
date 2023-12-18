@@ -47,7 +47,7 @@ func SetI18n() gin.HandlerFunc {
 	)
 }
 
-func I(key string, args ...string) string {
+func I(key string, args ...interface{}) string {
 	if len(args) == 0 {
 		if message := ginI18n.MustGetMessage(key); message != "" {
 			return message
@@ -58,7 +58,7 @@ func I(key string, args ...string) string {
 
 	data := make(map[string]string, len(args))
 	for k, v := range args {
-		data["arg"+strconv.Itoa(k)] = v
+		data["arg"+strconv.Itoa(k)] = toString(v)
 	}
 	if message := ginI18n.MustGetMessage(&i18n.LocalizeConfig{
 		MessageID:    key,
@@ -76,4 +76,20 @@ func getAcceptLanguage(acceptLanguageHeader string) string {
 	_, idx, _ := matcher.Match(t...)
 
 	return AcceptLanguage[idx].String()
+}
+
+// ToString to string
+func toString(a interface{}) string {
+	switch a := a.(type) {
+	case int:
+		return strconv.Itoa(a)
+	case float64:
+		return strconv.FormatFloat(a, 'f', -1, 64)
+	case bool:
+		return strconv.FormatBool(a)
+	case string:
+		return a
+	default:
+		return "conver error"
+	}
 }
