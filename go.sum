@@ -521,6 +521,8 @@ github.com/yezige/youtube/v2 v2.7.22-0.20230112084105-e6e999870619 h1:wPIeIFl1tI
 github.com/yezige/youtube/v2 v2.7.22-0.20230112084105-e6e999870619/go.mod h1:WLVx00WZS4xoY6AGPu8Ijb/8sStseEUWiyc1pxIWjVk=
 github.com/yezige/youtube/v2 v2.7.22 h1:8kd4cVNZ/JndvQ9PvTzvR+WcSnhr3SL0S7gOpSNIrEI=
 github.com/yezige/youtube/v2 v2.7.22/go.mod h1:WLVx00WZS4xoY6AGPu8Ijb/8sStseEUWiyc1pxIWjVk=
+github.com/yezige/youtube/v2 v2.7.23 h1:KRyeCYsCZUWh92LmuK2yQesqCN9HhMgFRD8011ti59E=
+github.com/yezige/youtube/v2 v2.7.23/go.mod h1:tW7uzxgjc+3UWR9kUIyfWWI/MYpJABG5YXs7ugeao+Q=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
@@ -1051,6 +1053,8 @@ honnef.co/go/tools v0.0.0-20190523083050-ea95bdfd59fc/go.mod h1:rf3lG4BRIbNafJWh
 honnef.co/go/tools v0.0.1-2019.2.3/go.mod h1:a3bituU0lyd329TUQxRnasdCoJDkEUEAqEt0JzvZhAg=
 honnef.co/go/tools v0.0.1-2020.1.3/go.mod h1:X/FiERA/W4tHapMX5mGpAtMSVEeEUOyHaw9vFzvIQ3k=
 honnef.co/go/tools v0.0.1-2020.1.4/go.mod h1:X/FiERA/W4tHapMX5mGpAtMSVEeEUOyHaw9vFzvIQ3k=
+rogchap.com/v8go v0.9.0 h1:wYbUCO4h6fjTamziHrzyrPnpFNuzPpjZY+nfmZjNaew=
+rogchap.com/v8go v0.9.0/go.mod h1:MxgP3pL2MW4dpme/72QRs8sgNMmM0pRc8DPhcuLWPAs=
 rsc.io/binaryregexp v0.2.0/go.mod h1:qTv7/COck+e2FymRvadv62gMdZztPaShugOCi3I+8D8=
 rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
 rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=

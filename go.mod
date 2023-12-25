@@ -17,6 +17,7 @@ require (
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	google.golang.org/genproto v0.0.0-20220519153652-3a47de7e79bd // indirect
+	rogchap.com/v8go v0.9.0 // indirect
 )
 
 require (
@@ -55,7 +56,7 @@ require (
 	github.com/stretchr/testify v1.8.0
 	github.com/subosito/gotenv v1.3.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
-	github.com/yezige/youtube/v2 v2.7.22
+	github.com/yezige/youtube/v2 v2.7.23
 	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
 	golang.org/x/net v0.0.0-20220617184016-355a448f1bc9 // indirect
 	golang.org/x/sync v0.0.0-20220601150217-0de741cfad7f

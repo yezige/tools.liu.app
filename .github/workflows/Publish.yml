@@ -57,8 +57,8 @@ jobs:
         # set liu_ssh private key
         run: |
           mkdir -p ~/.ssh/
-          echo "${{ env.HOST_KEY_SSH }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "${{ env.HOST_KEY_SSH }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p ${{ env.HOST_PORT }} ${{ env.HOST_IP }} >> ~/.ssh/known_hosts
 
       - name: Update source folder
