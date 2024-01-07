@@ -272,6 +272,10 @@ func GetInfo(id string) (result *PopularResult, err error) {
 
 func Download(id string, nocache bool) (result *DownloadResult, err error) {
 
+	if id == "" {
+		return nil, errors.New("id is empty")
+	}
+	
 	// 先查询redis
 	if !nocache {
 		info, err := redis.New().Get("youtube:download:" + id)

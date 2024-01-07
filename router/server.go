@@ -70,6 +70,7 @@ func routerEngine(cfg *config.ConfYaml, q *queue.Queue) *gin.Engine {
 	r.GET(cfg.API.StatGoURI, ginapi.GinHandler)
 	r.GET("/api/youtube/popular", handler.ApiYoutubePopularHandler)
 	r.GET("/api/youtube/search", handler.ApiYoutubeSearchHandler)
+	r.GET("/api/youtube/download", handler.ApiYoutubeDownloadHandler)
 
 	return r
 }

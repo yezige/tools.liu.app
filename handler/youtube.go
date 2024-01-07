@@ -274,6 +274,21 @@ func ApiYoutubeSearchHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, result)
 }
 
+// 查询视频下载信息接口
+func ApiYoutubeDownloadHandler(c *gin.Context) {
+	videoID := c.DefaultQuery("id", "")
+	result, err := youtube.Download(videoID, false)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":    http.StatusInternalServerError,
+			"message": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
 // 解释视频大小
 func SizeFormat(size int64) string {
 	var unit string
