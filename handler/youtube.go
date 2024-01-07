@@ -301,6 +301,44 @@ func ApiYoutubeDownloadHandler(c *gin.Context) {
 	})
 }
 
+// 设置视频下载链接接口
+func ApiYoutubeDownloadSetLinkHandler(c *gin.Context) {
+	key := c.DefaultQuery("key", "")
+	value := c.DefaultQuery("value", "")
+	err := youtube.DownloadSetLink(key, value)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":    http.StatusInternalServerError,
+			"message": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code":    http.StatusOK,
+		"message": "成功",
+	})
+}
+
+// 获取视频下载链接接口
+func ApiYoutubeDownloadGetLinkHandler(c *gin.Context) {
+	key := c.DefaultQuery("key", "")
+	result, err := youtube.DownloadGetLink(key)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":    http.StatusInternalServerError,
+			"message": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code":    http.StatusOK,
+		"message": "成功",
+		"data": result,
+	})
+}
+
 // 解释视频大小
 func SizeFormat(size int64) string {
 	var unit string

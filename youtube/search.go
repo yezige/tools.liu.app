@@ -61,14 +61,14 @@ type Videoer interface {
 }
 
 func (vs Videos) SetThumbnail() {
-	for _, v := range vs{
+	for _, v := range vs {
 		SetVideoThumbnail(&v.Snippet.Thumbnails.Default)
 		SetVideoThumbnail(&v.Snippet.Thumbnails.High)
 		SetVideoThumbnail(&v.Snippet.Thumbnails.Medium)
 	}
 }
 func (vs SearchVideos) SetThumbnail() {
-	for _, v := range vs{
+	for _, v := range vs {
 		SetVideoThumbnail(&v.Snippet.Thumbnails.Default)
 		SetVideoThumbnail(&v.Snippet.Thumbnails.High)
 		SetVideoThumbnail(&v.Snippet.Thumbnails.Medium)
@@ -275,7 +275,7 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 	if id == "" {
 		return nil, errors.New("id is empty")
 	}
-	
+
 	// 先查询redis
 	if !nocache {
 		info, err := redis.New().Get("youtube:download:" + id)
@@ -342,6 +342,41 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 	}
 
 	return result, nil
+}
+
+func DownloadSetLink(key string, value string) (err error) {
+
+	if key == "" {
+		return errors.New("key is empty")
+	}
+
+	// 存储到redis
+	formatJson, err := json.Marshal(map[string]interface{}{"data": value})
+	if err != nil {
+		return err
+	}
+	if err := redis.New().SetTTL("youtube:downloadlink:"+key, formatJson, time.Hour*24); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func DownloadGetLink(key string) (result map[string]interface{}, err error) {
+
+	if key == "" {
+		return nil, errors.New("key is empty")
+	}
+
+	info, err := redis.New().Get("youtube:downloadlink:" + key)
+	if err == nil {
+		if err := json.Unmarshal([]byte(info), &result); err != nil {
+			return nil, err
+		}
+		return result, err
+	}
+
+	return nil, errors.New("link does not exist")
 }
 
 func GetExtByMime(MimeType string) string {

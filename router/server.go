@@ -71,6 +71,8 @@ func routerEngine(cfg *config.ConfYaml, q *queue.Queue) *gin.Engine {
 	r.GET("/api/youtube/popular", handler.ApiYoutubePopularHandler)
 	r.GET("/api/youtube/search", handler.ApiYoutubeSearchHandler)
 	r.GET("/api/youtube/download", handler.ApiYoutubeDownloadHandler)
+	r.GET("/api/youtube/download/setlink", handler.ApiYoutubeDownloadSetLinkHandler)
+	r.GET("/api/youtube/download/getlink", handler.ApiYoutubeDownloadGetLinkHandler)
 
 	return r
 }
