@@ -256,7 +256,11 @@ func ApiYoutubePopularHandler(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, result)
+	c.JSON(http.StatusOK, gin.H{
+		"code":    http.StatusOK,
+		"message": "成功",
+		"data": result,
+	})
 }
 
 // 查询视频接口
@@ -271,7 +275,11 @@ func ApiYoutubeSearchHandler(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, result)
+	c.JSON(http.StatusOK, gin.H{
+		"code":    http.StatusOK,
+		"message": "成功",
+		"data": result,
+	})
 }
 
 // 查询视频下载信息接口
@@ -286,7 +294,11 @@ func ApiYoutubeDownloadHandler(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, result)
+	c.JSON(http.StatusOK, gin.H{
+		"code":    http.StatusOK,
+		"message": "成功",
+		"data": result,
+	})
 }
 
 // 解释视频大小
