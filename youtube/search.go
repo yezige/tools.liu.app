@@ -288,7 +288,7 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 	}
 
 	// 调用youtube-dl接口获取视频下载地址
-	client := youtubedl.Client{Debug: true}
+	client := youtubedl.Client{Debug: false}
 
 	video, err := client.GetVideo(id)
 	if err != nil {
@@ -310,6 +310,8 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 		v.URL_PROXY = SetDownloadUrl(v.URL, fileName)
 		resSlice[k] = SelectionFormat{F: v, Ext: GetExtByMime(v.MimeType)}
 	}
+
+	video.Formats = nil
 
 	result = &DownloadResult{
 		Video: &Video{
