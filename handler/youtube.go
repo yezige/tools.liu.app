@@ -304,8 +304,8 @@ func ApiYoutubeDownloadHandler(c *gin.Context) {
 
 // 设置视频下载链接接口
 func ApiYoutubeDownloadSetLinkHandler(c *gin.Context) {
-	key := c.DefaultQuery("key", "")
-	value := c.DefaultQuery("value", "")
+	key := c.DefaultPostForm("key", "")
+	value := c.DefaultPostForm("value", "")
 	err := youtube.DownloadSetLink(key, value)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
