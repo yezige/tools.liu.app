@@ -285,7 +285,8 @@ func ApiYoutubeSearchHandler(c *gin.Context) {
 // 查询视频下载信息接口
 func ApiYoutubeDownloadHandler(c *gin.Context) {
 	videoID := c.DefaultQuery("id", "")
-	result, err := youtube.Download(videoID, false)
+	noCache, _ := strconv.ParseBool(c.DefaultQuery("nocache", "0"))
+	result, err := youtube.Download(videoID, noCache)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    http.StatusInternalServerError,
