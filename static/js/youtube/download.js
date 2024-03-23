@@ -1,4 +1,6 @@
 import { docCookies } from '../cookie.js'
+import { FFmpeg } from '/static/node_modules/@ffmpeg/ffmpeg/dist/esm/index.js'
+import { fetchFile, toBlobURL } from '/static/node_modules/@ffmpeg/util/dist/esm/index.js'
 
 const toggleFast = function(showfast) {
   const fast_display = showfast ? 'flex' : 'none'
@@ -53,10 +55,13 @@ const setDownOpt = function() {
   const to_fast = document.querySelector('#to-fast')
   const has_audio = document.querySelector('#has-audio')
 
-  docCookies.setItem('downOpt', JSON.stringify({
-    to_fast: to_fast.checked,
-    has_audio: has_audio.checked
-  }))
+  docCookies.setItem(
+    'downOpt',
+    JSON.stringify({
+      to_fast: to_fast.checked,
+      has_audio: has_audio.checked
+    })
+  )
 }
 
 // 企取得下载选项设置
@@ -78,3 +83,51 @@ const showDownOpt = function() {
   }
 }
 showDownOpt()
+
+const load = async () => {
+  const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm'
+  const ffmpeg = new FFmpeg()
+  ffmpeg.on('log', ({ message }) => {
+    console.log(message)
+  })
+  // toBlobURL is used to bypass CORS issue, urls with the same
+  // domain can be used directly.
+  await ffmpeg.load({
+    coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm')
+  })
+  return ffmpeg
+}
+
+const ffmpegToDownload = async (data) => {
+  const ffmpeg = await load()
+  await ffmpeg.writeFile(data.video_name, await fetchFile(data.video))
+  await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio))
+  await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, '-f mp4', data.output_name])
+  const data = await ffmpeg.readFile(data.output_name)
+  const downEle = document.getElementById('vip_down_link')
+  downEle.src = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }))
+}
+
+const getDownloadLink = async () => {}
+
+const setVipDownload = async () => {
+  document.querySelectorAll('.item.down-vip').forEach((item) => {
+    item.addEventListener('click', function(){
+      showMask({
+        title: '下载音视频合成版',
+        content: '',
+        ok: '',
+        cancle: '关闭',
+        callback_ok: function() {
+          setCookie('prompt_18', { value: true }, false, document.location.pathname)
+          resolve()
+          return true
+        },
+        callback_cancle: function() {
+          history.back()
+        }
+      })
+    })
+  })
+}

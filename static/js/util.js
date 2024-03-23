@@ -251,6 +251,55 @@ const setProgress = async function() {
   NProgress.done()
 }
 
+const showMask = function(data) {
+  let conf = {
+    title: '提示',
+    content: '',
+    ok: '确认',
+    cancle: '关闭',
+    callback_ok: function() {},
+    callback_cancle: function() {}
+  }
+  conf = Object.assign(conf, data)
+
+  const html = `<div class="mask_box" style="display: none;" id="mask_box">
+  <div class="mask"></div>
+  <div class="mask_panel">
+    <div class="mask_body">
+      <div class="mask_title">${conf.title}</div>
+      <div class="mask_content">${conf.content}</div>
+    </div>
+    <div class="mask_footer">
+      <div class="mask_btn">${conf.ok}</div>
+      <div class="mask_btn_cancle">${conf.cancle}</div>
+    </div>
+  </div>
+</div>`
+  if (!document.getElementById('mask_box')) {
+    const mask = document.createElement('div')
+    mask.innerHTML = html
+    document.querySelector('body').append(mask)
+    // mask 事件
+    mask.querySelector('.mask_box .mask_btn').addEventListener('click', (e) => {
+      if (conf.callback_ok()) {
+        hideMask(e.target)
+      }
+    })
+    mask.querySelector('.mask_box .mask_btn_cancle').addEventListener('click', (e) => {
+      hideMask(e.target, conf.callback_cancle)
+    })
+  }
+  const el = document.getElementById('mask_box')
+  el.style.display = 'block'
+}
+
+const hideMask = function(e, callback) {
+  callback = callback || function() {}
+  let el = e ? e.closest('.mask_box') : document.querySelector('.mask_box')
+  el.style.display = 'none'
+  callback()
+}
+
 export {
   setFancybox,
   setToggle,
@@ -267,5 +316,6 @@ export {
   timeout,
   setProgress,
   startProgress,
-  doneProgress
+  doneProgress,
+  showMask
 }
