@@ -5,7 +5,7 @@ const timeout = (ms) => {
     }, ms)
   })
 }
-const setFancybox = function() {
+const setFancybox = function () {
   if (!CONFIG.page.site.fancybox) {
     return false
   }
@@ -53,7 +53,7 @@ const setFancybox = function() {
   })
 }
 
-const setToggle = function() {
+const setToggle = function () {
   const menuToggle = document.querySelector('.toggle')
   const menu = document.querySelector('.menu')
   const header = document.querySelector('.showbody header')
@@ -73,7 +73,7 @@ const setToggle = function() {
   })
 }
 
-const loadComments = function(element, callback) {
+const loadComments = function (element, callback) {
   if (!CONFIG.page.site.disqus.lazyload || !element) {
     callback()
     return
@@ -89,7 +89,7 @@ const loadComments = function(element, callback) {
   return intersectionObserver
 }
 
-const delEmptyThtd = function() {
+const delEmptyThtd = function () {
   document.querySelectorAll('thead th').forEach((element) => {
     var $th = $(element)
     if ($th.html() == '') {
@@ -98,17 +98,17 @@ const delEmptyThtd = function() {
   })
 }
 
-const setMenu = function() {
+const setMenu = function () {
   $('.menu a')
     .show()
-    .each(function() {
+    .each(function () {
       if ($(this).attr('href') == location.pathname) {
         $(this).addClass('active')
       }
     })
 }
 
-const searchHandler = function() {
+const searchHandler = function () {
   const inputvalue = document.getElementById('search').value
   if (!inputvalue) return false
 
@@ -116,7 +116,7 @@ const searchHandler = function() {
 }
 
 // 搜索事件
-const setSearch = function() {
+const setSearch = function () {
   document.getElementById('search').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       searchHandler()
@@ -126,7 +126,7 @@ const setSearch = function() {
 }
 
 // 显示加载中
-const showLoading = function(els) {
+const showLoading = function (els) {
   const loading_html = `
     <svg class="loading" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle class="path" cx="60.5" cy="59.5" r="32.5" stroke="url(#paint0_linear_311_2)" stroke-width="4" stroke-linejoin="round" />
@@ -151,7 +151,7 @@ const showLoading = function(els) {
 }
 
 // 隐藏加载中
-const hideLoading = function(els) {
+const hideLoading = function (els) {
   if (!els || !els.length) {
     return
   }
@@ -164,21 +164,19 @@ const hideLoading = function(els) {
 }
 
 // lozad.js 需要手动开启，lazysizes.js 不需要
-const setLazyload = async function() {
+const setLazyload = async function () {
   await timeout(200)
   lozad(document.querySelectorAll('.lazyload'), {
-    loaded: function(el) {
+    loaded: function (el) {
       if (!el.closest('.loading_box')) {
         return
       }
-      el.closest('.loading_box')
-        .querySelector('.loading')
-        .remove()
+      el.closest('.loading_box').querySelector('.loading').remove()
     }
   }).observe()
 }
 
-const moveLeft = function(event) {
+const moveLeft = function (event) {
   const videoBox = event.currentTarget.closest('.popular_videos_box')
   const videos = videoBox.querySelector('.videos')
   if (!videoBox) {
@@ -195,7 +193,7 @@ const moveLeft = function(event) {
     videoBox.querySelector('.move_left_btn').classList.remove('active')
   }
 }
-const moveRight = function(event) {
+const moveRight = function (event) {
   const videoBox = event.currentTarget.closest('.popular_videos_box')
   const videos = videoBox.querySelector('.videos')
   if (!videoBox) {
@@ -212,7 +210,7 @@ const moveRight = function(event) {
     videoBox.querySelector('.move_left_btn').classList.add('active')
   }
 }
-const setVideoMove = function() {
+const setVideoMove = function () {
   document.querySelectorAll('.move_left_btn').forEach((element) => {
     element.addEventListener('click', moveLeft)
   })
@@ -221,50 +219,52 @@ const setVideoMove = function() {
     element.addEventListener('click', moveRight)
   })
 }
-const setVideoLoading = function() {
+const setVideoLoading = function () {
   for (const row of document.querySelectorAll('.video_link')) {
-    row.addEventListener('click', function() {
+    row.addEventListener('click', function () {
       showLoading([row])
     })
   }
 }
 // 顶部加载进度
-const startProgress = function() {
+const startProgress = function () {
   if (document.body.clientWidth < 1024) {
     return false
   }
   NProgress.start()
 }
-const doneProgress = function() {
+const doneProgress = function () {
   NProgress.done()
 }
-const setProgress = async function() {
+const setProgress = async function () {
   if (document.body.clientWidth < 1024) {
     return false
   }
   NProgress.configure({ showSpinner: false })
   NProgress.start()
-  window.addEventListener('load', function() {
+  window.addEventListener('load', function () {
     NProgress.done()
   })
   await timeout(2000)
   NProgress.done()
 }
 
-const showMask = function(data) {
+const showMask = function (data) {
   let conf = {
     title: '提示',
     content: '',
     ok: '确认',
     cancle: '关闭',
-    callback_ok: function() {},
-    callback_cancle: function() {}
+    style: '',
+    callback_init: function () {},
+    callback_ok: function () {},
+    callback_cancle: function () {}
   }
   conf = Object.assign(conf, data)
 
   const html = `<div class="mask_box" style="display: none;" id="mask_box">
   <div class="mask"></div>
-  <div class="mask_panel">
+  <div class="mask_panel" style="${conf.style}">
     <div class="mask_body">
       <div class="mask_title">${conf.title}</div>
       <div class="mask_content">${conf.content}</div>
@@ -288,16 +288,152 @@ const showMask = function(data) {
     mask.querySelector('.mask_box .mask_btn_cancle').addEventListener('click', (e) => {
       hideMask(e.target, conf.callback_cancle)
     })
+    // 初始化回调
+    conf.callback_init(mask)
   }
   const el = document.getElementById('mask_box')
   el.style.display = 'block'
 }
 
-const hideMask = function(e, callback) {
-  callback = callback || function() {}
+const hideMask = function (e, callback) {
+  callback = callback || function () {}
   let el = e ? e.closest('.mask_box') : document.querySelector('.mask_box')
   el.style.display = 'none'
   callback()
+}
+
+const setEles = function (dom, query, callback) {
+  dom = dom || document
+  callback = callback || function () {}
+  dom.querySelectorAll(query).forEach((res) => {
+    callback(res)
+  })
+}
+
+const getParams = function (url) {
+  return new URLSearchParams(url || window.location.search)
+}
+
+const setInputBox = function (mask) {
+  // 设置假input事件
+  setEles(mask, '.input_box ._input_tel', (ele) => {
+    // 输入文字时展示到方块处
+    ele.addEventListener('input', (e) => {
+      const block = mask.querySelector('.input_box .input_block.active')
+      ele.focus()
+
+      // 输入数字操作
+      if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].indexOf(e.data) === -1) {
+        return false
+      }
+      setEles(mask, '.input_box .input_block.active', (ele) => {
+        ele.innerHTML = e.data
+      })
+      const next = block.nextElementSibling
+
+      if (!next || !next.classList.contains('input_block')) {
+        return false
+      }
+      setEles(mask, '.input_box .input_block', (ele) => {
+        ele.classList.remove('active')
+      })
+      next.classList.add('active')
+    })
+
+    // 删除操作
+    ele.addEventListener('keyup', (e) => {
+      const block = mask.querySelector('.input_box .input_block.active')
+      ele.focus()
+
+      // 删除操作
+      if (e.key == 'Backspace') {
+        // 清空方块内容
+        setEles(mask, '.input_box .input_block.active', (ele) => {
+          ele.innerHTML = ''
+        })
+        const next = block.previousElementSibling
+        if (!next || !next.classList.contains('input_block')) {
+          return false
+        }
+        setEles(mask, '.input_box .input_block', (ele) => {
+          ele.classList.remove('active')
+        })
+        next.classList.add('active')
+      }
+    })
+  })
+  // 方块点击事件
+  setEles(mask, '.input_box .input_block', (ele) => {
+    ele.addEventListener('click', (e) => {
+      const curr_block = e.currentTarget
+      const _input = mask.querySelector('.input_box ._input_tel')
+      // 闪动光标
+      setEles(mask, '.input_box .input_block', (ele) => {
+        ele.classList.remove('active')
+      })
+      curr_block.classList.add('active')
+      // 唤起输入法
+      _input.focus()
+    })
+  })
+}
+
+const ajax = (options) => {
+  const option = {
+    method: 'POST',
+    data: {}
+  }
+
+  const xhr = new XMLHttpRequest()
+  // 取得配置项
+  let opt = Object.assign(option, options)
+  let res = { success: false, msg: '请求异常' }
+  return new Promise((resolve, reject) => {
+    if (!opt.url) {
+      res.msg = 'url 不能为空'
+      resolve(res)
+    }
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        if (xhr.status !== 200) {
+          resolve(res)
+        }
+        let data = JSON.parse(xhr.responseText)
+        if (typeof data.success != 'undefined') {
+          resolve(data)
+        } else {
+          resolve(res)
+        }
+      }
+    }
+    xhr.open(opt.method, opt.url)
+    xhr.send(getRequestBody(opt))
+  })
+}
+// 拼接请求参数
+const getRequestBody = (opt) => {
+  let databody = ''
+  if (opt.method.toUpperCase() == 'POST') {
+    if (opt.json) {
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      databody = JSON.stringify(opt.data)
+      console.log(databody)
+      return databody
+    }
+    let databody_arr = []
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    for (const [k, v] of Object.entries(opt.data)) {
+      if (typeof v == 'object') {
+        for (let [vk, vv] of Object.entries(v)) {
+          databody_arr.push(`${k}[${vk}]=${vv}`)
+        }
+      } else {
+        databody_arr.push(`${k}=${v}`)
+      }
+    }
+    databody = databody_arr.join('&')
+  }
+  return databody
 }
 
 export {
@@ -317,5 +453,9 @@ export {
   setProgress,
   startProgress,
   doneProgress,
-  showMask
+  showMask,
+  setEles,
+  setInputBox,
+  getParams,
+  ajax
 }

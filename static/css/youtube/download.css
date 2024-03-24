@@ -1,0 +1,74 @@
+.vip_download {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vip_download .statement {
+  font-size: .6rem;
+  text-align: center;
+}
+
+.vip_down_link_box {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.vip_down_link_box .progress {
+  margin-top: .3rem;
+}
+
+.vip_down_link_box.active {
+  display: flex;
+}
+
+.vip_down_link_box.loading a {
+  display: none;
+}
+
+.vip_down_link_box.loading .loading_box {
+  display: flex;
+}
+
+.vip_down_link_box.loaded a {
+  display: flex;
+}
+
+.vip_down_link_box.loaded .loading_box {
+  display: none;
+}
+
+.vip_down_link_box.error a,
+.vip_down_link_box.error .loading_box {
+  display: none;
+}
+
+.vip_down_link_box.error .error {
+  display: flex;
+}
+
+.vip_pic_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.vip_pic_box .vip_pic_img {
+  background: url(/static/images/video_audio_synthesis.png) center / 120px no-repeat;
+  width: 120px;
+  height: 120px;
+  border-radius: 5px;
+  display: block;
+}
+
+.vip_code_box {
+  display: none;
+  flex-direction: column;
+}
+
+.vip_code_box.active {
+  display: flex;
+}

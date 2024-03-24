@@ -2,7 +2,10 @@
 
 {{define "body"}}
 <link rel="stylesheet" href="/static/css/youtube/index.css" />
+<link rel="stylesheet" href="/static/css/youtube/download.css" />
 <link rel="stylesheet" href="/static/css/switch.css" />
+<link rel="stylesheet" href="/static/css/mask.css" />
+<link rel="stylesheet" href="/static/css/loading.css" />
 <article id="page">
   <h1 class="title">{{ .Page.BodyName }}</h1>
   <div class="title_desc_box">
@@ -66,34 +69,41 @@
           <span class="item">{{ I "down-audio" }}</span>
           <span class="item">{{ I "down-size" }}</span>
           <span class="item">{{ I "down-download" }}</span>
-          <span class="item">{{ I "down-online" }}</span>
+          <span class="item">{{ I "down-vip" }}</span>
         </div>
         {{ range .DownloadList }}
-        <div class="download_item download_content">
+        <div class="download_item download_content" data-quality="{{ .F.Quality }}" data-itag="{{ .F.ItagNo }}" data-ext="{{ .Ext }}" data-audio="{{ if gt .F.AudioChannels 0}}1{{else}}0{{ end }}">
           <span class="item">{{ if .F.QualityLabel }}{{ .F.QualityLabel }}{{else}}{{ .F.Quality }}{{ end }}</span>
           <span class="item">{{ if .F.FPS}}{{ .F.FPS }}{{ end }}</span>
           <span class="item">{{ .F.Bitrate | bpsFormat }}</span>
           <span class="item" title="iTAG: {{ .F.ItagNo }}">{{ .Ext }}</span>
           <span class="item audio" data-audio="{{ if gt .F.AudioChannels 0}}1{{else}}0{{ end }}">{{ if gt .F.AudioChannels 0}}✔{{else}}{{ end }}</span>
           <span class="item">{{ if .F.ContentLength }}{{ .F.ContentLength | sizeFormat }}{{else}}-{{ end }}</span>
-          <span class="item down-standard">
+          <span class="item down down-standard">
             <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL_PROXY }}" download="{{ $.Info.Snippet.Title }}">
               <span class="download_btn"></span>
             </a>
           </span>
-          <span class="item down-fast" style="display: none;">
+          <span class="item down down-fast" style="display: none;">
             <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}" download="{{ $.Info.Snippet.Title }}">
               <span class="download_btn"></span>
             </a>
           </span>
-          <span class="item down-standard">
+          <!--
+          <span class="item view down-standard">
             <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL_PROXY }}&online=1">
               <span class="online_btn"></span>
             </a>
           </span>
-          <span class="item down-fast" style="display: none;">
+          <span class="item view down-fast" style="display: none;">
             <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}">
               <span class="online_btn"></span>
+            </a>
+          </span>
+          -->
+          <span class="item down-vip">
+            <a rel="nofollow" class="download_box" href="javascript:void(0);">
+              <span class="download_btn"></span>
             </a>
           </span>
         </div>

@@ -18,6 +18,19 @@
   --shadow-color: rgba(0, 0, 0, 0.25);
   --shadow-color-end: rgba(0, 0, 0, 0.20);
   --border-color: rgba(255, 255, 255, 0.12);
+  /* 正常模式的box 黑色背景 */
+  --box-bg-color: #212121;
+  --box-color: rgba(255, 255, 255, 0.87);
+  --box-shadow-color: rgba(0, 0, 0, 0.5);
+  --box-border-color: rgba(255, 255, 255, 0.12);
+  /* 反色的box 白色背景 */
+  --box-dark-bg-color: #ffffff;
+  --box-dark-high-bg-color: #ffffff;
+  --box-dark-color: #353535;
+  --box-dark-disable-color: rgba(0, 0, 0, 0.76);
+  --box-dark-shadow-color: rgba(0, 0, 0, 0.12);
+  --box-dark-border-color: rgba(0, 0, 0, 0.32);
+  --mask-bg-color: rgba(0, 0, 0, 1);
   /* 按钮图片 */
   --image-bg-search: url('/static/images/search_black.svg');
   --image-bg-download: url('/static/images/download_black.svg');
@@ -44,6 +57,19 @@
     --shadow-color: rgba(91, 139, 179, 0.3);
     --shadow-color-end: rgba(91, 139, 179, 0.20);
     --border-color: rgba(255, 255, 255, 0.28);
+    /* 正常模式的box 白色背景 */
+    --box-bg-color: #ffffff;
+    --box-color: #353535;
+    --box-shadow-color: rgba(0, 0, 0, 0.12);
+    --box-border-color: rgba(0, 0, 0, 0.06);
+    /* 反色的box 黑色背景 */
+    --box-dark-bg-color: #121212;
+    --box-dark-high-bg-color: #212121;
+    --box-dark-color: rgba(255, 255, 255, 0.87);
+    --box-dark-disable-color: rgba(255, 255, 255, 0.67);
+    --box-dark-shadow-color: rgba(0, 0, 0, 0.5);
+    --box-dark-border-color: rgba(255, 255, 255, 0.32);
+    --mask-bg-color: rgba(255, 255, 255, 0.9);
     /* 按钮图片 */
     --image-bg-search: url('/static/images/search_light.svg');
     --image-bg-download: url('/static/images/download_light.svg');
@@ -433,9 +459,6 @@ img.lazyload[src="/static/images/whiteboard.svg"] {
   padding-top: 7rem;
   padding-bottom: 5rem;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 @media (max-width: 767px) {
@@ -445,6 +468,8 @@ img.lazyload[src="/static/images/whiteboard.svg"] {
 }
 
 .showbody main #content {
+  margin-left: auto;
+  margin-right: auto;
   background: var(--content-bg-color);
   min-width: 750px;
   max-width: 1000px;
@@ -591,7 +616,7 @@ article .title_desc_box{
     margin-left: 0;
   }
   .showbody main #content {
-    min-width: calc(100vw - 20px);
+    min-width: calc(100% - 20px);
     margin: 0 10px;
   }
   article {
