@@ -11,7 +11,7 @@ import (
 
 func SponsorHandler(c *gin.Context) {
 	conf := core.PageSponsorConfig{
-		Page: core.PageConfig{
+		Page: core.GetPage(core.PageConfig{
 			Site:        &config.SectionSite{},
 			Title:       I("title") + " | Sponsor",
 			Description: I("desc"),
@@ -19,7 +19,7 @@ func SponsorHandler(c *gin.Context) {
 			Tags:        strings.Split(I("sponsors"), "|"),
 			Permalink:   "/sponsor",
 			BodyName:    I("body-name-sponsor"),
-		},
+		}),
 		Name: c.Query("name"),
 	}
 	cfg, err := config.GetConfig()

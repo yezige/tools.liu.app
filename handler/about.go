@@ -11,7 +11,7 @@ import (
 
 func AboutHandler(c *gin.Context) {
 	conf := core.PageAboutConfig{
-		Page: core.PageConfig{
+		Page: core.GetPage(core.PageConfig{
 			Site:        &config.SectionSite{},
 			Title:       I("title") + " | About",
 			Description: I("desc"),
@@ -19,7 +19,7 @@ func AboutHandler(c *gin.Context) {
 			Tags:        strings.Split(I("tags"), "|"),
 			Permalink:   "/about",
 			BodyName:    I("body-name-about"),
-		},
+		}),
 	}
 	cfg, err := config.GetConfig()
 	if err != nil {

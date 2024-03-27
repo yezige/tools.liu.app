@@ -11,7 +11,7 @@ import (
 
 func TagsHandler(c *gin.Context) {
 	conf := core.PageTagConfig{
-		Page: core.PageConfig{
+		Page: core.GetPage(core.PageConfig{
 			Site:        &config.SectionSite{},
 			Title:       I("title") + " | Tags",
 			Description: I("desc"),
@@ -19,7 +19,7 @@ func TagsHandler(c *gin.Context) {
 			Tags:        strings.Split(I("tags"), "|"),
 			Permalink:   "/tags",
 			BodyName:    I("body-name-tags"),
-		},
+		}),
 		Name: c.Query("name"),
 	}
 	cfg, err := config.GetConfig()

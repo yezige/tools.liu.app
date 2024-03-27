@@ -5,6 +5,10 @@ import (
 	"github.com/yezige/tools.liu.app/youtube"
 )
 
+var (
+	Version string
+)
+
 type PageConfig struct {
 	Site        *config.SectionSite `json:"site"`
 	Title       string              `json:"title"`
@@ -15,7 +19,7 @@ type PageConfig struct {
 	BodyName    string              `json:"body_name"`
 	ErrorMsg    string              `json:"error_msg"`
 	AdsConfig   []AdsConfig         `json:"adsconfig"`
-	Version     string              `json:"version" default:"0.0.1"`
+	Version     string              `json:"version"`
 }
 type AdsConfig struct {
 	Format          string `default:"auto"`
@@ -60,4 +64,9 @@ type PageTagConfig struct {
 type PageSponsorConfig struct {
 	Page PageConfig `json:"page"`
 	Name string     `json:"name"`
+}
+
+func GetPage(pc PageConfig) PageConfig {
+	pc.Version = Version
+	return pc
 }

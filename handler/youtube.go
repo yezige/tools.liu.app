@@ -20,7 +20,7 @@ func YoutubeHandler(c *gin.Context) {
 
 	// 默认页面配置
 	data := core.PageIndexConfig{
-		Page: core.PageConfig{
+		Page: core.GetPage(core.PageConfig{
 			Site:        &config.SectionSite{},
 			Title:       I("title") + " | Home",
 			Description: I("desc"),
@@ -28,7 +28,7 @@ func YoutubeHandler(c *gin.Context) {
 			Tags:        strings.Split(I("tags"), "|"),
 			Permalink:   "/youtube",
 			BodyName:    I("body-name-youtube"),
-		},
+		}),
 		DownloadTotal: redis.New().GetInt64("youtube:download:total"),
 	}
 
@@ -112,7 +112,7 @@ func YoutubeDownloadHandler(c *gin.Context) {
 
 	// 默认页面配置
 	data := core.PageDownloadConfig{
-		Page: core.PageConfig{
+		Page: core.GetPage(core.PageConfig{
 			Site:        &config.SectionSite{},
 			Title:       I("title") + " | Download",
 			Description: I("desc"),
@@ -120,7 +120,7 @@ func YoutubeDownloadHandler(c *gin.Context) {
 			Tags:        strings.Split(I("tags"), "|"),
 			Permalink:   "/youtube/download",
 			BodyName:    I("body-name-youtube"),
-		},
+		}),
 		DownloadTotal: redis.New().GetInt64("youtube:download:total"),
 	}
 
@@ -186,7 +186,7 @@ func YoutubeDownloadHandler(c *gin.Context) {
 func YoutubeSearchHandler(c *gin.Context) {
 	// 默认页面配置
 	data := core.PageSearchConfig{
-		Page: core.PageConfig{
+		Page: core.GetPage(core.PageConfig{
 			Site:        &config.SectionSite{},
 			Title:       I("title") + " | Search",
 			Description: I("desc"),
@@ -194,7 +194,7 @@ func YoutubeSearchHandler(c *gin.Context) {
 			Tags:        strings.Split(I("tags"), "|"),
 			Permalink:   "/youtube/search",
 			BodyName:    I("body-name-youtube"),
-		},
+		}),
 	}
 
 	cfg, err := config.GetConfig()
