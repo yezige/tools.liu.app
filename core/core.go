@@ -15,6 +15,7 @@ type PageConfig struct {
 	BodyName    string              `json:"body_name"`
 	ErrorMsg    string              `json:"error_msg"`
 	AdsConfig   []AdsConfig         `json:"adsconfig"`
+	Version     string              `json:"version" default:"0.0.1"`
 }
 type AdsConfig struct {
 	Format          string `default:"auto"`

@@ -259,7 +259,7 @@ func ApiYoutubePopularHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code":    http.StatusOK,
 		"message": "成功",
-		"data": result,
+		"data":    result,
 	})
 }
 
@@ -278,7 +278,7 @@ func ApiYoutubeSearchHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code":    http.StatusOK,
 		"message": "成功",
-		"data": result,
+		"data":    result,
 	})
 }
 
@@ -298,7 +298,7 @@ func ApiYoutubeDownloadHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code":    http.StatusOK,
 		"message": "成功",
-		"data": result,
+		"data":    result,
 	})
 }
 
@@ -336,7 +336,7 @@ func ApiYoutubeDownloadGetLinkHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code":    http.StatusOK,
 		"message": "成功",
-		"data": result,
+		"data":    result,
 	})
 }
 

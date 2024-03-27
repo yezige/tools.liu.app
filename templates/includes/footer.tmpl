@@ -1,7 +1,7 @@
 {{define "includes/footer"}}
   {{template "includes/vendors" $}}
 
-  <script type="module" src="/static/js/d.js" async></script>
+  <script type="module" src="/static/js/d.js?v={{ .Page.Version }}" async></script>
 
   {{template "third/disqusapi" $}}
 {{end}}

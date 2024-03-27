@@ -1,5 +1,7 @@
 FROM golang:1.21.0-alpine as build
 
+ARG Version
+
 ENV CGO_ENABLED=0 \
     GOPATH=/go \
     GOOS=linux \
@@ -9,7 +11,7 @@ WORKDIR $GOPATH/tools.liu.app
 
 COPY . $GOPATH/tools.liu.app
 
-RUN go build -v -a -o tools .
+RUN go build -ldflags="-X 'core.PageConfig.Version=${Version}'" -v -a -o tools .
 
 # 新增一个容器，用来运行应用
 FROM alpine as run

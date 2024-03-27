@@ -37,6 +37,8 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          build-args: |
+            Version=${{ steps.set-output-id.outputs.tags }}
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.set-output-id.outputs.tags }}

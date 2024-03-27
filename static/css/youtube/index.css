@@ -139,6 +139,10 @@
   background: var(--image-bg-online) no-repeat center/24px 24px;
 }
 
+.download_box .download_btn_vip {
+  background: var(--image-bg-download-vip) no-repeat center/24px 24px;
+}
+
 .download_list {
   display: flex;
   flex-direction: column;
