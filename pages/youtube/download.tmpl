@@ -1,11 +1,12 @@
 {{template "layout" $}}
 
 {{define "body"}}
-<link rel="stylesheet" href="/static/css/youtube/index.css" />
-<link rel="stylesheet" href="/static/css/youtube/download.css" />
-<link rel="stylesheet" href="/static/css/switch.css" />
-<link rel="stylesheet" href="/static/css/mask.css" />
-<link rel="stylesheet" href="/static/css/loading.css" />
+<script src="/static/js/youtube/download.js?v={{ .Page.Version }}" type="module"></script>
+<link rel="stylesheet" href="/static/css/youtube/index.css?v={{ .Page.Version }}" />
+<link rel="stylesheet" href="/static/css/youtube/download.css?v={{ .Page.Version }}" />
+<link rel="stylesheet" href="/static/css/switch.css?v={{ .Page.Version }}" />
+<link rel="stylesheet" href="/static/css/mask.css?v={{ .Page.Version }}" />
+<link rel="stylesheet" href="/static/css/loading.css?v={{ .Page.Version }}" />
 <article id="page">
   <h1 class="title">{{ .Page.BodyName }}</h1>
   <div class="title_desc_box">
@@ -141,6 +142,5 @@
       {{template "third/adsbygoogle" index $.Page.AdsConfig 0 }}
     </div>
   </div>
-  <script src="/static/js/youtube/download.js" type="module"></script>
 </article>
 {{ end }}

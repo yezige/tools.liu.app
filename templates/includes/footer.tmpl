@@ -1,7 +1,9 @@
 {{define "includes/footer"}}
+  {{template "third/analytics-google" $}}
+  {{template "third/analytics-baidu" $}}
+  {{template "third/adsense-google" $}}
+  
   {{template "includes/vendors" $}}
-
-  <script type="module" src="/static/js/d.js?v={{ .Page.Version }}" async></script>
 
   {{template "third/disqusapi" $}}
 {{end}}

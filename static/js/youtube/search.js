@@ -1,4 +1,4 @@
-import { setSearch, startProgress } from '../util.js'
+import { setSearch, startProgress } from '/static/js/util.js'
 
 setSearch()
 

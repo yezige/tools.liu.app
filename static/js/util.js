@@ -91,21 +91,19 @@ const loadComments = function (element, callback) {
 
 const delEmptyThtd = function () {
   document.querySelectorAll('thead th').forEach((element) => {
-    var $th = $(element)
-    if ($th.html() == '') {
-      $th.remove()
+    if (element.innerHTML == '') {
+      element.remove()
     }
   })
 }
 
 const setMenu = function () {
-  $('.menu a')
-    .show()
-    .each(function () {
-      if ($(this).attr('href') == location.pathname) {
-        $(this).addClass('active')
-      }
-    })
+  document.querySelectorAll('.menu a').forEach((element) => {
+    element.style.display = 'inline-block'
+    if (element.getAttribute('href') == location.pathname) {
+      element.classList.add('active')
+    }
+  })
 }
 
 const searchHandler = function () {
@@ -165,14 +163,16 @@ const hideLoading = function (els) {
 
 // lozad.js 需要手动开启，lazysizes.js 不需要
 const setLazyload = async function () {
-  await timeout(200)
   lozad(document.querySelectorAll('.lazyload'), {
-    loaded: function (el) {
-      if (!el.closest('.loading_box')) {
-        return
+    threshold: 0.1,
+    enableAutoReload: true,
+    load: async function (el) {
+      el.src = el.getAttribute('data-src')
+      el.onload = function () {
+        el.classList.remove('loading_box')
       }
-      el.closest('.loading_box').querySelector('.loading').remove()
-    }
+    },
+    loaded: function (el) {}
   }).observe()
 }
 

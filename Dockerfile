@@ -11,7 +11,7 @@ WORKDIR $GOPATH/tools.liu.app
 
 COPY . $GOPATH/tools.liu.app
 
-RUN go build -ldflags="-X 'core.Version=${Version}'" -v -a -o tools .
+RUN go build -ldflags="-X 'github.com/yezige/tools.liu.app/core.Version=${Version}'" -v -a -o tools .
 
 # 新增一个容器，用来运行应用
 FROM alpine as run

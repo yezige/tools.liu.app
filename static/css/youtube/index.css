@@ -64,6 +64,9 @@
 .video .video_link {
   width: inherit;
   height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .video .video_thumbnail_box{
   width: 251px;

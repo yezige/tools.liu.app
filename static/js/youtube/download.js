@@ -1,5 +1,5 @@
 import { docCookies } from '../cookie.js'
-import { showMask, setInputBox, setEles, getParams, ajax } from '../util.js'
+import { showMask, setInputBox, setEles, getParams, ajax } from '/static/js/util.js'
 import { FFmpeg } from '/static/node_modules/@ffmpeg/ffmpeg/dist/esm/index.js'
 import { fetchFile, toBlobURL, downloadWithProgress } from '/static/node_modules/@ffmpeg/util/dist/esm/index.js'
 

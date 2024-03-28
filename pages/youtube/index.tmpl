@@ -1,7 +1,9 @@
 {{template "layout" $}}
 
 {{define "body"}}
-<link rel="stylesheet" href="/static/css/youtube/index.css" />
+<script src="/static/js/youtube/search.js?v={{ .Page.Version }}" type="module"></script>
+<link rel="stylesheet" href="/static/css/youtube/index.css?v={{ .Page.Version }}" />
+<link rel="stylesheet" href="/static/css/loading.css?v={{ .Page.Version }}" />
 <article id="page">
   <h1 class="title">{{ .Page.BodyName | html }}</h1>
   <div class="title_desc_box">
@@ -29,7 +31,7 @@
             <div class="videos">
               {{ range $itemkey, $itemval := .Items }}
               <div class="video">
-                <a class="start_progress video_link nofancybox" href="/youtube/download?id={{ .ID }}">
+                <a class="start_progress video_link nofancybox loading_before" href="/youtube/download?id={{ .ID }}">
                   <img class="video_thumbnail lazyload" data-src="{{ .Snippet.Thumbnails.High.Url }}" src="/static/images/whiteboard.svg" alt="{{ .Snippet.Title }}" />
                 </a>
                 <div class="video_info">
@@ -59,6 +61,5 @@
       {{ end }}
     </div>
   </div>
-  <script src="/static/js/youtube/search.js" type="module"></script>
 </article>
 {{ end }}
