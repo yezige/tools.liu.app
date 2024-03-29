@@ -167,7 +167,9 @@ const setLazyload = async function () {
     threshold: 0.1,
     enableAutoReload: true,
     load: async function (el) {
-      el.src = el.getAttribute('data-src')
+      if (el.getAttribute('data-src')) {
+        el.src = el.getAttribute('data-src')
+      }
       el.onload = function () {
         el.classList.remove('loading_box')
       }
