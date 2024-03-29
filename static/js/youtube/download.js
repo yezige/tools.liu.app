@@ -258,7 +258,7 @@ const setVipDownload = async () => {
 </div>`,
         ok: '开始',
         cancle: '关闭',
-        style: 'width: 260px; height: 440px;',
+        style: 'width: 260px; height: 450px;',
         callback_init: function (mask) {
           setInputBox(mask)
           setVipDownloadLoad('init')
