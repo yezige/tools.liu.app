@@ -4,6 +4,7 @@ import { FFmpeg } from '/static/node_modules/@ffmpeg/ffmpeg/dist/esm/index.js'
 import { fetchFile, toBlobURL, downloadWithProgress } from '/static/node_modules/@ffmpeg/util/dist/esm/index.js'
 
 const TXCLOUD_HOST = 'https://cloud1-5giq10fn52e7fc0e-1307628865.ap-shanghai.app.tcloudbase.com/cloud-function/httpFunction'
+const AWSCLOUD_HOST = 'https://zdv2vhfopvcxciz464be7psewy0tqpyt.lambda-url.us-west-1.on.aws'
 
 const toggleFast = function (showfast) {
   const fast_display = showfast ? 'flex' : 'none'
@@ -185,10 +186,21 @@ const doVipDownload = async () => {
   } else {
     audio_url = audio.querySelector('.item.down.down-standard a').getAttribute('href')
   }
+
+  const aws_url = await getVideoUrl({
+    id,
+    itag
+  })
+  if (!aws_url) {
+    // 设置为加载中，隐藏数字输入框显示loading
+    setVipDownloadLoad('init')
+    return false
+  }
+
   const data = {
     id,
-    video_url,
-    audio_url,
+    video_url: aws_url.video,
+    audio_url: aws_url.audio,
     video_name: video_name_ext,
     audio_name: audio_name_ext,
     output_name: `${video_name}.mp4`
@@ -216,6 +228,26 @@ const checkVipCode = async () => {
   }
   error_ele.innerHTML = ''
   return true
+}
+
+const getVideoUrl = async (data) => {
+  const error_ele = document.querySelector('.vip_code_box .error')
+  error_ele.innerHTML = ''
+  let pass_ele = document.querySelector('.input_box').innerText.replaceAll('\n', '').replaceAll(' ', '')
+  if (!pass_ele) {
+    error_ele.innerHTML = '密码不能为空'
+    return false
+  }
+  const res = await ajax({
+    url: `${AWSCLOUD_HOST}?id=${data.id}&itag=${data.itag}&coupon_code=${pass_ele}`,
+    method: 'GET'
+  })
+  if (!res.success) {
+    error_ele.innerHTML = res.msg
+    return false
+  }
+  error_ele.innerHTML = ''
+  return res.data
 }
 
 // 设置VIP下载所需事件
