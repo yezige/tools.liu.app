@@ -230,7 +230,7 @@ const setVipDownload = async () => {
       showMask({
         title: '下载音视频合成版',
         content: `<div class="vip_download">
-  <span class="statement">通过支付 ¥1.99，获得音频+视频合成后的结果，券码8小时内有效不限次数，退款无忧（使用后仍支持退款）</span>
+  <span class="statement">通过支付 ¥1.99，获得音频+视频合成后的结果，券码8小时内有效不限次数，有问题请联系小程序客服，退款无忧（使用后仍支持退款）</span>
   <div class="vip_pic_box">
     <a href="https://aii.ren/u/zcpQwubV" target="_blank"><span class="vip_pic_img"></span></a>
   </div>
