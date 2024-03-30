@@ -91,7 +91,7 @@ const showDownOpt = function () {
 showDownOpt()
 
 const load = async () => {
-  const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm'
+  const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm'
   const ffmpeg = new FFmpeg()
   ffmpeg.on('log', ({ message }) => {
     console.log(message)
@@ -114,7 +114,7 @@ const ffmpegToDownload = async (data) => {
   try {
     const ffmpeg = await load()
     ffmpeg.on('progress', ({ progress, time }) => {
-      progress_ele.innerHTML = `${parseInt(progress * 100)} % (transcoded time: ${parseInt(time / 1000000)} s)`
+      progress_ele.innerHTML = `${parseInt(progress * 100)} %`
     })
     await ffmpeg.writeFile(data.video_name, await fetchFile(data.video_url))
     await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
@@ -136,10 +136,11 @@ const ffmpegToDownload = async (data) => {
     //     progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
     //   })
     // )
-    await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, data.output_name])
+    await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, '-vcodec', 'copy', data.output_name])
     const ffdata = await ffmpeg.readFile(data.output_name)
     const downEle = document.getElementById('vip_down_link')
-    downEle.src = URL.createObjectURL(new Blob([ffdata.buffer], { type: 'video/mp4' }))
+    downEle.href = URL.createObjectURL(new Blob([ffdata.buffer], { type: 'video/mp4' }))
+    downEle.download = data.output_name
     // 设置为加载完成，隐藏loading，显示下载链接
     setVipDownloadLoad('loaded')
   } catch (error) {
