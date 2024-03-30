@@ -91,7 +91,8 @@ const showDownOpt = function () {
 showDownOpt()
 
 const load = async () => {
-  const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm'
+  // const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm'
+  const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm'
   const ffmpeg = new FFmpeg()
   ffmpeg.on('log', ({ message }) => {
     console.log(message)
@@ -101,7 +102,7 @@ const load = async () => {
   await ffmpeg.load({
     coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
     wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-    workerURL: await toBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript'),
+    // workerURL: await toBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript'),
   })
   return ffmpeg
 }
