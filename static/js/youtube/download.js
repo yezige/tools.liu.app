@@ -100,7 +100,8 @@ const load = async () => {
   // domain can be used directly.
   await ffmpeg.load({
     coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm')
+    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+    workerURL: await toBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript'),
   })
   return ffmpeg
 }
@@ -113,27 +114,29 @@ const ffmpegToDownload = async (data) => {
   try {
     const ffmpeg = await load()
     ffmpeg.on('progress', ({ progress, time }) => {
-      progress_ele.innerHTML = `${progress * 100} % (transcoded time: ${time / 1000000} s)`
+      progress_ele.innerHTML = `${parseInt(progress * 100)} % (transcoded time: ${parseInt(time / 1000000)} s)`
     })
-    await ffmpeg.writeFile(
-      data.video_name,
-      await downloadWithProgress(data.video_url, ({ total, received }) => {
-        if (!total) {
-          return false
-        }
-        progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
-      })
-    )
-    await ffmpeg.writeFile(
-      data.audio_name,
-      await downloadWithProgress(data.audio_url, ({ total, received }) => {
-        if (!total) {
-          return false
-        }
-        progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
-      })
-    )
-    await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, '-f mp4', data.output_name])
+    await ffmpeg.writeFile(data.video_name, await fetchFile(data.video_url))
+    await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
+    // await ffmpeg.writeFile(
+    //   data.video_name,
+    //   await downloadWithProgress(data.video_url, ({ total, received }) => {
+    //     if (!total) {
+    //       return false
+    //     }
+    //     progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
+    //   })
+    // )
+    // await ffmpeg.writeFile(
+    //   data.audio_name,
+    //   await downloadWithProgress(data.audio_url, ({ total, received }) => {
+    //     if (!total) {
+    //       return false
+    //     }
+    //     progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
+    //   })
+    // )
+    await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, data.output_name])
     const ffdata = await ffmpeg.readFile(data.output_name)
     const downEle = document.getElementById('vip_down_link')
     downEle.src = URL.createObjectURL(new Blob([ffdata.buffer], { type: 'video/mp4' }))
@@ -197,13 +200,15 @@ const doVipDownload = async () => {
     return false
   }
 
+  console.log('aws_url', aws_url)
+
   const data = {
     id,
     video_url: aws_url.video,
     audio_url: aws_url.audio,
     video_name: video_name_ext,
     audio_name: audio_name_ext,
-    output_name: `${video_name}.mp4`
+    output_name: `${video_name}_output.mp4`
   }
   console.log('down-info', data)
   await ffmpegToDownload(data)
@@ -290,7 +295,7 @@ const setVipDownload = async () => {
 </div>`,
         ok: '开始',
         cancle: '关闭',
-        style: 'width: 260px; height: 450px;',
+        style: 'width: 260px; height: 466px;',
         callback_init: function (mask) {
           setInputBox(mask)
           setVipDownloadLoad('init')
