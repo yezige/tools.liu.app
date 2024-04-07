@@ -269,6 +269,7 @@ func ApiYoutubeSearchHandler(c *gin.Context) {
 	result, err := youtube.Search(key)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
+			"success": false,
 			"code":    http.StatusInternalServerError,
 			"message": err.Error(),
 		})
@@ -276,6 +277,7 @@ func ApiYoutubeSearchHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
+		"success": true,
 		"code":    http.StatusOK,
 		"message": "成功",
 		"data":    result,
@@ -289,6 +291,7 @@ func ApiYoutubeDownloadHandler(c *gin.Context) {
 	result, err := youtube.Download(videoID, noCache)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
+			"success": false,
 			"code":    http.StatusInternalServerError,
 			"message": err.Error(),
 		})
@@ -296,6 +299,7 @@ func ApiYoutubeDownloadHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
+		"success": true,
 		"code":    http.StatusOK,
 		"message": "成功",
 		"data":    result,
@@ -309,6 +313,7 @@ func ApiYoutubeDownloadSetLinkHandler(c *gin.Context) {
 	err := youtube.DownloadSetLink(key, value)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
+			"success": false,
 			"code":    http.StatusInternalServerError,
 			"message": err.Error(),
 		})
@@ -316,6 +321,7 @@ func ApiYoutubeDownloadSetLinkHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
+		"success": true,
 		"code":    http.StatusOK,
 		"message": "成功",
 	})
@@ -327,6 +333,7 @@ func ApiYoutubeDownloadGetLinkHandler(c *gin.Context) {
 	result, err := youtube.DownloadGetLink(key)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
+			"success": false,
 			"code":    http.StatusInternalServerError,
 			"message": err.Error(),
 		})
@@ -334,6 +341,7 @@ func ApiYoutubeDownloadGetLinkHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
+		"success": true,
 		"code":    http.StatusOK,
 		"message": "成功",
 		"data":    result,
