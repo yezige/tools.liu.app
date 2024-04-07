@@ -127,6 +127,11 @@ type SelectionPlayability struct {
 	Status string `json:"status"`
 }
 
+type SetLink struct {
+	Key   string `json:"key"`
+	Value interface{} `json:"value"`
+}
+
 func Popular(regionCode string, videoCategoryId string) (result *PopularResult, err error) {
 	// 先查询redis
 	popular, err := redis.New().Get("youtube:popular:" + regionCode + ":" + videoCategoryId)
@@ -339,25 +344,25 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := redis.New().SetTTL("youtube:download:"+id, formatJson, time.Minute*5); err != nil {
+	if err := redis.New().SetTTL("youtube:download:"+id, formatJson, time.Minute*500); err != nil {
 		return nil, err
 	}
 
 	return result, nil
 }
 
-func DownloadSetLink(key string, value string) (err error) {
+func DownloadSetLink(param SetLink) (err error) {
 
-	if key == "" {
+	if param.Key == "" {
 		return errors.New("key is empty")
 	}
 
 	// 存储到redis
-	formatJson, err := json.Marshal(map[string]interface{}{"data": value})
+	formatJson, err := json.Marshal(param.Value)
 	if err != nil {
 		return err
 	}
-	if err := redis.New().SetTTL("youtube:downloadlink:"+key, formatJson, time.Hour*24); err != nil {
+	if err := redis.New().SetTTL("youtube:downloadlink:"+param.Key, formatJson, time.Hour*24); err != nil {
 		return err
 	}
 

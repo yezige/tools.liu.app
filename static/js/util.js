@@ -409,11 +409,11 @@ const ajax = (options) => {
       }
     }
     xhr.open(opt.method, opt.url)
-    xhr.send(getRequestBody(opt))
+    xhr.send(getRequestBody(xhr, opt))
   })
 }
 // 拼接请求参数
-const getRequestBody = (opt) => {
+const getRequestBody = (xhr, opt) => {
   let databody = ''
   if (opt.method.toUpperCase() == 'POST') {
     if (opt.json) {

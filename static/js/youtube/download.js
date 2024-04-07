@@ -4,6 +4,7 @@ import { FFmpeg } from '/static/node_modules/@ffmpeg/ffmpeg/dist/esm/index.js'
 import { fetchFile, toBlobURL, downloadWithProgress } from '/static/node_modules/@ffmpeg/util/dist/esm/index.js'
 
 const TXCLOUD_HOST = 'https://cloud1-5giq10fn52e7fc0e-1307628865.ap-shanghai.app.tcloudbase.com/cloud-function/httpFunction'
+const AWSCLOUD_HOST = 'https://zdv2vhfopvcxciz464be7psewy0tqpyt.lambda-url.us-west-1.on.aws'
 
 const toggleFast = function (showfast) {
   const fast_display = showfast ? 'flex' : 'none'
@@ -90,6 +91,7 @@ const showDownOpt = function () {
 showDownOpt()
 
 const load = async () => {
+  // const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm'
   const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm'
   const ffmpeg = new FFmpeg()
   ffmpeg.on('log', ({ message }) => {
@@ -99,7 +101,8 @@ const load = async () => {
   // domain can be used directly.
   await ffmpeg.load({
     coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm')
+    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+    // workerURL: await toBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript'),
   })
   return ffmpeg
 }
@@ -112,30 +115,33 @@ const ffmpegToDownload = async (data) => {
   try {
     const ffmpeg = await load()
     ffmpeg.on('progress', ({ progress, time }) => {
-      progress_ele.innerHTML = `${progress * 100} % (transcoded time: ${time / 1000000} s)`
+      progress_ele.innerHTML = `${parseInt(progress * 100)} %`
     })
-    await ffmpeg.writeFile(
-      data.video_name,
-      await downloadWithProgress(data.video_url, ({ total, received }) => {
-        if (!total) {
-          return false
-        }
-        progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
-      })
-    )
-    await ffmpeg.writeFile(
-      data.audio_name,
-      await downloadWithProgress(data.audio_url, ({ total, received }) => {
-        if (!total) {
-          return false
-        }
-        progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
-      })
-    )
-    await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, '-f mp4', data.output_name])
+    await ffmpeg.writeFile(data.video_name, await fetchFile(data.video_url))
+    await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
+    // await ffmpeg.writeFile(
+    //   data.video_name,
+    //   await downloadWithProgress(data.video_url, ({ total, received }) => {
+    //     if (!total) {
+    //       return false
+    //     }
+    //     progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
+    //   })
+    // )
+    // await ffmpeg.writeFile(
+    //   data.audio_name,
+    //   await downloadWithProgress(data.audio_url, ({ total, received }) => {
+    //     if (!total) {
+    //       return false
+    //     }
+    //     progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
+    //   })
+    // )
+    await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, '-vcodec', 'copy', data.output_name])
     const ffdata = await ffmpeg.readFile(data.output_name)
     const downEle = document.getElementById('vip_down_link')
-    downEle.src = URL.createObjectURL(new Blob([ffdata.buffer], { type: 'video/mp4' }))
+    downEle.href = URL.createObjectURL(new Blob([ffdata.buffer], { type: 'video/mp4' }))
+    downEle.download = data.output_name
     // 设置为加载完成，隐藏loading，显示下载链接
     setVipDownloadLoad('loaded')
   } catch (error) {
@@ -185,13 +191,26 @@ const doVipDownload = async () => {
   } else {
     audio_url = audio.querySelector('.item.down.down-standard a').getAttribute('href')
   }
+
+  const aws_url = await getVideoUrl({
+    id,
+    itag
+  })
+  if (!aws_url) {
+    // 设置为加载中，隐藏数字输入框显示loading
+    setVipDownloadLoad('init')
+    return false
+  }
+
+  console.log('aws_url', aws_url)
+
   const data = {
     id,
-    video_url,
-    audio_url,
+    video_url: aws_url.video,
+    audio_url: aws_url.audio,
     video_name: video_name_ext,
     audio_name: audio_name_ext,
-    output_name: `${video_name}.mp4`
+    output_name: `${video_name}_output.mp4`
   }
   console.log('down-info', data)
   await ffmpegToDownload(data)
@@ -216,6 +235,26 @@ const checkVipCode = async () => {
   }
   error_ele.innerHTML = ''
   return true
+}
+
+const getVideoUrl = async (data) => {
+  const error_ele = document.querySelector('.vip_code_box .error')
+  error_ele.innerHTML = ''
+  let pass_ele = document.querySelector('.input_box').innerText.replaceAll('\n', '').replaceAll(' ', '')
+  if (!pass_ele) {
+    error_ele.innerHTML = '密码不能为空'
+    return false
+  }
+  const res = await ajax({
+    url: `${AWSCLOUD_HOST}?id=${data.id}&itag=${data.itag}&coupon_code=${pass_ele}`,
+    method: 'GET'
+  })
+  if (!res.success) {
+    error_ele.innerHTML = res.msg
+    return false
+  }
+  error_ele.innerHTML = ''
+  return res.data
 }
 
 // 设置VIP下载所需事件
@@ -258,7 +297,7 @@ const setVipDownload = async () => {
 </div>`,
         ok: '开始',
         cancle: '关闭',
-        style: 'width: 260px; height: 450px;',
+        style: 'width: 260px; height: 466px;',
         callback_init: function (mask) {
           setInputBox(mask)
           setVipDownloadLoad('init')
