@@ -272,6 +272,7 @@ const setVipDownload = async () => {
   <span class="statement">通过支付 ¥1.99，下载音视频合成后的文件，券码8小时内有效且不限次数，退款无忧（使用后仍支持退款），有问题请联系小程序内客服，文件较大请耐心等待🍺🍺</span>
   <div class="vip_pic_box">
     <a href="https://aii.ren/u/zcpQwubV" target="_blank"><span class="vip_pic_img"></span></a>
+    <span class="statement">扫码/点击图片以唤起支付</span>
   </div>
   <div class="vip_code_box active">
     <div class="input_box">

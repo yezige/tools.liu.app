@@ -70,6 +70,10 @@
     cursor: pointer
 }
 
+.mask_btn:hover {
+    background-color: var(--box-dark-border-color);
+}
+
 .mask_btn_cancle {
     padding: 4px 10px;
     cursor: pointer;
