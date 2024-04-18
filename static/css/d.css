@@ -345,6 +345,20 @@ table th {
 .showbody header .header .space {
   flex: 1;
 }
+
+.showbody header .header .other {
+  display: flex;
+  margin-right: 16px;
+}
+  
+.showbody header .header .other a {
+  height: 35px;
+}
+    
+.showbody header .header .other img {
+  height: 35px;
+}
+    
 .showbody header .header .explore {
   text-transform: uppercase;
 }
