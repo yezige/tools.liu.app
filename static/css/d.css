@@ -29,7 +29,7 @@
   --box-dark-color: #353535;
   --box-dark-disable-color: rgba(0, 0, 0, 0.76);
   --box-dark-shadow-color: rgba(0, 0, 0, 0.12);
-  --box-dark-border-color: rgba(0, 0, 0, 0.32);
+  --box-dark-border-color: rgba(0, 0, 0, 0.22);
   --mask-bg-color: rgba(0, 0, 0, 1);
   /* 按钮图片 */
   --image-bg-search: url('/static/images/search_black.svg');
