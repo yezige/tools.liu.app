@@ -1,3 +1,19 @@
+// 返回错误对象
+const isError = (msg = '失败') => {
+  return {
+    success: false,
+    msg,
+  }
+}
+
+// 返回成功对象
+const isSuccess = (msg = '成功', data = {}) => {
+  return {
+    success: true,
+    msg,
+    data,
+  }
+}
 const timeout = (ms) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -439,6 +455,8 @@ const getRequestBody = (xhr, opt) => {
 }
 
 export {
+  isError,
+  isSuccess,
   setFancybox,
   setToggle,
   loadComments,

@@ -1,10 +1,13 @@
 import { docCookies } from '../cookie.js'
 import { showMask, setInputBox, setEles, getParams, ajax } from '/static/js/util.js'
+import { fetchDownload } from '/static/js/mp-download-cf.js'
 import { FFmpeg } from '/static/node_modules/@ffmpeg/ffmpeg/dist/esm/index.js'
 import { fetchFile, toBlobURL, downloadWithProgress } from '/static/node_modules/@ffmpeg/util/dist/esm/index.js'
 
 const TXCLOUD_HOST = 'https://cloud1-5giq10fn52e7fc0e-1307628865.ap-shanghai.app.tcloudbase.com/cloud-function/httpFunction'
 const AWSCLOUD_HOST = 'https://zdv2vhfopvcxciz464be7psewy0tqpyt.lambda-url.us-west-1.on.aws'
+const AWSCLOUD_HOST_YTDL = 'https://qj5du2ioitqp2br4ccgsvcqiia0jafvo.lambda-url.us-west-1.on.aws'
+const CFCLOUD_HOST_YTDL = 'https://mp-ytdl.liu.app/'
 
 const toggleFast = function (showfast) {
   const fast_display = showfast ? 'flex' : 'none'
@@ -101,16 +104,23 @@ const load = async () => {
   // domain can be used directly.
   await ffmpeg.load({
     coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm')
     // workerURL: await toBlobURL(`${baseURL}/ffmpeg-core.worker.js`, 'text/javascript'),
   })
   return ffmpeg
 }
 
-const ffmpegToDownload = async (data) => {
+const error = (error = '') => {
   const error_ele = document.querySelector('.vip_down_link_box .error')
-  const progress_ele = document.querySelector('.vip_down_link_box .progress')
   error_ele.innerHTML = ''
+  if (error) {
+    error_ele.innerHTML = error
+  }
+}
+
+const ffmpegToDownload = async (data) => {
+  const progress_ele = document.querySelector('.vip_down_link_box .progress')
+  error()
   progress_ele.innerHTML = ''
   try {
     const ffmpeg = await load()
@@ -144,8 +154,8 @@ const ffmpegToDownload = async (data) => {
     downEle.download = data.output_name
     // 设置为加载完成，隐藏loading，显示下载链接
     setVipDownloadLoad('loaded')
-  } catch (error) {
-    error_ele.innerHTML = error
+  } catch (err) {
+    error(err)
     // 设置为加载错误，隐藏loading、下载链接，显示错误
     setVipDownloadLoad('error')
   }
@@ -192,6 +202,41 @@ const doVipDownload = async () => {
     audio_url = audio.querySelector('.item.down.down-standard a').getAttribute('href')
   }
 
+  // 是否为极速下载
+  const downOpt = getDownOpt()
+  if (downOpt.to_fast) {
+    const video_data = await fetchDownload({
+      url: `${CFCLOUD_HOST_YTDL}?u=${encodeURIComponent(video_url)}`,
+      name: video_name_ext,
+      chunkSize: 500 * 1024,
+      poolLimit: 8
+    })
+
+    if (!video_data.success) {
+      return error(video_data.msg)
+    }
+    const audio_data = await fetchDownload({
+      url: `${CFCLOUD_HOST_YTDL}?u=${encodeURIComponent(audio_url)}`,
+      name: audio_name_ext,
+      chunkSize: 500 * 1024,
+      poolLimit: 8
+    })
+
+    if (!audio_data.success) {
+      return error(audio_data.msg)
+    }
+    const data = {
+      id,
+      video_url: video_data.data,
+      audio_url: audio_data.data,
+      video_name: video_name_ext,
+      audio_name: audio_name_ext,
+      output_name: `${video_name}_output.mp4`
+    }
+    console.log('down-info', data)
+    return await ffmpegToDownload(data)
+  }
+
   const aws_url = await getVideoUrl({
     id,
     itag
@@ -213,16 +258,15 @@ const doVipDownload = async () => {
     output_name: `${video_name}_output.mp4`
   }
   console.log('down-info', data)
-  await ffmpegToDownload(data)
+  return await ffmpegToDownload(data)
 }
 
 // 校验码是否正确
 const checkVipCode = async () => {
-  const error_ele = document.querySelector('.vip_code_box .error')
-  error_ele.innerHTML = ''
+  error()
   let pass_ele = document.querySelector('.input_box').innerText.replaceAll('\n', '').replaceAll(' ', '')
   if (!pass_ele) {
-    error_ele.innerHTML = '密码不能为空'
+    error('密码不能为空')
     return false
   }
   const res = await ajax({
@@ -230,19 +274,18 @@ const checkVipCode = async () => {
     method: 'GET'
   })
   if (!res.success) {
-    error_ele.innerHTML = res.msg
+    error(res.msg)
     return false
   }
-  error_ele.innerHTML = ''
+  error()
   return true
 }
 
 const getVideoUrl = async (data) => {
-  const error_ele = document.querySelector('.vip_code_box .error')
-  error_ele.innerHTML = ''
+  error()
   let pass_ele = document.querySelector('.input_box').innerText.replaceAll('\n', '').replaceAll(' ', '')
   if (!pass_ele) {
-    error_ele.innerHTML = '密码不能为空'
+    error('密码不能为空')
     return false
   }
   const res = await ajax({
@@ -250,10 +293,10 @@ const getVideoUrl = async (data) => {
     method: 'GET'
   })
   if (!res.success) {
-    error_ele.innerHTML = res.msg
+    error(res.msg)
     return false
   }
-  error_ele.innerHTML = ''
+  error()
   return res.data
 }
 
