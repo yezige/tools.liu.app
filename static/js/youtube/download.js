@@ -204,7 +204,7 @@ const doVipDownload = async () => {
 
   // 是否为极速下载
   const downOpt = getDownOpt()
-  if (downOpt.to_fast) {
+  if (false && downOpt.to_fast) {
     const video_data = await fetchDownload({
       url: `${CFCLOUD_HOST_YTDL}?u=${encodeURIComponent(video_url)}`,
       name: video_name_ext,

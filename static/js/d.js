@@ -1,10 +1,5 @@
 import { setFancybox, setToggle, loadComments, delEmptyThtd, setMenu, setLazyload, setVideoMove, setProgress } from '/static/js/util.js'
 
-setMenu()
-setVideoMove()
-delEmptyThtd()
-setToggle()
-
 document.addEventListener('DOMContentLoaded', function () {
   console.log('DOMContentLoaded')
   // lozad.js 需要手动开启，lazysizes.js 不需要
@@ -12,4 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
   setProgress()
   setFancybox()
 })
-window.loadComments = loadComments
+
+setMenu()
+setVideoMove()
+delEmptyThtd()
+setToggle()
