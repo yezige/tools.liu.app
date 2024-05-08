@@ -62,6 +62,7 @@
     <div class="download_list">
       <p class="down_title">{{ I "down-list-title" }}</p>
       <div class="down_content">
+        <div class="tips"><span>{{ I "down-use-idm" }}</span></div>
         <div class="download_item download_header {{ I "lng" }}">
           <span class="item">{{ I "down-quality" }}</span>
           <span class="item">{{ I "down-fps" }}</span>
@@ -86,7 +87,7 @@
             </a>
           </span>
           <span class="item down down-fast" style="display: none;">
-            <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}" download="{{ $.Info.Snippet.Title }}">
+            <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL }}" download="{{ $.Info.Snippet.Title }}" title="{{ I "down-use-idm" }}">
               <span class="download_btn"></span>
             </a>
           </span>
