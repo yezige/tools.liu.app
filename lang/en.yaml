@@ -44,17 +44,17 @@ down-opt-fast: Fast download
 down-opt-fast-tips: 'Tips: Fast requires "Over the Great Firewall" Network'
 down-opt-audio: Only show audio
 down-list-title: Download List
-down-use-idm: '📢📢📢 Recommended to use IDM, can be accelerated by multiple threads'
-down-list-tips: '📢 If you click Download to enter the preview page, you can try to right-click the download button to save the link as, right-click to use IDM to download.'
-down-list-tips-2: '📢 For the problem that the video has no sound, you can download the video and audio separately and use the following methods to solve the problem 👇.'
+down-use-idm: '⚠️⚠️⚠️ Recommended to use IDM, can be accelerated by multiple threads'
+down-list-tips: '⚠️ If you click Download to enter the preview page, you can try to right-click the download button to save the link as, right-click to use IDM to download.'
+down-list-tips-2: '⚠️ For the problem that the video has no sound, you can download the video and audio separately and use the following methods to solve the problem 👇.'
 down-videoaudio-title: Synthesize video and audio(YouTube uses separate video and audio storage)
-down-vipvideoaudio-title: Use paid downloads of synthesized video and audio files
+down-vipvideoaudio-title: 'Method 1: Use paid downloads of synthesized video and audio files'
 down-vipvideoaudio-desc1: Scan the WeChat QR code to pay
 down-vipvideoaudio-desc2: not
 down-vipvideoaudio-desc3: download synthesized audio and video files immediately
-down-addaudio-title: Use PotPlayer to combine video and audio playback
+down-addaudio-title: 'Method 2: Use PotPlayer to combine video and audio playback'
 down-addaudio-desc: Download a video file without sound, and use PotPlayer (https://potplayer.daum.net) to open the video, right click on the playback interface -> Open -> Load External Audio -> File Type select "All Files (*.*)" -> Select the downloaded audio file (for example xxx.weba), now the video has sound, as shown below.
-down-ffmpeg-title: Use FFmpeg to combine video and audio into one file
+down-ffmpeg-title: 'Method 3: Use FFmpeg to combine video and audio into one file'
 down-ffmpeg-desc: The synthesized output.mp4 will have sound
 sponsor: SPONSOR
 sponsor-url: https://www.paypal.com/paypalme/yezige
