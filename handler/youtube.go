@@ -166,7 +166,6 @@ func YoutubeDownloadHandler(c *gin.Context) {
 	}
 
 	data.DownloadList = down.Format
-	data.PlayabilityStatus = down.Info.PlayabilityStatus.Status
 	data.Info = down.Video
 
 	// 根据视频信息更新Title

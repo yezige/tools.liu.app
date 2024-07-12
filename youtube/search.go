@@ -293,7 +293,7 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 	}
 
 	// 调用youtube-dl接口获取视频下载地址
-	client := youtubedl.Client{Debug: false}
+	client := youtubedl.Client{}
 
 	video, err := client.GetVideo(id)
 	if err != nil {

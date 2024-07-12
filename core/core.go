@@ -51,7 +51,6 @@ type PageDownloadConfig struct {
 	Page              PageConfig                 `json:"page"`
 	DownloadList      *[]youtube.SelectionFormat `json:"download_list"`
 	Info              *youtube.Video             `json:"info"`
-	PlayabilityStatus string                     `json:"playability_status"`
 	DownloadTotal     int64                      `json:"download_total"`
 }
 type PageAboutConfig struct {
