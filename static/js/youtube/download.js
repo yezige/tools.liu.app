@@ -1,11 +1,12 @@
 import { docCookies } from '../cookie.js'
-import { showMask, setInputBox, setEles, getParams, ajax, toFixed } from '/static/js/util.js'
+import { showMask, setInputBox, setEles, getParams, ajax, fetchFileWithProgress } from '/static/js/util.js'
 import { fetchDownload } from '/static/js/mp-download-cf.js'
 import { FFmpeg } from '/static/node_modules/@ffmpeg/ffmpeg/dist/esm/index.js'
 import { fetchFile, toBlobURL, downloadWithProgress } from '/static/node_modules/@ffmpeg/util/dist/esm/index.js'
 
 const TXCLOUD_HOST = 'https://cloud1-5giq10fn52e7fc0e-1307628865.ap-shanghai.app.tcloudbase.com/cloud-function/httpFunction'
-const AWSCLOUD_HOST = 'https://zdv2vhfopvcxciz464be7psewy0tqpyt.lambda-url.us-west-1.on.aws'
+// const AWSCLOUD_HOST = 'https://zdv2vhfopvcxciz464be7psewy0tqpyt.lambda-url.us-west-1.on.aws'
+const AWSCLOUD_HOST = 'https://odyqe6rva6rg4kx25tkigydubq0jjask.lambda-url.us-west-1.on.aws'
 const AWSCLOUD_HOST_YTDL = 'https://qj5du2ioitqp2br4ccgsvcqiia0jafvo.lambda-url.us-west-1.on.aws'
 const CFCLOUD_HOST_YTDL = 'https://mp-ytdl.liu.app/'
 
@@ -125,32 +126,28 @@ const ffmpegToDownload = async (data) => {
   try {
     const ffmpeg = await load()
     ffmpeg.on('progress', ({ progress, time }) => {
-      progress_ele.innerHTML = `${parseInt(progress * 100)} %`
+      progress_ele.innerHTML = `${(progress * 100).toFixed(2)} %`
     })
-    await ffmpeg.writeFile(data.video_name, await fetchFile(data.video_url))
-    await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
-    // await ffmpeg.writeFile(
-    //   data.video_name,
-    //   new Uint8Array(
-    //     await downloadWithProgress(data.video_url, ({ total, received }) => {
-    //       if (!total) {
-    //         return false
-    //       }
-    //       progress_ele.innerHTML = `${toFixed(received / total, 4) * 100} %`
-    //     })
-    //   )
-    // )
-    // await ffmpeg.writeFile(
-    //   data.audio_name,
-    //   new Uint8Array(
-    //     await downloadWithProgress(data.audio_url, ({ total, received }) => {
-    //       if (!total) {
-    //         return false
-    //       }
-    //       progress_ele.innerHTML = `${toFixed(received / total, 4) * 100} %`
-    //     })
-    //   )
-    // )
+    // await ffmpeg.writeFile(data.video_name, await fetchFile(data.video_url))
+    // await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
+    await ffmpeg.writeFile(
+      data.video_name,
+      await fetchFileWithProgress(data.video_url, ({ total, received }) => {
+        if (!total) {
+          return false
+        }
+        progress_ele.innerHTML = `${((received / total) * 100).toFixed(2)} %`
+      })
+    )
+    await ffmpeg.writeFile(
+      data.audio_name,
+      await fetchFileWithProgress(data.audio_url, ({ total, received }) => {
+        if (!total) {
+          return false
+        }
+        progress_ele.innerHTML = `${((received / total) * 100).toFixed(2)} %`
+      })
+    )
     await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, '-vcodec', 'copy', data.output_name])
     const ffdata = await ffmpeg.readFile(data.output_name)
     const downEle = document.getElementById('vip_down_link')
@@ -365,7 +362,9 @@ const setVipDownload = async () => {
           doVipDownload()
           return false
         },
-        callback_cancle: function () {}
+        callback_cancle: function () {
+          setVipDownloaded()
+        }
       })
     })
   })
