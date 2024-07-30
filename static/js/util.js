@@ -1,4 +1,4 @@
-import BigNumber from './bignumber.mjs'
+import BigNumber from './bignumber.js'
 
 // 返回错误对象
 const isError = (msg = '失败') => {
