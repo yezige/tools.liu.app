@@ -233,6 +233,22 @@ table th {
 .p_10_0{
   padding: 10px 0;
 }
+.scroll-x {
+  overflow-x: auto;
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
+.scroll-y {
+  overflow-y: auto;
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.scroll-y::-webkit-scrollbar {
+  display: none;
+}
 
 
 

@@ -284,7 +284,7 @@ const showMask = function (data) {
 
   const html = `<div class="mask_box" style="display: none;" id="mask_box">
   <div class="mask"></div>
-  <div class="mask_panel" style="${conf.style}">
+  <div class="mask_panel scroll-y" style="${conf.style}">
     <div class="mask_body">
       <div class="mask_title">${conf.title}</div>
       <div class="mask_content">${conf.content}</div>
