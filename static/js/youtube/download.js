@@ -127,31 +127,30 @@ const ffmpegToDownload = async (data) => {
     ffmpeg.on('progress', ({ progress, time }) => {
       progress_ele.innerHTML = `${parseInt(progress * 100)} %`
     })
-    // await ffmpeg.writeFile(data.video_name, await fetchFile(data.video_url))
-    // await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
-    await ffmpeg.writeFile(
-      data.video_name,
-      new Uint8Array(
-        await downloadWithProgress(data.video_url, ({ total, received }) => {
-          if (!total) {
-            return false
-          }
-          progress_ele.innerHTML = `${toFixed(received / total, 4) * 100} %`
-        })
-      )
-    )
-    console.log(String((22 / 1000).toFixed(4) * 100).substring(0, 2))
-    await ffmpeg.writeFile(
-      data.audio_name,
-      new Uint8Array(
-        await downloadWithProgress(data.audio_url, ({ total, received }) => {
-          if (!total) {
-            return false
-          }
-          progress_ele.innerHTML = `${toFixed(received / total, 4) * 100} %`
-        })
-      )
-    )
+    await ffmpeg.writeFile(data.video_name, await fetchFile(data.video_url))
+    await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
+    // await ffmpeg.writeFile(
+    //   data.video_name,
+    //   new Uint8Array(
+    //     await downloadWithProgress(data.video_url, ({ total, received }) => {
+    //       if (!total) {
+    //         return false
+    //       }
+    //       progress_ele.innerHTML = `${toFixed(received / total, 4) * 100} %`
+    //     })
+    //   )
+    // )
+    // await ffmpeg.writeFile(
+    //   data.audio_name,
+    //   new Uint8Array(
+    //     await downloadWithProgress(data.audio_url, ({ total, received }) => {
+    //       if (!total) {
+    //         return false
+    //       }
+    //       progress_ele.innerHTML = `${toFixed(received / total, 4) * 100} %`
+    //     })
+    //   )
+    // )
     await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, '-vcodec', 'copy', data.output_name])
     const ffdata = await ffmpeg.readFile(data.output_name)
     const downEle = document.getElementById('vip_down_link')
