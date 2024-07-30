@@ -1,5 +1,5 @@
 import { docCookies } from '../cookie.js'
-import { showMask, setInputBox, setEles, getParams, ajax } from '/static/js/util.js'
+import { showMask, setInputBox, setEles, getParams, ajax, toFixed } from '/static/js/util.js'
 import { fetchDownload } from '/static/js/mp-download-cf.js'
 import { FFmpeg } from '/static/node_modules/@ffmpeg/ffmpeg/dist/esm/index.js'
 import { fetchFile, toBlobURL, downloadWithProgress } from '/static/node_modules/@ffmpeg/util/dist/esm/index.js'
@@ -131,21 +131,26 @@ const ffmpegToDownload = async (data) => {
     // await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
     await ffmpeg.writeFile(
       data.video_name,
-      await downloadWithProgress(data.video_url, ({ total, received }) => {
-        if (!total) {
-          return false
-        }
-        progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
-      })
+      new Uint8Array(
+        await downloadWithProgress(data.video_url, ({ total, received }) => {
+          if (!total) {
+            return false
+          }
+          progress_ele.innerHTML = `${toFixed(received / total, 4) * 100} %`
+        })
+      )
     )
+    console.log(String((22 / 1000).toFixed(4) * 100).substring(0, 2))
     await ffmpeg.writeFile(
       data.audio_name,
-      await downloadWithProgress(data.audio_url, ({ total, received }) => {
-        if (!total) {
-          return false
-        }
-        progress_ele.innerHTML = `${(received / total).toFixed(2) * 100} %`
-      })
+      new Uint8Array(
+        await downloadWithProgress(data.audio_url, ({ total, received }) => {
+          if (!total) {
+            return false
+          }
+          progress_ele.innerHTML = `${toFixed(received / total, 4) * 100} %`
+        })
+      )
     )
     await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, '-vcodec', 'copy', data.output_name])
     const ffdata = await ffmpeg.readFile(data.output_name)

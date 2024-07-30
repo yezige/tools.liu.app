@@ -1,8 +1,10 @@
+import BigNumber from './bignumber.mjs'
+
 // 返回错误对象
 const isError = (msg = '失败') => {
   return {
     success: false,
-    msg,
+    msg
   }
 }
 
@@ -11,7 +13,7 @@ const isSuccess = (msg = '成功', data = {}) => {
   return {
     success: true,
     msg,
-    data,
+    data
   }
 }
 const timeout = (ms) => {
@@ -454,6 +456,10 @@ const getRequestBody = (xhr, opt) => {
   return databody
 }
 
+const toFixed = function (num, dp, rm) {
+  return new BigNumber(num).toFixed(dp, rm)
+}
+
 export {
   isError,
   isSuccess,
@@ -477,5 +483,6 @@ export {
   setEles,
   setInputBox,
   getParams,
-  ajax
+  ajax,
+  toFixed
 }
