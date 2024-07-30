@@ -1,3 +1,4 @@
+import { fetchFileWithProgress, fetchHead } from "./fetch"
 // 返回错误对象
 const isError = (msg = '失败') => {
   return {
@@ -454,48 +455,6 @@ const getRequestBody = (xhr, opt) => {
   return databody
 }
 
-const fetchFileWithProgress = async (file, callback) => {
-  callback = callback ? callback : function () {}
-  if (file instanceof URL || typeof file === 'string') {
-  } else {
-    return new Uint8Array()
-  }
-
-  // 定义
-  let response = await fetch(file)
-  const reader = response.body.getReader()
-  const contentLength = +response.headers.get('Content-Length')
-
-  // 读取数据，显示进度
-  let receivedLength = 0 // 当前接收到了这么多字节
-  let chunks = [] // 接收到的二进制块的数组（包括 body）
-  while (true) {
-    // 当最后一块下载完成时，done 值为 true
-    // value 是块字节的 Uint8Array
-    const { done, value } = await reader.read()
-
-    if (done) {
-      break
-    }
-
-    chunks.push(value)
-    receivedLength += value.length
-
-    console.log(`Received ${receivedLength} of ${contentLength}`)
-    callback({ total: contentLength, received: receivedLength })
-  }
-
-  // 将块连接到单个 Uint8Array
-  let chunksAll = new Uint8Array(receivedLength) // (4.1)
-  let position = 0
-  for (let chunk of chunks) {
-    chunksAll.set(chunk, position) // (4.2)
-    position += chunk.length
-  }
-
-  return chunksAll
-}
-
 export {
   isError,
   isSuccess,
@@ -520,5 +479,6 @@ export {
   setInputBox,
   getParams,
   ajax,
+  fetchHead,
   fetchFileWithProgress
 }
