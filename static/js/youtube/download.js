@@ -158,12 +158,17 @@ const ffmpegToDownload = async (data) => {
     error(err)
     // 设置为加载错误，隐藏loading、下载链接，显示错误
     setVipDownloadLoad('error')
+    setVipDownloaded()
   }
 }
-
 // VIP下载提交事件
 const doVipDownload = async () => {
+  if (getVipDownloading()) {
+    return false
+  }
+  setVipDownloading()
   if (!(await checkVipCode())) {
+    setVipDownloaded()
     return false
   }
   // 设置为加载中，隐藏数字输入框显示loading
@@ -172,6 +177,7 @@ const doVipDownload = async () => {
   // 按钮对象
   const vip = document.querySelector('.item.down-vip.active')
   if (!vip) {
+    setVipDownloaded()
     return false
   }
   // 视频对象
@@ -242,8 +248,9 @@ const doVipDownload = async () => {
     itag
   })
   if (!aws_url) {
-    // 设置为加载中，隐藏数字输入框显示loading
+    // 显示code出入框
     setVipDownloadLoad('init')
+    setVipDownloaded()
     return false
   }
 
@@ -392,4 +399,15 @@ const setVipDownloadLoad = (status) => {
   } else {
     down_link_box.classList.remove('error')
   }
+}
+
+let doVipDownloading = false
+const getVipDownloading = () => {
+  return doVipDownloading
+}
+const setVipDownloading = () => {
+  doVipDownloading = true
+}
+const setVipDownloaded = () => {
+  doVipDownloading = false
 }
