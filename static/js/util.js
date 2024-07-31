@@ -1,4 +1,4 @@
-import { fetchFileWithProgress, fetchHead } from "./fetch"
+import { fetchFileWithProgress, fetchHead } from "./fetch.js"
 // 返回错误对象
 const isError = (msg = '失败') => {
   return {

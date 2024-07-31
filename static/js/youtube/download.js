@@ -5,8 +5,8 @@ import { FFmpeg } from '/static/node_modules/@ffmpeg/ffmpeg/dist/esm/index.js'
 import { fetchFile, toBlobURL, downloadWithProgress } from '/static/node_modules/@ffmpeg/util/dist/esm/index.js'
 
 const TXCLOUD_HOST = 'https://cloud1-5giq10fn52e7fc0e-1307628865.ap-shanghai.app.tcloudbase.com/cloud-function/httpFunction'
-// const AWSCLOUD_HOST = 'https://zdv2vhfopvcxciz464be7psewy0tqpyt.lambda-url.us-west-1.on.aws'
-const AWSCLOUD_HOST = 'https://odyqe6rva6rg4kx25tkigydubq0jjask.lambda-url.us-west-1.on.aws'
+const AWSCLOUD_HOST = 'https://zdv2vhfopvcxciz464be7psewy0tqpyt.lambda-url.us-west-1.on.aws'
+// const AWSCLOUD_HOST = 'https://odyqe6rva6rg4kx25tkigydubq0jjask.lambda-url.us-west-1.on.aws' // test
 const AWSCLOUD_HOST_YTDL = 'https://qj5du2ioitqp2br4ccgsvcqiia0jafvo.lambda-url.us-west-1.on.aws'
 const CFCLOUD_HOST_YTDL = 'https://mp-ytdl.liu.app/'
 
@@ -98,9 +98,11 @@ const load = async () => {
   // const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm'
   const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm'
   const ffmpeg = new FFmpeg()
-  ffmpeg.on('log', ({ message }) => {
-    console.log(message)
-  })
+  // 打印合成日志
+  // ffmpeg.on('log', ({ message }) => {
+  //   console.log(message)
+  // })
+
   // toBlobURL is used to bypass CORS issue, urls with the same
   // domain can be used directly.
   await ffmpeg.load({
@@ -132,7 +134,7 @@ const ffmpegToDownload = async (data) => {
     // await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
     await ffmpeg.writeFile(
       data.video_name,
-      await fetchFileWithProgress(data.video_url, ({ total, received }) => {
+      await fetchFileWithProgress({ url: data.video_url }, ({ total, received }) => {
         if (!total) {
           return false
         }
@@ -141,7 +143,7 @@ const ffmpegToDownload = async (data) => {
     )
     await ffmpeg.writeFile(
       data.audio_name,
-      await fetchFileWithProgress(data.audio_url, ({ total, received }) => {
+      await fetchFileWithProgress({ url: data.audio_url }, ({ total, received }) => {
         if (!total) {
           return false
         }
