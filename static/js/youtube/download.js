@@ -130,26 +130,26 @@ const ffmpegToDownload = async (data) => {
     ffmpeg.on('progress', ({ progress, time }) => {
       progress_ele.innerHTML = `${(progress * 100).toFixed(2)} %`
     })
-    // await ffmpeg.writeFile(data.video_name, await fetchFile(data.video_url))
-    // await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
-    await ffmpeg.writeFile(
-      data.video_name,
-      await fetchFileWithProgress({ url: data.video_url }, ({ total, received }) => {
-        if (!total) {
-          return false
-        }
-        progress_ele.innerHTML = `${((received / total) * 100).toFixed(2)} %`
-      })
-    )
-    await ffmpeg.writeFile(
-      data.audio_name,
-      await fetchFileWithProgress({ url: data.audio_url }, ({ total, received }) => {
-        if (!total) {
-          return false
-        }
-        progress_ele.innerHTML = `${((received / total) * 100).toFixed(2)} %`
-      })
-    )
+    await ffmpeg.writeFile(data.video_name, await fetchFile(data.video_url))
+    await ffmpeg.writeFile(data.audio_name, await fetchFile(data.audio_url))
+    // await ffmpeg.writeFile(
+    //   data.video_name,
+    //   await fetchFileWithProgress({ url: data.video_url }, ({ total, received }) => {
+    //     if (!total) {
+    //       return false
+    //     }
+    //     progress_ele.innerHTML = `${((received / total) * 100).toFixed(2)} %`
+    //   })
+    // )
+    // await ffmpeg.writeFile(
+    //   data.audio_name,
+    //   await fetchFileWithProgress({ url: data.audio_url }, ({ total, received }) => {
+    //     if (!total) {
+    //       return false
+    //     }
+    //     progress_ele.innerHTML = `${((received / total) * 100).toFixed(2)} %`
+    //   })
+    // )
     await ffmpeg.exec(['-i', data.video_name, '-i', data.audio_name, '-vcodec', 'copy', data.output_name])
     const ffdata = await ffmpeg.readFile(data.output_name)
     const downEle = document.getElementById('vip_down_link')
