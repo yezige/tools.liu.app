@@ -4,26 +4,7 @@
  * https://gist.github.com/semlinker/837211c039e6311e1e7629e5ee5f0a42
  */
 
-import { isError, isSuccess } from './util.js'
-/**
- * HEAD 封装
- * @example await fetchHead({url})
- * @param { {url:string, opt:*} } param0
- */
-const fetchHead = async ({ url, opt = {} }) => {
-  const option = Object.assign(
-    {
-      method: 'HEAD'
-    },
-    opt
-  )
-  console.log('fetchHead', url)
-  const response = await fetch(url, option)
-  response.headers.forEach((v, k) => {
-    console.log('fetchHead', k, v)
-  })
-  return response
-}
+import { isError, isSuccess, fetchHead } from './util.js'
 
 /**
  * Download 封装

@@ -22,9 +22,9 @@ const fetchHead = async ({ url, opt = {} }) => {
 
 /**
  * 下载文件带进度封装
- * @param {url: string} param0 
- * @param {*} callback 
- * @returns 
+ * @param {url: string} param0
+ * @param {*} callback
+ * @returns
  */
 const fetchFileWithProgress = async ({ url }, callback) => {
   callback = callback ? callback : function () {}
@@ -42,25 +42,27 @@ const fetchFileWithProgress = async ({ url }, callback) => {
   }
   console.log('content-length', contentLength)
 
+  // 定义处理方法
+  const processText = function ({ done, value }) {
+    // 当最后一块下载完成时，done 值为 true
+    // value 是块字节的 Uint8Array，done 为 true 时，其值始终为 undefined
+    if (done) {
+      return
+    }
+
+    chunks.push(value)
+    receivedLength += value.length
+
+    callback({ total: contentLength, received: receivedLength })
+
+    // 再次调用该函数以读取更多数据
+    return reader.read().then(processText)
+  }
+
   // 读取数据，显示进度
   let receivedLength = 0 // 当前接收到了这么多字节
   let chunks = [] // 接收到的二进制块的数组（包括 body）
-  try {
-    while (true) {
-      // 当最后一块下载完成时，done 值为 true
-      // value 是块字节的 Uint8Array
-      const { done, value } = await reader.read()
-
-      if (done) {
-        break
-      }
-
-      chunks.push(value)
-      receivedLength += value.length
-
-      callback({ total: contentLength, received: receivedLength })
-    }
-  } catch (e) {}
+  await reader.read().then(processText)
 
   // 将块连接到单个 Uint8Array
   let chunksAll = new Uint8Array(receivedLength)

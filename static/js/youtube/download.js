@@ -382,6 +382,8 @@ const setVipDownloadLoad = (status) => {
   if (status == 'init') {
     code_box.classList.add('active')
     down_link_box.classList.remove('active')
+    down_link_box.querySelector('.progress').innerHTML = ''
+    down_link_box.querySelector('.error').innerHTML = ''
   } else {
     code_box.classList.remove('active')
     down_link_box.classList.add('active')
