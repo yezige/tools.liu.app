@@ -10,6 +10,12 @@ const AWSCLOUD_HOST = 'https://zdv2vhfopvcxciz464be7psewy0tqpyt.lambda-url.us-we
 const AWSCLOUD_HOST_YTDL = 'https://qj5du2ioitqp2br4ccgsvcqiia0jafvo.lambda-url.us-west-1.on.aws'
 const CFCLOUD_HOST_YTDL = 'https://mp-ytdl.liu.app/'
 
+document.addEventListener('DOMContentLoaded', function () {
+  listenerDownOpt()
+  showDownOpt()
+  setVipDownload()
+})
+
 const toggleFast = function (showfast) {
   const fast_display = showfast ? 'flex' : 'none'
   const standard_display = showfast ? 'none' : 'flex'
@@ -58,7 +64,6 @@ const listenerDownOpt = function () {
     { passive: true }
   )
 }
-listenerDownOpt()
 
 // 设置下载选项设置
 const setDownOpt = function () {
@@ -92,7 +97,6 @@ const showDownOpt = function () {
     has_audio.click()
   }
 }
-showDownOpt()
 
 const load = async () => {
   // const baseURL = 'https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm'
@@ -371,7 +375,6 @@ const setVipDownload = async () => {
     })
   })
 }
-setVipDownload()
 
 const setVipDownloadLoad = (status) => {
   const code_box = document.querySelector('.vip_code_box')
