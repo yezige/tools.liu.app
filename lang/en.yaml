@@ -44,9 +44,9 @@ down-opt-fast: Fast download
 down-opt-fast-tips: 'Tips: Fast requires "Over the Great Firewall" Network'
 down-opt-audio: Only show audio
 down-list-title: Download List
-down-use-idm: '⚠️⚠️⚠️ Recommended to use IDM, can be accelerated by multiple threads'
-down-list-tips: '⚠️ If you click Download to enter the preview page, you can try to right-click the download button to save the link as, right-click to use IDM to download.'
-down-list-tips-2: '⚠️ For the problem that the video has no sound, you can download the video and audio separately and use the following methods to solve the problem 👇.'
+down-use-idm: '💥💥💥 Recommended to use IDM, can be accelerated by multiple threads, 🧧IDM software join group top self-pickup.'
+down-list-tips: '❗❗❗ If you click Download to enter the preview page, you can try to right-click the download button to save the link as, right-click to use IDM to download.🧧IDM software join group top self-pickup'
+down-list-tips-2: '❗❗❗ For the problem that the video has no sound, you can download the video and audio separately and use the following methods to solve the problem 👇'
 down-videoaudio-title: Synthesize video and audio(YouTube uses separate video and audio storage)
 down-vipvideoaudio-title: 'Method 1: Use paid downloads of synthesized video and audio files'
 down-vipvideoaudio-desc1: Scan the WeChat QR code to pay

@@ -44,9 +44,9 @@ down-opt-fast: 是否极速下载
 down-opt-fast-tips: '注意: 极速需要科学网络'
 down-opt-audio: 仅显示有音频的行
 down-list-title: 下载列表
-down-use-idm: '⚠️⚠️⚠️ 推荐使用 IDM 下载，可多线程加速'
-down-list-tips: '⚠️ 如果点击下载进入预览页，可尝试下载按钮右键链接另存为、右键使用 IDM 下载。'
-down-list-tips-2: '⚠️ 对于视频没有声音的问题，可分别下载视频和音频然后使用下列几种方式解决 👇。'
+down-use-idm: '💥💥💥 推荐使用 IDM 下载，可多线程加速，🧧IDM 软件加群置顶自取'
+down-list-tips: '❗❗❗ 如果点击下载进入预览页，可尝试下载按钮右键链接另存为、右键使用 IDM 下载。🧧IDM 软件加群置顶自取'
+down-list-tips-2: '❗❗❗ 对于视频没有声音的问题，可分别下载视频和音频然后使用下列几种方式解决 👇'
 down-videoaudio-title: 合成视频和音频（YouTube使用分开的视频和音频存储方式）
 down-vipvideoaudio-title: 方式一：使用付费下载合成好的视频和音频文件
 down-vipvideoaudio-desc1: 微信扫码支付

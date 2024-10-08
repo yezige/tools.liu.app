@@ -218,8 +218,7 @@ table th {
   display: inline-flex;
   align-items: center;
   font-size: 0.78rem;
-  font-weight: 400;
-  color: var(--text-nonhigh-color);
+  color: var(--text-color);
 }
 .mg_l_15{
   margin-left: 15px;

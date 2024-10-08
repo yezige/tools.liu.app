@@ -344,7 +344,7 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := redis.New().SetTTL("youtube:download:"+id, formatJson, time.Second*5); err != nil {
+	if err := redis.New().SetTTL("youtube:download:"+id, formatJson, time.Second*60); err != nil {
 		return nil, err
 	}
 
