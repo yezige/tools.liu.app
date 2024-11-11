@@ -4,7 +4,7 @@ import { fetchDownload } from '/static/js/mp-download-cf.js'
 import { FFmpeg } from '/static/node_modules/@ffmpeg/ffmpeg/dist/esm/index.js'
 import { fetchFile, toBlobURL, downloadWithProgress } from '/static/node_modules/@ffmpeg/util/dist/esm/index.js'
 
-const TXCLOUD_HOST = 'https://cloud1-5giq10fn52e7fc0e-1307628865.ap-shanghai.app.tcloudbase.com/cloud-function/httpFunction'
+const TXCLOUD_HOST = 'https://cloud1-5giq10fn52e7fc0e-1307628865.ap-shanghai.app.tcloudbase.com'
 const AWSCLOUD_HOST = 'https://zdv2vhfopvcxciz464be7psewy0tqpyt.lambda-url.us-west-1.on.aws'
 // const AWSCLOUD_HOST = 'https://odyqe6rva6rg4kx25tkigydubq0jjask.lambda-url.us-west-1.on.aws' // test
 const AWSCLOUD_HOST_YTDL = 'https://qj5du2ioitqp2br4ccgsvcqiia0jafvo.lambda-url.us-west-1.on.aws'
@@ -284,7 +284,7 @@ const checkVipCode = async () => {
     return false
   }
   const res = await ajax({
-    url: `${TXCLOUD_HOST}?functionName=orderCouponUsed&couponCode=${pass_ele}`,
+    url: `${TXCLOUD_HOST}/orderCouponUsed?couponCode=${pass_ele}`,
     method: 'GET'
   })
   if (!res.success) {
