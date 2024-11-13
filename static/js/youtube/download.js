@@ -256,8 +256,6 @@ const doVipDownload = async () => {
     itag
   })
   if (!aws_url) {
-    // 显示code出入框
-    setVipDownloadLoad('init')
     setVipDownloaded()
     return false
   }
