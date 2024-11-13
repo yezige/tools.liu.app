@@ -345,7 +345,6 @@ const setVipDownload = async () => {
       <span class="input_block" id="input_block_4"></span>
       <span class="input_block" id="input_block_5"></span>
     </div>
-    <div class="error"></div>
   </div>
   <div class="vip_down_link_box loading">
     <div class="loading_box"></div>
@@ -406,6 +405,7 @@ const setVipDownloadLoad = (status) => {
   }
 
   if (status == 'error') {
+    code_box.classList.add('active')
     down_link_box.classList.add('error')
   } else {
     down_link_box.classList.remove('error')
