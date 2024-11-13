@@ -122,6 +122,7 @@ const error = (error = '') => {
   error_ele.innerHTML = ''
   if (error) {
     error_ele.innerHTML = error
+    setVipDownloadLoad('error')
   }
 }
 

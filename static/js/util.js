@@ -1,4 +1,4 @@
-import { fetchFileWithProgress, fetchHead } from "./fetch.js"
+import { fetchFileWithProgress, fetchHead } from './fetch.js'
 // 返回错误对象
 const isError = (msg = '失败') => {
   return {
@@ -21,6 +21,24 @@ const timeout = (ms) => {
       resolve()
     }, ms)
   })
+}
+/**
+ * 快速执行时忽略
+ * @example const fn = quickignore((a) => { console.log(a) })
+ * fn(1)
+ * fn(2)
+ * @param {function} F
+ * @param {int} ms
+ * @returns
+ */
+const quickignore = (F, ms = 300) => {
+  let timeout
+  return (...args) => {
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
+      F(...args)
+    }, ms)
+  }
 }
 const setFancybox = function () {
   if (!CONFIG.page.site.fancybox) {
