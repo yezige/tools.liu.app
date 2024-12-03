@@ -467,6 +467,8 @@ github.com/ugorji/go/codec v1.2.11/go.mod h1:UNopzCgEMSXjBc6AOMqYvWC1ktqTAfzJZUZ
 github.com/vmihailenco/msgpack v4.0.4+incompatible h1:dSLoQfGFAo3F6OoNhwUmLwVgaUXK79GlxNBwueZn0xI=
 github.com/vmihailenco/msgpack v4.0.4+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
+github.com/yezige/youtube/v2 v2.7.22 h1:8kd4cVNZ/JndvQ9PvTzvR+WcSnhr3SL0S7gOpSNIrEI=
+github.com/yezige/youtube/v2 v2.7.22/go.mod h1:WLVx00WZS4xoY6AGPu8Ijb/8sStseEUWiyc1pxIWjVk=
 github.com/yezige/youtube/v2 v2.7.25 h1:g+GEnHdjQ/HhI7Q5uLr9e6iUHUG+L6YFau0SPx5aLUA=
 github.com/yezige/youtube/v2 v2.7.25/go.mod h1:u2yN435PzV16cNuUx8YycOVC02/4f6CX7xCn94i5Oy4=
 github.com/yezige/youtube/v2 v2.7.26 h1:aJ9DpXwIHQfgZqV7JZU6iIDtE6WSTewr4wbhspgisz4=
