@@ -491,6 +491,8 @@ github.com/yezige/youtube/v2 v2.8.10 h1:I8sQsEyUXL4CL59nvyiMMl9nKJYILsudK4q1WrIV
 github.com/yezige/youtube/v2 v2.8.10/go.mod h1:wplObzflz5TigFf9SDjIf5qbmNE02DQbBBCpALIm/nE=
 github.com/yezige/youtube/v2 v2.8.11 h1:L3bMB4WAOHA2CwVAe/lRi+4kTIL4tbYz66N8aWUqAyY=
 github.com/yezige/youtube/v2 v2.8.11/go.mod h1:wplObzflz5TigFf9SDjIf5qbmNE02DQbBBCpALIm/nE=
+github.com/yezige/youtube/v2 v2.8.13 h1:UKcWRAwPSOr2gk0IxGPEk38L1eQkEp4PmDsfu4gN4mo=
+github.com/yezige/youtube/v2 v2.8.13/go.mod h1:wplObzflz5TigFf9SDjIf5qbmNE02DQbBBCpALIm/nE=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
