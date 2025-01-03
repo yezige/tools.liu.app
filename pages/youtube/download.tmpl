@@ -79,7 +79,7 @@
           <span class="item audio" data-audio="{{ if gt .F.AudioChannels 0}}1{{else}}0{{ end }}">{{ if gt .F.AudioChannels 0}}✔{{else}}{{ end }}</span>
           <span class="item">{{ if .F.ContentLength }}{{ .F.ContentLength | sizeFormat }}{{else}}-{{ end }}</span>
           <span class="item down down-standard">
-            <a rel="nofollow" class="download_box" target="_blank" href="{{ .F.URL_PROXY }}" download="{{ $.Info.Snippet.Title }}" title="{{ I "down-use-idm" }}">
+            <a rel="nofollow" class="download_box" target="_blank" href="{{ .URL_PROXY }}" download="{{ $.Info.Snippet.Title }}" title="{{ I "down-use-idm" }}">
               <span class="download_btn"></span>
             </a>
           </span>

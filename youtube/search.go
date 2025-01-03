@@ -119,8 +119,9 @@ type SelectionID struct {
 }
 
 type SelectionFormat struct {
-	F   youtubedl.Format `json:"f"`
-	Ext string           `json:"ext"`
+	F         youtubedl.Format `json:"f"`
+	URL_PROXY string           `json:"url_proxy"`
+	Ext       string           `json:"ext"`
 }
 
 type SelectionPlayability struct {
@@ -128,7 +129,7 @@ type SelectionPlayability struct {
 }
 
 type SetLink struct {
-	Key   string `json:"key"`
+	Key   string      `json:"key"`
 	Value interface{} `json:"value"`
 }
 
@@ -312,8 +313,7 @@ func Download(id string, nocache bool) (result *DownloadResult, err error) {
 			logx.LogError.Infoln(err)
 		}
 		fileName := url.QueryEscape(video.Title) + "." + GetExtByMime(v.MimeType)
-		v.URL_PROXY = SetDownloadUrl(v.URL, fileName)
-		resSlice[k] = SelectionFormat{F: v, Ext: GetExtByMime(v.MimeType)}
+		resSlice[k] = SelectionFormat{F: v, URL_PROXY: SetDownloadUrl(v.URL, fileName), Ext: GetExtByMime(v.MimeType)}
 	}
 
 	video.Formats = nil
