@@ -14,7 +14,7 @@ import (
 	"github.com/yezige/tools.liu.app/redis"
 	"github.com/yezige/tools.liu.app/request"
 
-	youtubedl "github.com/yezige/youtube/v2"
+	youtubedl "github.com/yezige/youtube/v20"
 )
 
 const (
