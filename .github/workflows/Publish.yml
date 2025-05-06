@@ -10,7 +10,7 @@ env:
 
 jobs:
   push-ghcr:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       TZ: Asia/Shanghai
       REGISTRY: ghcr.io
