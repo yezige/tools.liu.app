@@ -323,7 +323,8 @@ const setVipDownload = async () => {
       e.currentTarget.classList.add('active')
       setVipDownloadLoad('init')
       showMask({
-        title: '下载音视频合成版',
+        // title: '下载音视频合成版',
+        title: '服务暂不可用 请勿支付',
         content: `<div class="vip_download">
   <span class="statement">通过支付 ¥1.99，下载音视频合成后的文件，券码8小时内有效且不限次数，退款无忧（使用后仍支持退款），有问题请联系小程序内客服，文件较大请耐心等待🍺🍺</span>
   <div class="vip_pic_box">
